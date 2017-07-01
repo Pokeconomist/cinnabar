@@ -1,0 +1,55 @@
+Cinnabar,1,A,Mercury ore
+Molybdenite,1,B,Molybdenum ore
+Realgar,1,C,An orange arsenic ore
+Galena,1,D,Lead ore
+Sphalerite,1,E,Zinc ore
+Quartz,2,A,Commonest of minerals
+Rose Quartz,2,B,Sometimes of gem quality
+Agate,2,C,Usually forms in cavities
+Jasper,2,D,Orbicular or eyed
+Chrysoprase,2,E,A green form of chalcedony
+Psilomelane,3,A,A manganese ore
+Corundum,3,B,Hardest mineral except diamond
+Magnetite,3,C,A magnetic iron ore
+Cassiterite,3,D,Most important ore of tin
+Cuprite,3,E,A copper ore
+Gold,4,A,Veins found in quartz
+Silver,4,B,Tarnishes black
+Sulphur,4,C,Burns with blue flame
+Copper,4,D,Tarnishes green in air
+Garnet,5,A,A common gem stone
+Actinolite,5,B,An amphibole mineral
+Tourmaline,5,C,Sometime a gem
+Rhodonite,5,D,Turns black in air
+Serpentine,5,E,Has greasy feeling
+Calcite,6,A,Rhonbic cleavage & optical doubling
+Aragonite,6,B,In twinned crystals
+Malachite & Azurite,6,C,Green & blue copper ores
+Rhodochrosite,6,D,A manganese ore
+Smithsonite,6,E,An important ore of zinc
+Carnotite,7,A,Uranium ore in fossil
+Torbernite,7,B,A uranium ore
+Wulfenite,7,C,A molybdenum ore
+Vanadinite,7,D,A vanadium ore
+Scheelite,7,E,Brownish yellow tungsten ore
+Halite,8,A,Common Salt crystals
+Barite,8,B,A sulphate mineral
+Gypsum,8,C,Used for plaster of Paris
+Apatite,9,A,Violet crystals of calcium phosphate
+Pyromorphite,9,B,Lead chlorophosphate
+Olivenite,9,C,Copper arsenate
+Scorodite,9,D,Hydrous ferric arsenate
+Limestone,10,A,Showing sea fossils
+Sandstone,10,B,Spike concretion of sand
+Chert,10,C,Gelatinized silica rock
+Conglomerate,10,D,Cemented rock pebbles
+Breccia,10,E,Cemented rock fragments
+Granite,11,A,"Quartz,feldspar & mica"
+Gabbro,11,B,Large grains of dark minerals
+Basalt,11,C,Small grains dark minerals
+Dacite,11,D,Small grains light minerals
+Pegmatite,11,E,Large crystals in rock
+Slate,12,A,Shows ancient ripples
+Quartzite,12,B,Fused grains of sand
+Marble,12,C,Metamorphosed limestone
+Gneiss,12,D,Pressure-made layers
