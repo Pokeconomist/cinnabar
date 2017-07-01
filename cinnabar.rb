@@ -14,74 +14,95 @@ card = Struct.new(:card_name, :card_desc)
 	card.new(card[0], card[3])
 end
 =end
-#deck is made as a hash as below
-#{:1 => {
-#	:set_name => ,
-#	:set_cards => {
-#		:A => {
-#			:card_name => ,
-#			:card_desc => ,		
+#deck is made as a hash/array as below
+#[
+#	:set_num => ,
+#	:set_data => {
+#		:set_name => ,
+#	:	set_cards => [
+#			:set_pos => ,
+#			:card_data => {
+#				:card_name => ,
+#				:card_desc => ,		
+#			],
+#			...
 #		},
-#		...
 #	},
 #	...
-#}
-#OR
-#DECK {
-#	set_num => SETS {
-#		:set_name
-#		CARDS {
-#			:set_pos => CARD {
-#				:card_name
-#				:card_desc
-#			}
+#]
+
+#e.g.
+#[
+#	:set_num => 1,
+#	:set_data => {
+#		:set_name => "",
+#	:	set_cards => [
+#			:set_pos => ,
+#			:card_data => {
+#				:card_name => ,
+#				:card_desc => ,		
+#			],
 #			...
-#		}
-#	}
+#		},
+#	},
 #	...
-#}
+#]
 
 #i.e.
-#	array of sets (with key = set_num, comprised of set_name, set_size, and set_cards (each referenced by their relevent symbol), which in turn is comprised of each card with set_pos as the symbol)
+#	array of sets (with attributes set_num and set_data, comprised of set_name, set_size, and set_cards , which in turn is comprised of set_pos, and card_data, which is comprised of card_name, and card_desc)
 require "csv"
+require "pp"
 
 #class to create set elements from csv
 class Set
 	attr_reader :set
 	@@cards = CSV.read("files/cards.csv").each {|cards| cards.map!.each_with_index {|element, index| index == 1 ? element.to_i : element}}
-	@@sets  = CSV.read("files/sets.csv").each {|cards| cards.collect!.each_with_index {|element, index| index == 0 || index == 2 ? element.to_i : element}}
+	@@sets = CSV.read("files/sets.csv").each {|cards| cards.collect!.each_with_index {|element, index| index == 0 || index == 2 ? element.to_i : element}}
 	#create hash of all cards within a set
 	def self.compile_cards(set_num)
-		@@cards.select {|card| card[1] == set_num}.collect {|card| {card[2].to_sym => {:card_name => card[0], :card_desc => card[3]}}}.inject(:merge)
+		@@cards.select {|card| card[1] == set_num}.collect {|card| {:set_pos => card[2], :card_data => {:card_name => card[0], :card_desc => card[3]}}}
 	end
 	#create hash for a set
-	def initialize(num)
-		set_num = @@sets[num][0]
-		set_name = @@sets[num][1]
-		@set = {set_num => {:set_name => set_name, :set_cards => (Set.compile_cards(set_num))}}
+	def initialize(line_num)
+		set_num = @@sets[line_num][0]
+		set_name = @@sets[line_num][1]
+		@set = {:set_num => set_num, :set_data => {:set_name => set_name, :set_cards => (Set.compile_cards(set_num))}}
 	end
 end
 #class to create the deck from all sets (12)
 class Deck
 	attr_reader :deck
 	def initialize
-		@deck = Array.new(11) {|n| Set.new(n).set}
+		@deck = Array.new(12) {|n| Set.new(n).set}
 	end
 end
 
-puts Deck.new.deck
+$deck = Deck.new.deck
 
+
+#using decks hash -- find card 1-B
+
+#TODO add abiltiy to get other cards in set data
+
+def get_card_data(set_num, set_pos)
+	$deck.each do |set|
+		if set[:set_num] == set_num
+			set[:set_data][:set_cards].each do |card|
+				if card[:set_pos] == set_pos
+					return card[:card_data][:card_name], card[:card_data][:card_desc], set[:set_data][:set_name]
+				end
+			end
+		end
+	end
+end
+
+puts get_card_data(1, "A")
 
 run_game = false
+
 while run_game
-	player1_hand = cards.sample(6)
-	player2_hand = cards.sample(6)
-	player3_hand = cards.sample(6)
-	reserve = cards.delete()
-	print "Player 1's turn. Press enter to continue:"
-	pause
-	player1_hand.each do |card|
-		print_card(card[0])
+	turn = 0
+	while turn == 0
 	end
 end
 	
