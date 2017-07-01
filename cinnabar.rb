@@ -49,7 +49,7 @@ end
 #]
 
 #i.e.
-#	array of sets (with attributes set_num and set_data, comprised of set_name, set_size, and set_cards , which in turn is comprised of set_pos, and card_data, which is comprised of card_name, and card_desc)
+#	array of sets (with attributes set_num and set_data, comprised of set_name, and set_cards , which in turn is comprised of set_pos, and card_data, which is comprised of card_name, and card_desc)
 require "csv"
 require "pp"
 
@@ -75,28 +75,53 @@ class Deck
 	def initialize
 		@deck = Array.new(12) {|n| Set.new(n).set}
 	end
-end
-
-$deck = Deck.new.deck
-
-
-#using decks hash -- find card 1-B
-
-#TODO add abiltiy to get other cards in set data
-
-def get_card_data(set_num, set_pos)
-	$deck.each do |set|
-		if set[:set_num] == set_num
-			set[:set_data][:set_cards].each do |card|
-				if card[:set_pos] == set_pos
-					return card[:card_data][:card_name], card[:card_data][:card_desc], set[:set_data][:set_name]
+	def get_card_data(set_num, set_pos)
+		@deck.each do |set|
+			if set[:set_num] == set_num
+				set[:set_data][:set_cards].each do |card|
+					if card[:set_pos] == set_pos
+						return card[:card_data][:card_name], card[:card_data][:card_desc], set[:set_data][:set_name], set[:set_num], card[:set_pos]
+					else
+						return nil
+					end
 				end
+			else
+				return nil
 			end
 		end
 	end
+	#function to return oher cards in set
+	def get_card_set(set_num, set_pos)
+		card_set = []
+		@deck.each do |set|
+			if set[:set_num] == set_num
+				set[:set_data][:set_cards].each do |card|
+					if card[:set_pos] != set_pos
+						card_set << card[:card_data][:card_name]
+					end
+				end
+				return card_set
+			end
+		end						
+	end
 end
 
-puts get_card_data(1, "A")
+#function that prints cards data
+def print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
+	card_set.each do |card|
+		puts " #{card}"
+	end
+	puts "#{set_name}    #{set_num}-#{set_pos}"
+	puts card_name.upcase
+	puts "(" + card_desc + ")"
+end
+#init deck storage
+deck = Deck.new
+
+
+cards = Array.new {}
+#example getting card data
+print_card(*deck.get_card_data(1, "A"), deck.get_card_set(1, "A"))
 
 run_game = false
 
