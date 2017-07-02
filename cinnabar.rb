@@ -121,8 +121,14 @@ class Deck
 	end
 end
 #TOTO add class to handle players (mainly turn functions)
-class Player()
-	def initialize
+#special functions
+def pause
+	system("pause>nul")
+end
+def cls
+	system("cls")
+end
+
 #function that prints cards data
 def print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
 	puts "----------------"
@@ -140,6 +146,7 @@ def quick_print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
 end
 #function to get a players hand, and to decrease the reserve pile
 def get_hand(cards)
+	cards = cards.values
 	hand = cards.sample(6)
 	cards -= [hand]
 	return hand, cards
@@ -166,7 +173,9 @@ while run_game
 		player3_cards, reserve = get_hand(reserve)
 		turn += 1
 	end
-	print "PLAYER 1's TURN"
+	print "PLAYER 1's TURN. Press enter to continue..."
+	pause
+	print
 	player1_wanted_card_name = gets
 	player1_wanted_player = gets
 	#TODO fix this system
