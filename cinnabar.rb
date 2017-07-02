@@ -58,8 +58,9 @@ class Set
 	attr_reader :set
 	@@cards = CSV.read("files/cards.csv").each {|cards| cards.map!.each_with_index {|element, index| index == 1 ? element.to_i : element}}
 	@@sets = CSV.read("files/sets.csv").each {|cards| cards.collect!.each_with_index {|element, index| index == 0 || index == 2 ? element.to_i : element}}
-	#create hash of all cards within a set
+	#create array of all cards within a set
 	def self.compile_cards(set_num)
+		#find cards of set number == set_num, and return their data as a hash
 		@@cards.select {|card| card[1] == set_num}.collect {|card| {:set_pos => card[2], :card_data => {:card_name => card[0], :card_desc => card[3]}}}
 	end
 	#create hash for a set
@@ -72,21 +73,32 @@ end
 #class to create the deck from all sets (12)
 class Deck
 	attr_reader :deck
+	#create hash of set elements, 
 	def initialize
 		@deck = Array.new(12) {|n| Set.new(n).set}
 	end
+	#create hash of card ids with mname as key (eg. {:cinnabar => [1, "A"]...})
+	def get_id_hash
+		cards = {}
+		@deck.each do |set|
+			set[:set_data][:set_cards].each do |card|		
+				cards[card[:card_data][:card_name].to_sym] = [set[:set_num], card[:set_pos]]
+			end
+		end
+		return cards
+	end
+	#method to return data for a specified card
 	def get_card_data(set_num, set_pos)
 		@deck.each do |set|
+			#find set
 			if set[:set_num] == set_num
+				#iterate over set
 				set[:set_data][:set_cards].each do |card|
+					#find card
 					if card[:set_pos] == set_pos
 						return card[:card_data][:card_name], card[:card_data][:card_desc], set[:set_data][:set_name], set[:set_num], card[:set_pos]
-					else
-						return nil
 					end
 				end
-			else
-				return nil
 			end
 		end
 	end
@@ -94,8 +106,11 @@ class Deck
 	def get_card_set(set_num, set_pos)
 		card_set = []
 		@deck.each do |set|
+			#find set
 			if set[:set_num] == set_num
+				#iterate over set
 				set[:set_data][:set_cards].each do |card|
+					#find all other cards
 					if card[:set_pos] != set_pos
 						card_set << card[:card_data][:card_name]
 					end
@@ -105,33 +120,60 @@ class Deck
 		end						
 	end
 end
-
+#TOTO add class to handle players (mainly turn functions)
+class Player()
+	def initialize
 #function that prints cards data
 def print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
+	puts "----------------"
 	card_set.each do |card|
 		puts " #{card}"
 	end
 	puts "#{set_name}    #{set_num}-#{set_pos}"
-	puts card_name.upcase
+	puts "  #{card_name.upcase}"
 	puts "(" + card_desc + ")"
+	puts "----------------"
 end
+#single line card print for debugging
+def quick_print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
+	puts card_name
+end
+#function to get a players hand, and to decrease the reserve pile
+def get_hand(cards)
+	hand = cards.sample(6)
+	cards -= [hand]
+	return hand, cards
+end
+
 #init deck storage
 deck = Deck.new
 
+#array of acceptable card ids (cards servers as a static list, reserve serves as pickup pile)
+#eg. [[1, "A"], [1, "B"],...]
+cards = deck.get_id_hash
+reserve = deck.get_id_hash
 
-cards = Array.new {}
-#example getting card data
-print_card(*deck.get_card_data(1, "A"), deck.get_card_set(1, "A"))
+#WIP add actual game logic
 
-run_game = false
+run_game = true
 
 while run_game
 	turn = 0
 	while turn == 0
+		#init playeres hands
+		player1_cards, reserve = get_hand(reserve)
+		player2_cards, reserve = get_hand(reserve)
+		player3_cards, reserve = get_hand(reserve)
+		turn += 1
+	end
+	print "PLAYER 1's TURN"
+	player1_wanted_card_name = gets
+	player1_wanted_player = gets
+	#TODO fix this system
+	player1_wanted_card_id = cards[:player1_wanted_card_name]
+	#pseudocode
+
+	if player{n}_cards.contains? (player1_wanted_card.id)
+		move_card(player1_cards, player{n}_cards)
 	end
 end
-	
-
-
-	
-		
