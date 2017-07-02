@@ -1,41 +1,8 @@
-#TODO posible shift to using a struct rather than an array
-
-#eg.
-#sets = Struct.new(:set_num, :set_data)
-#set = Struct.new(:set_name, :set_cards)
-#cards = Struct.new(:set_pos, :card_data)
-#card = Struct.new(:card_name, :card_desc)
-#deck = sets.new(1, set.new("Sulfide Minerals", cards.new("A", card.new("Cinnabar", "Mercury ore")...)...)
-=begin
-cards = Struct.new(:set_pos, :card_data)
-card = Struct.new(:card_name, :card_desc)
-@@cards.select {|card| card[1] == set_num}.each do |card|
-	cards.new(card[2], card_data)
-	card.new(card[0], card[3])
-end
-=end
 #deck is made as a hash/array as below
 #[
 #	:set_num => ,
 #	:set_data => {
 #		:set_name => ,
-#	:	set_cards => [
-#			:set_pos => ,
-#			:card_data => {
-#				:card_name => ,
-#				:card_desc => ,		
-#			],
-#			...
-#		},
-#	},
-#	...
-#]
-
-#e.g.
-#[
-#	:set_num => 1,
-#	:set_data => {
-#		:set_name => "",
 #	:	set_cards => [
 #			:set_pos => ,
 #			:card_data => {
