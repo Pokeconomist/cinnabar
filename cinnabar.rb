@@ -42,12 +42,12 @@ class Deck
 	attr_reader :deck
 	#create hash of set elements, 
 	def initialize
-		@deck = Array.new(12) {|n| Set.new(n).set}
+		@@deck = Array.new(12) {|n| Set.new(n).set}
 	end
 	#create hash of card ids with mname as key (eg. {:cinnabar => [1, "A"]...})
-	def get_id_array
+	def self.get_id_array
 		cards = []
-		@deck.each do |set|
+		@@deck.each do |set|
 			set[:set_data][:set_cards].each do |card|		
 				cards << [set[:set_num], card[:set_pos]]
 			end
@@ -55,8 +55,8 @@ class Deck
 		return cards
 	end
 	#method to return data for a specified card
-	def get_card_data(set_num, set_pos)
-		@deck.each do |set|
+	def self.get_card_data(set_num, set_pos)
+		@@deck.each do |set|
 			#find set
 			if set[:set_num] == set_num
 				#iterate over set
@@ -69,10 +69,10 @@ class Deck
 			end
 		end
 	end
-	#function to return oher cards in set
-	def get_card_set(set_num, set_pos)
+	#function to return other cards in set
+	def self.get_card_set(set_num, set_pos)
 		card_set = []
-		@deck.each do |set|
+		@@deck.each do |set|
 			#find set
 			if set[:set_num] == set_num
 				#iterate over set
@@ -86,21 +86,81 @@ class Deck
 			end
 		end						
 	end
-	#method to get a cards id from its name
-	def get_card_id_from_name(card_name)
-		raise Argument Error, "Please enter a valid card name" unless card.is_a? String
-		card_name = card_name.downcase.capitalize
-		@deck.each do |set|
+	#method to get a cards id from its name (ad validates input)
+	def self.get_card_id_from_name(card_name)
+		card_name = card_name.to_s.downcase.capitalize
+		@@deck.each do |set|
 			set[:set_data][:set_cards].each do |card|
 				if card[:card_data][:card_name] == card_name
 					return set[:set_num], card[:set_pos]
 				end
 			end
 		end
-		raise Argument Error, "Please enter a valid card name"
+		raise ArgumentError
 	end
 end
-#TOTO add class to handle players (mainly turn functions)
+#WIP add class to handle players (mainly turn functions)
+class Player
+	attr_reader :hand, :reserve
+	def initialize(player_num, cards)
+		@player_num = player_num
+		@hand, @reserve = self.get_hand(cards)
+	end
+	#function to get a players hand (sorted), and to decrease the reserve pile
+	def get_hand(cards)
+		hand = cards.sample(6)
+		cards -= [hand]
+		return hand.sort, cards
+	end
+	def player_turn
+		print "PLAYER #{@player_num}'s TURN. Press enter to continue..."
+		pause
+		puts "Your cards are"
+		@hand.each do |card|
+			print_card(*Deck.get_card_data(*card), Deck.get_card_set(*card))
+		end
+		card_correct = false
+		#TODO check each card against cards in sets, and current cards //DONE
+		while !card_correct
+			print "What card do you want (only from sets you have): "
+			wanted_card_name = gets.chomp
+			@hand.each do |card|
+				begin
+					#check against sets, and validate input
+					if (Deck.get_card_id_from_name(wanted_card_name)[0] == card[0]) && !(card.include? (Deck.get_card_id_from_name(wanted_card_name)))
+						card_correct = true
+					end
+				rescue ArgumentError
+					puts "Please enter a valid card name..."
+					card_correct = false
+					break
+				end
+			end
+		end
+		player_correct = false
+		while !player_correct
+			print "What player do you call: "
+			called_player = gets.chomp.to_i
+			if (called_player == @player_num) || called_player > 3 || called_player <= 0
+				puts "Please enter a valid player number..."
+				player_correct = false
+			else				
+				player_correct = true
+			end
+		end
+		def check_card(card_id)
+			return @hand.include? (card_id), true
+		end
+		
+		#TODO call check card on another player object
+
+		#pseudocode
+
+		# if player{n}_cards.contains? (player1_wanted_card.id)
+		# 	move_card(player1_cards, player{n}_cards)
+		# end
+	end
+end
 #special functions
 def pause
 	gets
@@ -124,20 +184,14 @@ end
 def quick_print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
 	puts card_name
 end
-#function to get a players hand (sorted), and to decrease the reserve pile
-def get_hand(cards)
-	hand = cards.sample(6)
-	cards -= [hand]
-	return hand.sort, cards
-end
 
 #init deck storage
-deck = Deck.new
+Deck.new
 
 #array of acceptable card ids (cards servers as a static list, reserve serves as pickup pile)
 #eg. [[1, "A"], [1, "B"],...]
-cards = deck.get_id_array
-reserve = deck.get_id_array
+cards = Deck.get_id_array
+reserve = Deck.get_id_array
 
 #WIP add actual game logic
 
@@ -146,38 +200,20 @@ run_game = true
 while run_game
 	turn = 0
 	while turn == 0
-		#init playeres hands
-		player1_hand, reserve = get_hand(reserve)
-		player2_hand, reserve = get_hand(reserve)
-		player3_hand, reserve = get_hand(reserve)
+		#init player objects and decrease reserve
+
+		#TODO implement better reserve pile handling
+
+		player1 = Player.new(1, reserve)
+		reserve = player1.reserve
+		player2 = Player.new(2, reserve)
+		reserve = player2.reserve
+		player3 = Player.new(3, reserve)
+		reserve = player3.reserve
 		turn += 1
 	end
 
 #TODO create turn method to avoid 3x repeat
-
-	print "PLAYER 1's TURN. Press enter to continue..."
-	pause
-	puts "Your cards are"
-	player1_hand.each do |card|
-		print_card(*deck.get_card_data(*card), deck.get_card_set(*card))
-	end
-	card_correct = false
-	#TODO check each card against cards in sets, and current cards
-	while !card_correct
-		print "What card do you want (only from sets you have): "
-		player1_wanted_card_name = gets
-		player1_hand.each do |card|
-			if deck.get_card_id_from_name(player1_wanted_card_name) == card[1]
-				card_correct = true
-			end
-		end
-	end
-	player1_wanted_player = gets
-
-	#pseudocode
-
-	# if player{n}_cards.contains? (player1_wanted_card.id)
-	# 	move_card(player1_cards, player{n}_cards)
-	# end
+	player1.player_turn
 
 end
