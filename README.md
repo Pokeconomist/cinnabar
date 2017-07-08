@@ -1,15 +1,12 @@
 # Cinnabar
-Game based on the 1966 card game by Vinson Brown.
+Game based on the 1966 card game by Vinson Brown, published by [Naturegraph Publishers, Inc.](http://www.naturegraph.com/)
 
 ## Getting Started
-*NOTE
-To run this game, you must have Ruby installed on your machine*
+*NOTE:
 
-Clone repository to your computor, and run cinnabar.rb
+To run this game, you must have [Ruby](https://www.ruby-lang.org/en/downloads/) installed on your machine.*
 
-### Installing
-
-[Ruby installation (with instructions)](https://www.ruby-lang.org/en/downloads/)
+Program runs as is (with ruby installed)
 
 ## Built With
 
@@ -24,4 +21,4 @@ Please read [CONTRIBUTING.md]() for how to contribute
 
 * **Soda Adlmayer** - Git - [Pokeconomist](https://github.com/Pokeconomist)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Pokeconomist/cinnabar/graphs/contributors) who participated in this project.
