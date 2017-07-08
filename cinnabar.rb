@@ -7,7 +7,7 @@
 #			:set_pos => ,
 #			:card_data => {
 #				:card_name => ,
-#				:card_desc => ,		
+#				:card_desc => ,
 #			],
 #			...
 #		},
@@ -40,7 +40,7 @@ end
 #class to create the deck from all sets (12)
 class Deck
 	attr_reader :deck
-	#create hash of set elements, 
+	#create hash of set elements,
 	def initialize
 		@@deck = Array.new(12) {|n| Set.new(n).set}
 	end
@@ -48,7 +48,7 @@ class Deck
 	def self.get_id_array
 		cards = []
 		@@deck.each do |set|
-			set[:set_data][:set_cards].each do |card|		
+			set[:set_data][:set_cards].each do |card|
 				cards << [set[:set_num], card[:set_pos]]
 			end
 		end
@@ -84,7 +84,7 @@ class Deck
 				end
 				return card_set
 			end
-		end						
+		end
 	end
 	#method to get a cards id from its name (ad validates input)
 	def self.get_card_id(card_name)
@@ -127,7 +127,7 @@ class Player
 		#get and check input for player number
 		@called_player = get_wanted_player()
 	end
-	#method to get / check a players wanted card input 
+	#method to get / check a players wanted card input
 	def get_wanted_card
 		while true
 			print "What card do you want (only from sets you have): "
@@ -135,7 +135,7 @@ class Player
 			#check against sets, and validate input
 			if (@hand.collect {|e| e[0]}.include? (Deck.get_card_id(wanted_card_name)[0])) && !(@hand.include? (Deck.get_card_id(wanted_card_name)))
 				return Deck.get_card_id(wanted_card_name)
-			else 
+			else
 				puts "Please enter a valid card name..."
 			end
 		end
@@ -271,5 +271,5 @@ while run_game
 	game = Game.new (reserve)
 	reserve = game.reserve
 	game.game_turn
-	
+
 end
