@@ -99,7 +99,7 @@ class Deck
 	end
 end
 
-#WIP add class to handle players (mainly turn functions)
+#WIP: add class to handle players (mainly turn functions)
 class Player
 	attr_reader :reserve, :player_num, :wanted_card_id, :called_player, :hand
 	#init method, that creates all player attr, and a diminished reserve variable (only used by main scope)
@@ -120,7 +120,7 @@ class Player
 			print_card(*Deck.get_card_data(*card), Deck.get_card_set(*card))
 		end
 
-		#TODO find solution that doent use instance variables
+		#TODO find solution that doesn't use instance variables
 
 		#get and check input for card name
 		@wanted_card_id = get_wanted_card()
@@ -129,7 +129,7 @@ class Player
 	end
 	#method to get / check a players wanted card input
 	def get_wanted_card
-		while true
+		loop do
 			print "What card do you want (only from sets you have): "
 			wanted_card_name = gets.chomp
 			#check against sets, and validate input
@@ -142,7 +142,7 @@ class Player
 	end
 	#method to get / check wanted player input
 	def get_wanted_player
-		while true
+		loop do
 			print "What player do you call: "
 			called_player = gets.chomp.to_i
 			if !(called_player == @player_num) && called_player <= 3 && called_player >= 1
@@ -155,9 +155,11 @@ class Player
 	#methods to take and give cards to a player
 	def add_card(card_id)
 		@hand += [card_id]
+		@hand.sort!
 	end
 	def take_card(card_id)
 		@hand -= [card_id]
+		@hand.sort!
 	end
 end
 
@@ -188,7 +190,7 @@ class Game
 	def game_turn
 		(0..2).each do |n|
 			cls
-			#notify other players of past turn (using player[n].turn_data)
+			#notify other players of past turn (using player[n-1] turn_data)
 			if @turn_data != []
 				@turn_data.each do |card|
 					if card[:card_taken]
@@ -202,19 +204,27 @@ class Game
 			@turn_data = []
 			print "PLAYER #{n + 1}'s TURN. Press enter to continue..."
 			pause
-			cls
-			@players[n].player_turn
-			check_card(@players[n].player_num, @players[n].called_player, @players[n].wanted_card_id)
+			loop do
+				cls
+				#call each players turn code
+				@players[n].player_turn
+				check_card(@players[n].player_num, @players[n].called_player, @players[n].wanted_card_id)
+				break unless @turn_data[-1][:card_taken]
+			end
+
+			#TODO: Add check for set, no cards, and win
+
 		end
 	end
 
-	#TODO loop if card_taken == true
+	#TODO: loop if card_taken == true
 
+	#method to check if a card is present in a players hand (and to update turn_data)
 	def check_card(player_num, called_player_num, card_id)
 		if @players[called_player_num - 1].hand.include? (card_id)
 			@players[called_player_num - 1].take_card(card_id)
 			@players[player_num - 1].add_card(card_id)
-			"Player #{called_player_num} had the card"
+			puts "Player #{called_player_num} had the card"
 			card_taken = true
 		else
 			puts "Player #{called_player_num} didn't have the card..."
@@ -224,6 +234,7 @@ class Game
 		pause
 	end
 end
+
 #independent functions
 def pause
 	gets
@@ -252,24 +263,23 @@ end
 #init deck storage
 Deck.new
 
-#array of acceptable card ids (cards serves as a static list, reserve serves as pickup pile)
+
+#array of acceptable card ids (static list)
 #eg. [[1, "A"], [1, "B"],...]
 cards = Deck.get_id_array
-reserve = Deck.get_id_array
+#REFACTOR: moved reserve handling to Game class
+#	reserve = Deck.get_id_array
 
-run_game = true
-while run_game
-	turn = 0
+#.main loop
+turn = 0
+loop do
 	while turn == 0
+		#init game object
+		game = Game.new(cards)
 
-		#TODO implement better reserve pile handling
-
-		#init game object and decrease reserve
+		#TODO: implement better reserve pile handling
 
 		turn += 1
 	end
-	game = Game.new (reserve)
-	reserve = game.reserve
 	game.game_turn
-
 end
