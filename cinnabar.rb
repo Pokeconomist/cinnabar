@@ -87,7 +87,7 @@ class Deck
 		end						
 	end
 	#method to get a cards id from its name (ad validates input)
-	def self.get_card_id_from_name(card_name)
+	def self.get_card_id(card_name)
 		card_name = card_name.to_s.downcase.capitalize
 		@@deck.each do |set|
 			set[:set_data][:set_cards].each do |card|
@@ -96,72 +96,135 @@ class Deck
 				end
 			end
 		end
-		raise ArgumentError
 	end
 end
+
 #WIP add class to handle players (mainly turn functions)
 class Player
-	attr_reader :hand, :reserve
+	attr_reader :reserve, :player_num, :wanted_card_id, :called_player, :hand
+	#init method, that creates all player attr, and a diminished reserve variable (only used by main scope)
 	def initialize(player_num, cards)
 		@player_num = player_num
 		@hand, @reserve = self.get_hand(cards)
 	end
-	#function to get a players hand (sorted), and to decrease the reserve pile
+	#method to get a players hand (sorted), and to return a decreased reserve pile
 	def get_hand(cards)
 		hand = cards.sample(6)
 		cards -= [hand]
 		return hand.sort, cards
 	end
+	#method to get a players inputs
 	def player_turn
-		print "PLAYER #{@player_num}'s TURN. Press enter to continue..."
-		pause
 		puts "Your cards are"
 		@hand.each do |card|
 			print_card(*Deck.get_card_data(*card), Deck.get_card_set(*card))
 		end
-		card_correct = false
-		#TODO check each card against cards in sets, and current cards //DONE
-		while !card_correct
+
+		#TODO find solution that doent use instance variables
+
+		#get and check input for card name
+		@wanted_card_id = get_wanted_card()
+		#get and check input for player number
+		@called_player = get_wanted_player()
+	end
+	#method to get / check a players wanted card input 
+	def get_wanted_card
+		while true
 			print "What card do you want (only from sets you have): "
 			wanted_card_name = gets.chomp
-			@hand.each do |card|
-				begin
-					#check against sets, and validate input
-					if (Deck.get_card_id_from_name(wanted_card_name)[0] == card[0]) && !(card.include? (Deck.get_card_id_from_name(wanted_card_name)))
-						card_correct = true
-					end
-				rescue ArgumentError
-					puts "Please enter a valid card name..."
-					card_correct = false
-					break
-				end
+			#check against sets, and validate input
+			if (@hand.collect {|e| e[0]}.include? (Deck.get_card_id(wanted_card_name)[0])) && !(@hand.include? (Deck.get_card_id(wanted_card_name)))
+				return Deck.get_card_id(wanted_card_name)
+			else 
+				puts "Please enter a valid card name..."
 			end
 		end
-		player_correct = false
-		while !player_correct
+	end
+	#method to get / check wanted player input
+	def get_wanted_player
+		while true
 			print "What player do you call: "
 			called_player = gets.chomp.to_i
-			if (called_player == @player_num) || called_player > 3 || called_player <= 0
+			if !(called_player == @player_num) && called_player <= 3 && called_player >= 1
+				return called_player
+			else
 				puts "Please enter a valid player number..."
-				player_correct = false
-			else				
-				player_correct = true
 			end
 		end
-		def check_card(card_id)
-			return @hand.include? (card_id), true
-		end
-		
-		#TODO call check card on another player object
-
-		#pseudocode
-
-		# if player{n}_cards.contains? (player1_wanted_card.id)
-		# 	move_card(player1_cards, player{n}_cards)
-		# end
+	end
+	#methods to take and give cards to a player
+	def add_card(card_id)
+		@hand += [card_id]
+	end
+	def take_card(card_id)
+		@hand -= [card_id]
 	end
 end
-#special functions
+
+#@turn_data instance variable used to specify what occured during the last turn, and notify other players
+#@turn_data = [{:card_taken => $bool$, :called_player => $int$, card => $arr$}, ...]
+#card_taken true of player [:called_player] has [:card]
+#can check for all cases with these vars
+#ie.
+#	p call p[n] - doesn't have card / has card
+#						|				|-> call again >> @turn_data
+#					end turn
+#thus @turn_array[-1] == false for all cases
+
+#class to handle game turns
+class Game
+	attr_reader :reserve
+	def initialize(cards)
+		@turn_data = []
+		@reserve = cards
+		@player1 = Player.new(1, @reserve)
+		@reserve = @player1.reserve
+		@player2 = Player.new(2, @reserve)
+		@reserve = @player2.reserve
+		@player3 = Player.new(3, @reserve)
+		@reserve = @player3.reserve
+		@players = [@player1, @player2, @player3]
+	end
+	def game_turn
+		(0..2).each do |n|
+			cls
+			#notify other players of past turn (using player[n].turn_data)
+			if @turn_data != []
+				@turn_data.each do |card|
+					if card[:card_taken]
+						puts "Player #{@players[n - 1].player_num} took #{Deck.get_card_data(*card[:card])[0]} from Player #{card[:called_player]}"
+
+					elsif !card[:card_taken]
+						puts "Player #{@players[n - 1].player_num} asked Player #{card[:called_player]} for #{Deck.get_card_data(*card[:card])[0]} and was denied"
+					end
+				end
+			end
+			@turn_data = []
+			print "PLAYER #{n + 1}'s TURN. Press enter to continue..."
+			pause
+			cls
+			@players[n].player_turn
+			check_card(@players[n].player_num, @players[n].called_player, @players[n].wanted_card_id)
+		end
+	end
+
+	#TODO loop if card_taken == true
+
+	def check_card(player_num, called_player_num, card_id)
+		if @players[called_player_num - 1].hand.include? (card_id)
+			@players[called_player_num - 1].take_card(card_id)
+			@players[player_num - 1].add_card(card_id)
+			"Player #{called_player_num} had the card"
+			card_taken = true
+		else
+			puts "Player #{called_player_num} didn't have the card..."
+			card_taken = false
+		end
+		@turn_data << {:card_taken => card_taken, :called_player => called_player_num, :card => card_id}
+		pause
+	end
+end
+#independent functions
 def pause
 	gets
 end
@@ -169,15 +232,16 @@ def cls
 	system("cls")
 end
 
+#game functions
 #function that prints cards data
 def print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
 	puts "----------------"
 	card_set.each do |card|
 		puts " #{card}"
 	end
-	puts "#{set_name}    #{set_num}-#{set_pos}"
+	puts "#{set_name.upcase}    #{set_num}-#{set_pos}"
 	puts "  #{card_name.upcase}"
-	puts "(" + card_desc + ")"
+	puts "(#{card_desc})"
 	puts "----------------"
 end
 #single line card print for debugging
@@ -188,32 +252,24 @@ end
 #init deck storage
 Deck.new
 
-#array of acceptable card ids (cards servers as a static list, reserve serves as pickup pile)
+#array of acceptable card ids (cards serves as a static list, reserve serves as pickup pile)
 #eg. [[1, "A"], [1, "B"],...]
 cards = Deck.get_id_array
 reserve = Deck.get_id_array
 
-#WIP add actual game logic
-
 run_game = true
-
 while run_game
 	turn = 0
 	while turn == 0
-		#init player objects and decrease reserve
 
 		#TODO implement better reserve pile handling
 
-		player1 = Player.new(1, reserve)
-		reserve = player1.reserve
-		player2 = Player.new(2, reserve)
-		reserve = player2.reserve
-		player3 = Player.new(3, reserve)
-		reserve = player3.reserve
+		#init game object and decrease reserve
+
 		turn += 1
 	end
-
-#TODO create turn method to avoid 3x repeat
-	player1.player_turn
-
+	game = Game.new (reserve)
+	reserve = game.reserve
+	game.game_turn
+	
 end
