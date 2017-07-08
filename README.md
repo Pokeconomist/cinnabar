@@ -10,7 +10,7 @@ Program runs as is (with ruby installed)
 
 ## Built With
 
-* [Ruby (2.4.1)](http://ruby-doc.org/)
+* [Ruby (2.4.1)](http://ruby-doc.org/core-2.4.1/index.html)
 
 
 ## Contributing
