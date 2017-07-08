@@ -4,10 +4,8 @@ Game based on the 1966 card game by Vinson Brown.
 ## Getting Started
 *NOTE
 To run this game, you must have Ruby installed on your machine*
-Clone repository to your computor, and run cinnabar.rb
-### Prerequisites
 
-Only prereq is that you have Ruby installed (no gems needed)
+Clone repository to your computor, and run cinnabar.rb
 
 ### Installing
 
@@ -24,6 +22,6 @@ Please read [CONTRIBUTING.md]() for how to contribute
 
 ## Authors
 
-* **Soda Adlmayer** - Git - [PurpleBooth](https://github.com/Pokeconomist)
+* **Soda Adlmayer** - Git - [Pokeconomist](https://github.com/Pokeconomist)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
