@@ -267,8 +267,6 @@ Deck.new
 #array of acceptable card ids (static list)
 #eg. [[1, "A"], [1, "B"],...]
 cards = Deck.get_id_array
-#REFACTOR: moved reserve handling to Game class
-#	reserve = Deck.get_id_array
 
 #.main loop
 turn = 0
@@ -277,7 +275,7 @@ loop do
 		#init game object
 		game = Game.new(cards)
 
-		#TODO: implement better reserve pile handling
+		#TODO: implement better reserve pile handling //wontfix
 
 		turn += 1
 	end
