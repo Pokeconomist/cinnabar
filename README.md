@@ -3,7 +3,7 @@ Game based on the 1966 card game by Vinson Brown, published by [Naturegraph Publ
 
 ## Rules
 
-[Game rules](https://www.github.com/Pokeconomist/cinnabar/RULES.md), taken from original card game.
+[Game rules](https://www.github.com/Pokeconomist/cinnabar/blob/master/RULES.md), taken from original card game.
 
 ## Getting Started
 *NOTE:*
