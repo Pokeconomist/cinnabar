@@ -178,15 +178,16 @@ class Game
 	attr_reader :reserve
 	def initialize(cards)
 		@turn_data = []
-		@reserve = cards
-		@player1 = Player.new(1, @reserve)
-		@reserve = @player1.reserve
-		@player2 = Player.new(2, @reserve)
-		@reserve = @player2.reserve
-		@player3 = Player.new(3, @reserve)
-		@reserve = @player3.reserve
+		@@reserve = cards
+		@player1 = Player.new(1, @@reserve)
+		@@reserve = @player1.reserve
+		@player2 = Player.new(2, @@reserve)
+		@@reserve = @player2.reserve
+		@player3 = Player.new(3, @@reserve)
+		@@reserve = @player3.reserve
 		@players = [@player1, @player2, @player3]
 	end
+	#method to define standard turn code (handles ineraction of player objects)
 	def game_turn
 		(0..2).each do |n|
 			cls
@@ -209,30 +210,41 @@ class Game
 				#call each players turn code
 				@players[n].player_turn
 				check_card(@players[n].player_num, @players[n].called_player, @players[n].wanted_card_id)
-				break unless @turn_data[-1][:card_taken]
+				unless @turn_data[-1][:card_taken]
+					draw_card(n)
+					break
+				end
 			end
-
+			
 			#TODO: Add check for set, no cards, and win
 
 		end
 	end
 
-	#TODO: loop if card_taken == true
+	#TODO: loop if card_taken == true //DONE
 
 	#method to check if a card is present in a players hand (and to update turn_data)
 	def check_card(player_num, called_player_num, card_id)
 		if @players[called_player_num - 1].hand.include? (card_id)
 			@players[called_player_num - 1].take_card(card_id)
 			@players[player_num - 1].add_card(card_id)
-			puts "Player #{called_player_num} had the card"
+			print "Player #{called_player_num} had the card"
 			card_taken = true
 		else
-			puts "Player #{called_player_num} didn't have the card..."
+			print "Player #{called_player_num} didn't have the card..."
 			card_taken = false
 		end
 		@turn_data << {:card_taken => card_taken, :called_player => called_player_num, :card => card_id}
 		pause
 	end
+	#method to draw a random card, and decrease reserve pile
+	def draw_card(player_index)
+		added_card = @@reserve.sample
+		@players[player_index].add_card(added_card)
+		@@reserve -= [added_card]
+		print "#{Deck.get_card_data(*added_card)[0]} was drawn."
+		pause
+	end		
 end
 
 #independent functions
