@@ -1,4 +1,3 @@
-
 # CINNABAR
 ## A Game of Rocks and Minerals, By Vinson Brown
 ### General Method of Playing
@@ -7,7 +6,7 @@ Deal six cards to each of three or more players and place the remaining cards fa
 In this game, Family 4 (gold, copper, silver, sulphur) has been designated as a Crown set, which has been given special play value. In
 play, anyone holding all but one of a set may complete it with a Crown Set card. If a player has three cards of Set 5, he may complete his set with any one of the Crown Set cards he may
 acquire. When he has done this, the player who holds the fourth card of Set 5 gives it to the holder of the completed set, thus eliminating the card from play. Each Crown Set card may be used but once in the game.
-###Title Card.
+### Title Card.
 The Cinnabar card is given special value. After the cards are distributed, anyone holding the title card may call its name. All players hlding or later drawing a card of this set must turn it over to the holder of the title card. If no one has this card at the beginning of play, the first player drawing it must call it immediately or surrender his right to use it as a special card.
 
 ### Guess.
