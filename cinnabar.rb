@@ -1,53 +1,64 @@
-#deck is made as a hash/array as below
-#[
-#  :set_num => ,
-#  :set_data => {
-#    :set_name => ,
-#  :  set_cards => [
-#      :set_pos => ,
-#      :card_data => {
-#        :card_name => ,
-#        :card_desc => ,
-#      ],
-#      ...
-#    },
-#  },
-#  ...
-#]
+# deck is made as a hash/array as below
+# [
+#   :set_num => ,
+#   :set_data => {
+#     :set_name => ,
+#   :  set_cards => [
+#       :set_pos => ,
+#       :card_data => {
+#         :card_name => ,
+#         :card_desc => ,
+#       ],
+#       ...
+#     },
+#   },
+#   ...
+# ]
 
-#i.e.
-#  array of sets (with attributes set_num and set_data, comprised of set_name, and set_cards , which in turn is comprised of set_pos, and card_data, which is comprised of card_name, and card_desc)
-require "csv"
-require "pp"
+# i.e.
+#   array of sets (with attributes set_num and set_data, comprised of set_name, and set_cards , which in turn is comprised of set_pos, and card_data, which is comprised of card_name, and card_desc)
+require 'csv'
 
-#class to create set elements from csv
+# class to create set elements from csv
 class Set
   attr_reader :set
 
-  #get arrays from csv files, and convert relevent keys to int
-  @@cards = CSV.read("files/cards.csv").each { |cards| cards.map!.each_with_index { |element, index| index == 1 ? element.to_i : element } }
-  @@sets = CSV.read("files/sets.csv").each {|cards| cards.collect!.each_with_index { |element, index| index == 0 || index == 2 ? element.to_i : element } }
-  #create array of all cards within a set
+  # get arrays from csv files, and convert relevent keys to int
+  @@cards = CSV.read('files/cards.csv').each do |cards|
+    cards.map!.each_with_index do |element, index|
+      index == 1 ? element.to_i : element
+    end
+  end
+  @@sets = CSV.read('files/sets.csv').each do |cards|
+    cards.collect!.each_with_index do |element, index|
+      index == 0 || index == 2 ? element.to_i : element
+    end
+  end
+
+  # create array of all cards within a set
   def self.compile_cards(set_num)
-    #find cards of set number == set_num, and return their data as a hash
+    # find cards of set number == set_num, and return their data as a hash
     @@cards.select { |card| card[1] == set_num }.collect { |card| {:set_pos => card[2], :card_data => {:card_name => card[0], :card_desc => card[3]} } }
   end
-  #create hash for a set
+
+  # create hash for a set
   def initialize(line_num)
     set_num = @@sets[line_num][0]
     set_name = @@sets[line_num][1]
-    @set = {:set_num => set_num, :set_data => {:set_name => set_name, :set_cards => (Set.compile_cards(set_num))}}
+    set_length = @@sets[line_num][2]
+    @set = {:set_num => set_num, :set_data => {:set_name => set_name, :set_length => set_length, :set_cards => (Set.compile_cards(set_num))}}
   end
 end
-#class to create the deck from all sets (12)
+# class to create the deck from all sets (12)
 class Deck
   attr_reader :deck
 
-  #create hash of set elements,
+  # create hash of set elements,
   def initialize
     @@deck = Array.new(12) { |n| Set.new(n).set }
   end
-  #create hash of card ids with mname as key (eg. {:cinnabar => [1, "A"]...})
+
+  # create hash of card ids with mname as key (eg. {:cinnabar => [1, "A"]...})
   def self.get_id_array
     cards = []
     @@deck.each do |set|
@@ -57,14 +68,15 @@ class Deck
     end
     return cards
   end
-  #method to return data for a specified card
+
+  # method to return data for a specified card
   def self.get_card_data(set_num, set_pos)
     @@deck.each do |set|
-      #find set
+      # find set
       if set[:set_num] == set_num
-        #iterate over set
+        # terate over set
         set[:set_data][:set_cards].each do |card|
-          #find card
+          # find card
           if card[:set_pos] == set_pos
             return card[:card_data][:card_name], card[:card_data][:card_desc], set[:set_data][:set_name], set[:set_num], card[:set_pos]
           end
@@ -72,15 +84,16 @@ class Deck
       end
     end
   end
-  #function to return other cards in set
+
+  # function to return other cards in set
   def self.get_card_set(set_num, set_pos)
     card_set = []
     @@deck.each do |set|
-      #find set
+      # find set
       if set[:set_num] == set_num
-        #iterate over set
+        # iterate over set
         set[:set_data][:set_cards].each do |card|
-          #find all other cards
+          # find all other cards
           if card[:set_pos] != set_pos
             card_set << card[:card_data][:card_name]
           end
@@ -89,7 +102,8 @@ class Deck
       end
     end
   end
-  #method to get a cards id from its name (ad validates input)
+
+  # method to get a cards id from its name (ad validates input)
   def self.get_card_id(card_name)
     card_name = card_name.to_s.downcase.capitalize
     @@deck.each do |set|
@@ -100,84 +114,108 @@ class Deck
       end
     end
   end
+
+  # method to check a had for complete sets
+  def self.check_set(hand)
+    # get all unique sets in hand
+    sets = hand.collect { |card| card[0] }.uniq
+    # check if each set complete
+    sets.each do |set_num|
+      print set_num
+      print @@deck.select { |set| set[:set_num] == set_num  }
+     complete_sets <<
+      if hand.count { |card| card[0] == test_card[0] } == @@deck[:set_data][:set_length]
+        {:set_num => test_card[0]}
+      end
+    end
+    return complete_sets
+  end
 end
 
-#WIP: add class to handle players (mainly turn functions)
+# class to handle players (mainly turn functions)
 class Player
   attr_reader :reserve, :player_num, :wanted_card_id, :called_player, :hand
 
-  #init method, that creates all player attr, and a diminished reserve variable (only used by Game class)
+  # init method, that creates all player attr, and a diminished reserve variable (only used by Game class)
   def initialize(player_num, cards)
     @player_num = player_num
     @hand, @reserve = self.get_hand(cards)
   end
-  #method to get a players hand (sorted), and to return a decreased reserve pile
+
+  # method to get a players hand (sorted), and to return a decreased reserve pile
   def get_hand(cards)
     hand = cards.sample(6)
     cards -= hand
     return hand.sort, cards
   end
-  #method to get a players inputs
+
+  # method to get a players inputs
   def player_turn
-    puts "Your cards are"
+    puts 'Your cards are'
     @hand.each { |card|  print_card(*Deck.get_card_data(*card), Deck.get_card_set(*card)) }
 
-    #TODO find solution that doesn't use instance variables
+    # TODO: find solution that doesn't use instance variables
 
-    #get and check input for card name
+    # get and check input for card name
     @wanted_card_id = get_wanted_card()
-    #get and check input for player number
+    # get and check input for player number
     @called_player = get_wanted_player()
   end
-  #method to get / check a players wanted card input
+
+  # method to get / check a players wanted card input
   def get_wanted_card
     loop do
-      print "What card do you want (only from sets you have): "
+      print 'What card do you want (only from sets you have): '
       wanted_card_name = gets.chomp
-      #check against sets, and validate input
+      # check against sets, and validate input
       if (@hand.collect { |e| e[0] }.include? (Deck.get_card_id(wanted_card_name)[0])) && !(@hand.include? (Deck.get_card_id(wanted_card_name)))
         return Deck.get_card_id(wanted_card_name)
       else
-        puts "Please enter a valid card name..."
+        puts 'Please enter a valid card name...'
       end
     end
   end
-  #method to get / check wanted player input
+
+  # method to get / check wanted player input
   def get_wanted_player
     loop do
-      print "What player do you call: "
+      print 'What player do you call: '
       called_player = gets.chomp.to_i
-      if !(called_player == @player_num) && called_player <= 3 && called_player >= 1
+      if called_player != @player_num && called_player <= 3 && called_player >= 1
         return called_player
       else
-        puts "Please enter a valid player number..."
+        puts 'Please enter a valid player number...'
       end
     end
   end
-  #methods to take and give cards to a player
+
+  # method to give card to player
   def add_card(card_id)
     @hand += [card_id]
     @hand.sort!
   end
+
+  # method to take card from a player
   def take_card(card_id)
     @hand -= [card_id]
     @hand.sort!
   end
 end
 
-#@turn_data instance variable used to specify what occured during the last turn, and notify other players
-#@turn_data = [{:card_taken => $bool$, :called_player => $int$, card => $arr$}, ...]
-#card_taken true of player [:called_player] has [:card]
-#can check for all cases with these vars
-#ie.
-#  p call p[n] - doesn't have card / has card
-#            |        |-> call again >> @turn_data
-#          end turn
-#thus @turn_array[-1] == false for all cases
+# @turn_data instance variable used to specify what occured during the last turn, and notify other players
+# @turn_data = [{:card_taken => $bool$, :called_player => $int$, card => $arr$}, ...]
+# card_taken true of player [:called_player] has [:card]
+# can check for all cases with these vars
+# ie.
+#   p call p[n] - doesn't have card / has card
+#             |        |-> call again >> @turn_data
+#           end turn
+# thus @turn_array[-1] == false for all cases
 
-#class to handle game turns
+# class to handle game turns
 class Game
   attr_reader :reserve
+
   def initialize(cards)
     @turn_data = []
     @@reserve = cards
@@ -189,17 +227,18 @@ class Game
     @@reserve = @player3.reserve
     @players = [@player1, @player2, @player3]
   end
-  #method to define standard turn code (handles ineraction of player objects)
+
+  # method to define standard turn code (handles ineraction of player objects)
   def game_turn
     (0..2).each do |n|
       cls
-      #notify other players of past turn (using player[n-1] turn_data)
+      # notify other players of past turn (using player[n-1] turn_data)
       if @turn_data != []
         @turn_data.each do |card|
           if card[:card_taken]
-            puts "Player #{@players[n - 1].player_num} took #{Deck.get_card_data(*card[:card])[0]} from Player #{card[:called_player]}"
+            puts "Player #{@players[n - 1].player_num} took #{Deck.get_card_data(*card[:card])[0]} from Player #{card[:called_player]}."
           else
-            puts "Player #{@players[n - 1].player_num} asked Player #{card[:called_player]} for #{Deck.get_card_data(*card[:card])[0]} and was denied"
+            puts "Player #{@players[n - 1].player_num} asked Player #{card[:called_player]} for #{Deck.get_card_data(*card[:card])[0]} but was denied."
           end
         end
       end
@@ -208,24 +247,25 @@ class Game
       pause
       loop do
         cls
-        #call each players turn code
+        # call each players turn code
         @players[n].player_turn
+        # check cards (must be in Game scope to access all players)
         check_card(@players[n].player_num, @players[n].called_player, @players[n].wanted_card_id)
-        #if card not taken, draw a new card
+        # if card not taken, draw a new card
         unless @turn_data[-1][:card_taken]
           draw_card(n)
           break
         end
       end
-
-      #TODO: Add check for set, no cards, and win
+      pp Deck.check_set(@players[n].hand)
+      # TODO: Add check for set, no cards, and win
 
     end
   end
 
-  #TODO: loop if card_taken == true //DONE
+  # TODO: loop if card_taken == true //DONE
 
-  #method to check if a card is present in a players hand (and to update turn_data)
+  # method to check if a card is present in a players hand (and to update turn_data)
   def check_card(player_num, called_player_num, card_id)
     card_taken =
       if @players[called_player_num - 1].hand.include? (card_id)
@@ -240,7 +280,8 @@ class Game
     @turn_data << {:card_taken => card_taken, :called_player => called_player_num, :card => card_id}
     pause
   end
-  #method to draw a random card, and decrease reserve pile
+
+  # method to draw a random card, and decrease reserve pile
   def draw_card(player_index)
     added_card = @@reserve.sample
     @players[player_index].add_card(added_card)
@@ -250,43 +291,45 @@ class Game
   end
 end
 
-#independent functions
+# independent functions
 def pause
-  gets
-end
-def cls
-  system("cls")
+  system('pause')
 end
 
-#game functions
-#function that prints cards data
+def cls
+  system('cls')
+end
+
+# game functions
+# function that prints cards data
 def print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
-  puts "----------------"
+  puts '----------------'
   card_set.each { |card| puts " #{card}" }
   puts "#{set_name.upcase}    #{set_num}-#{set_pos}"
   puts "  #{card_name.upcase}"
   puts "(#{card_desc})"
-  puts "----------------"
+  puts '----------------'
 end
-#single line card print for debugging
+
+# single line card print for debugging
 def quick_print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
   puts card_name
 end
 
-#init deck storage
+# init deck storage
 Deck.new
 
-#array of acceptable card ids (static list), eg. [[1, "A"], [1, "B"],...]
+# array of acceptable card ids (static list), eg. [[1, "A"], [1, "B"],...]
 cards = Deck.get_id_array
 
-#main loop
+# main loop
 turn = 0
-while true
+loop do
   if turn == 0
-    #init game object
+    # init game object
     game = Game.new(cards)
     game.game_turn
-    #TODO: implement better reserve pile handling //wontfix
+    # TODO: implement better reserve pile handling //wontfix
 
     turn += 1
   end
