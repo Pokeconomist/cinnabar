@@ -1,3 +1,5 @@
+require 'csv'
+
 # class to create set elements from csv
 class Set
   attr_reader :set
