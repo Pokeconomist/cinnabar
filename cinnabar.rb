@@ -1,22 +1,8 @@
-# deck is made as a hash/array as below
-# [
-#   :set_num => ,
-#   :set_data => {
-#     :set_name => ,
-#   :  set_cards => [
-#       :set_pos => ,
-#       :card_data => {
-#         :card_name => ,
-#         :card_desc => ,
-#       ],
-#       ...
-#     },
-#   },
-#   ...
-# ]
+# Title; Cinnabar
+# Author; Soda Adlmayer
+# Date of Version; 2017-07-18
+# Description: Card game involving the collection of sets of cards, achieved through the asking of other players for other cards in a set you have.
 
-# i.e.
-#   array of sets (with attributes set_num and set_data, comprised of set_name, and set_cards , which in turn is comprised of set_pos, and card_data, which is comprised of card_name, and card_desc)
 require './modules/deck'
 
 # class to handle players (mainly turn functions)
@@ -153,9 +139,7 @@ class Game
 
     end
   end
-
   # TODO: loop if card_taken == true // DONE
-
   # method to check if a card is present in a players hand (and to update turn_data)
   def check_card(player_num, called_player_num, card_id)
     card_taken =
@@ -190,9 +174,7 @@ end
 def cls
   system('cls')
 end
-
 # TODO: fix display of cards (eliminate hash - error possibly stemming from Deck::card_set)
-
 # game functions
 # function that prints cards data
 def print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
@@ -222,7 +204,6 @@ loop do
     game = Game.new(cards)
     game.game_turn
     # TODO: implement better reserve pile handling // wontfix
-
     turn += 1
   end
   game.game_turn
