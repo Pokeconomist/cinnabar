@@ -1,3 +1,5 @@
+# TODO: bug fixes, add special play - crown set, title set
+
 # Title; Cinnabar
 # Author; Soda Adlmayer
 # Date of Version; 2017-07-18
