@@ -2,7 +2,7 @@
 
 # Title; Cinnabar
 # Author; Soda Adlmayer
-# Date of Version; 2017-07-18
+# Date of Version; 2017-07-24
 # Description: Card game involving the collection of sets of cards, achieved through the asking of other players for other cards in a set you have.
 
 require './modules/deck'

@@ -1,4 +1,7 @@
-# deck creation module
+# Title; Deck_Maker
+# Author; Soda Adlmayer
+# Date of Version; 2017-07-24
+# Description: Module to handle creation of a deck (using instances of a set class)
 
 # deck is made as a hash/array as below
 # [
