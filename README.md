@@ -7,14 +7,13 @@ Game based on the 1966 card game by Vinson Brown, published by [Naturegraph Publ
 
 ## Getting Started
 *NOTE:*
-*To run this game, you must have [Ruby](https://www.ruby-lang.org/en/downloads/) installed on your machine.*
-
-Program runs as is (with ruby installed)
+*To run this game, you must have [Ruby](https://www.ruby-lang.org/en/downloads/) installed on your machine, and csv gem*
+Download csv gem with command `gem install csv`
 
 ## Built With
 
-* [Ruby (2.4.1)](http://ruby-doc.org/core-2.4.1/index.html)
-
+* [Ruby (2.3.3)](http://ruby-doc.org/core-2.4.1/index.html)
+* [DevKit 64 bit](https://rubyinstaller.org/downloads/)
 
 ## Contributing
 
