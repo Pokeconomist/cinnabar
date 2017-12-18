@@ -26,6 +26,9 @@ require 'csv'
 
 # module handling creation and interaction with deck data
 module Deck
+
+  # DECK CONSTRUCTION
+
   # get arrays from csv files, and convert relevant keys to integers
   CARDS = CSV.read('../files/cards.csv').each do |cards|
     cards.map!.each_with_index do |element, index|
@@ -56,6 +59,8 @@ module Deck
       }
     }
   end
+
+  # DECK ACCESS METHODS
 
   # method to return array of card data from id
   def card_data(set_num, set_pos)
@@ -100,4 +105,4 @@ module Deck
 
 end
 
-# TODO: Implement deck data access methods (~card_data~, ~card_id~, card_set)
+# TODO: Implement deck data access methods (~card_data~, ~card_id~, ~card_set~)
