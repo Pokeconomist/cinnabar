@@ -1,67 +1,27 @@
-# TODO: bug fixes, add special play - crown set, title set
-
+# TODO: see .\cinnabar.rb:99 & .\cinnabar.rb:100 2017-12-22
+# TODO: add player inputs / calls, and complete game logic 2017-12-19
+# TODO: complete player / reserve classes, add game logic 2017-12-18
+#
 # Title; Cinnabar
 # Author; Soda Adlmayer
-# Date of Version; 2017-07-24
-# Description: Card game involving the collection of sets of cards, achieved through the asking of other players for other cards in a set you have.
+# Date of Version; 2017-12-22
 
-require './modules/deck'
+require '.\modules\deck.rb'
+require '.\modules\write.rb'
+require '.\modules\read.rb'
 
-# class to handle players (mainly turn functions)
+Write.test
+Read.test
+Deck.test
+
+# class containing individual player data
 class Player
-  attr_reader :reserve, :player_num, :wanted_card_id, :called_player, :hand
+  attr_reader :hand, :num
 
-  # init method, that creates all player attr, and a diminished reserve variable (only used by Game class)
-  def initialize(player_num, cards)
-    @player_num = player_num
-    @hand, @reserve = self.create_hand(cards)
-  end
-
-  # method to get a players hand (sorted), and to return a decreased reserve pile
-  def create_hand(cards)
-    hand = cards.sample(6)
-    cards -= hand
-    return hand.sort, cards
-  end
-
-  # method to get a players inputs
-  def player_turn
-    puts 'Your cards are'
-    @hand.each { |card| print_card(*Deck.card_data(*card), Deck.card_set(*card)) }
-
-    # TODO: find solution that doesn't use instance variables, but allows access from other scopes
-
-    # get and check input for card name
-    @wanted_card_id = input_wanted_card()
-    # get and check input for player number
-    @called_player = input_wanted_player()
-  end
-
-  # method to get / check a players wanted card input
-  def input_wanted_card
-    loop do
-      print 'What card do you want (only from sets you have): '
-      wanted_card_name = gets.chomp
-      # check against sets, and validate input
-      if (@hand.collect { |e| e[0] }.include? (Deck.card_id(wanted_card_name)[0])) && !(@hand.include? (Deck.card_id(wanted_card_name)))
-        return Deck.card_id(wanted_card_name)
-      else
-        puts 'Please enter a valid card name...'
-      end
-    end
-  end
-
-  # method to get / check wanted player input
-  def input_wanted_player
-    loop do
-      print 'What player do you call: '
-      called_player = gets.chomp.to_i
-      if called_player != @player_num && called_player <= 3 && called_player >= 1
-        return called_player
-      else
-        puts 'Please enter a valid player number...'
-      end
-    end
+  # create player objects, drawing six cards for hand (stored as id array)
+  def initialize(num, hand)
+    @hand = hand
+    @num = num
   end
 
   # method to give card to player
@@ -70,143 +30,97 @@ class Player
     @hand.sort!
   end
 
-  # method to take card from a player
+  # method to take card from player
   def take_card(card_id)
     @hand -= [card_id]
     @hand.sort!
+  end
+
+  # method to check hand for card
+  def check_hand(card_id)
+    return @hand.include?(card_id)
+  end
+end
+
+# class controlling reserve access
+class Reserve
+  attr_reader :reserve
+
+  # compile id array for cards for easier used (rather than deck hash)
+  def initialize
+    @reserve = Deck.id_array
+  end
+
+  # method to return and reduce the reserve by a random card
+  def draw_card
+    card = @reserve.sample
+    @reserve -= [card]
+    return card
+  end
+
+  # method to create hand TODO: possibly optimise this 2017-12-19
+  def create_hand
+    hand = []
+    6.times { hand << draw_card }
+    return hand.sort
   end
 end
 
 # Handling of Turn Data
 # --
-# @turn_data instance variable used to specify what occurred during the last turn, and notify other players
-# @turn_data = [{:card_taken => $bool$, :called_player => $int$, card => $arr$}, ...]
-# card_taken true of player [:called_player] has [:card]
+# turn_data variable used to specify what occurred during the last turn, and notify other players
+#
+# turn_data = [{:card_taken => $bool$, :called_player => $int$, :calling_player => $int$, :card => $arr$}, ...]
+#
+# card_taken = true if player [:called_player] has [:card]
 # can check for all cases with these variables
 # ie.
-# :A p call p[n] - doesn't have card / has card
-#                             |          |-> call again >> @turn_data && goto A
+# :A p call p[n] - (doesn't have card / has card)
+#                             |          |-> call again >> turn_data && goto A
 #                            \/
 #                         end turn
-# __thus @turn_array[-1] == false for all end cases__
+# __thus turn_data[-1][:card_taken] == false for all end cases__
 
-# class to handle game turns
-class Game
-  attr_reader :reserve
+# initialise game objects
+turn_num = 0
+reserve = Reserve.new
+player1 = Player.new(1, reserve.create_hand)
+player2 = Player.new(2, reserve.create_hand)
+player3 = Player.new(3, reserve.create_hand)
+players = [player1, player2, player3]
+turn_data = []
 
-  def initialize(cards)
-    @turn_data = []
-    @@reserve = cards
-    @player1 = Player.new(1, @@reserve)
-    @@reserve = @player1.reserve
-    @player2 = Player.new(2, @@reserve)
-    @@reserve = @player2.reserve
-    @player3 = Player.new(3, @@reserve)
-    @@reserve = @player3.reserve
-    @players = [@player1, @player2, @player3]
-  end
-
-  # method to define standard turn code (handles interaction of player objects)
-  def game_turn
-    (0..2).each do |n|
-      cls
-      # notify other players of past turn (using player[n-1] turn_data)
-      if @turn_data != []
-        @turn_data.each do |card|
-          if card[:card_taken]
-            puts "Player #{@players[n - 1].player_num} took #{Deck.card_data(*card[:card])[0]} from Player #{card[:called_player]}."
-          else
-            puts "Player #{@players[n - 1].player_num} asked Player #{card[:called_player]} for #{Deck.card_data(*card[:card])[0]} but was denied."
-          end
-        end
-      end
-      @turn_data = []
-      print "PLAYER #{n + 1}'s TURN. Press enter to continue..."
-      pause
-      loop do
-        cls
-        # call each players turn code
-        @players[n].player_turn
-        # check cards (must be in Game scope to access all players)
-        check_card(@players[n].player_num, @players[n].called_player, @players[n].wanted_card_id)
-        # if card not taken, draw a new card
-        unless @turn_data[-1][:card_taken]
-          draw_card(n)
-          break
-        end
-      end
-      p Deck.check_set(@players[n].hand)
-      pause
-      # TODO: Add check for set, no cards, and win
-
-    end
-  end
-  # TODO: loop if card_taken == true // DONE
-  # method to check if a card is present in a players hand (and to update turn_data)
-  def check_card(player_num, called_player_num, card_id)
-    card_taken =
-      if @players[called_player_num - 1].hand.include? (card_id)
-        @players[called_player_num - 1].take_card(card_id)
-        @players[player_num - 1].add_card(card_id)
-        print "Player #{called_player_num} had the card"
-        true
-      else
-        puts "Player #{called_player_num} didn't have the card..."
-        false
-      end
-    @turn_data << {:card_taken => card_taken, :called_player => called_player_num, :card => card_id}
-    pause
-  end
-
-  # method to draw a random card, and decrease reserve pile
-  def draw_card(player_index)
-    added_card = @@reserve.sample
-    @players[player_index].add_card(added_card)
-    @@reserve -= [added_card]
-    print "#{Deck.card_data(*added_card)[0]} was drawn."
-    pause
-  end
-end
-
-# independent functions
-def pause
-  system('pause>nul')
-end
-
-def cls
-  system('cls')
-end
-# TODO: fix display of cards (eliminate hash - error possibly stemming from Deck::card_set)
-# game functions
-# function that prints cards data
-def print_card(card_name, card_desc, set_name, set_num, set_pos, card_set)
-  puts '----------------'
-  puts card_set
-  #card_set.each { |card| puts " #{card}" }
-  puts "#{set_name.upcase}    #{set_num}-#{set_pos}"
-  puts "  #{card_name.upcase}"
-  puts "(#{card_desc})"
-  puts '----------------'
-end
-
-# single line card print for debugging
-def quick_print_card(card_name, _card_desc, _set_name, _set_num, _set_pos, _card_set)
-  puts card_name
-end
-
-
-# array of acceptable card ids (static list), eg. [[1, "A"], [1, "B"],...]
-cards = Deck.compile_id_array
+turn_num += 1
 
 # main loop
-turn = 0
 loop do
-  if turn == 0
-    # init game object
-    game = Game.new(cards)
-    game.game_turn
-    # TODO: implement better reserve pile handling // wontfix
-    turn += 1
+  # loop for each player
+  players.each do |player|
+    Write.turn_data(turn_data, turn_num, player.num)
+    Write.hand(player.hand)
+
+    # loop for calling cards, break if card not taken
+    loop do
+      called_card = Read.card(player.hand)
+      called_player = players[Read.player(player.num) - 1]
+      # check called player for card
+      if called_player.check_hand(called_card)
+        called_player.take_card(called_card)
+        player.add_card(called_card)
+        turn_data << {:card_taken => true, :called_player => called_player.num, :calling_player => player.num, :card => called_card}
+      else
+        turn_data << {:card_taken => false, :called_player => called_player.num, :calling_player => player.num, :card => called_card}
+      end
+      Write.call(turn_data[-1][:card_taken], called_player.num)
+      unless turn_data[-1][:card_taken]
+        # draw card
+        drawn_card = reserve.draw_card
+        player.add_card(drawn_card)
+        Write.draw_card(drawn_card)
+        # check if drawn card is called card
+        break unless drawn_card == Deck.card_id(called_card)
+      end
+    end
+    turn_num += 1
   end
-  game.game_turn
 end
