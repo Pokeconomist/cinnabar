@@ -18,7 +18,7 @@ Deck.test
 class Player
   attr_reader :hand, :player_num
 
-  # creates player objects, drawing six cards for hand (stored as id array)
+  # create player objects, drawing six cards for hand (stored as id array)
   def initialize(player_num, hand)
     @hand = hand
     @player_num = player_num
@@ -30,7 +30,7 @@ class Player
     @hand.sort!
   end
 
-  # method to take card from a player
+  # method to take card from player
   def take_card(card_id)
     @hand -= [card_id]
     @hand.sort!
@@ -38,7 +38,7 @@ class Player
 
   # method to check hand for card
   def check_hand(card_id)
-    return @hand.include?
+    return @hand.include?(card_id)
   end 
 end
 
@@ -97,6 +97,17 @@ loop do
     Write.turn_data(turn_data, turn_num, player.player_num)
     Write.hand(player.hand)
 
+    called_card = Read.card(player.hand)
+    called_player = players[Read.player(player.player_num) - 1]
+    # check called player for card
+    if called_player.check_hand(called_card)
+      called_player.take_card(called_card)
+      player.add_card(called_card)
+      turn_data << {:card_taken => true, :called_player => called_player.player_num, :card => card_id}
+
+    else
+      turn_data << {:card_taken => false}
+    end
     # TODO: add read methods to .\modules\read.rb (card calling) 2017-12-22
     # TODO: add ability to process card calls
 
