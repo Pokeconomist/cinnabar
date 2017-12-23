@@ -14,14 +14,14 @@ Write.test
 Read.test
 Deck.test
 
-# class containing individual player data 
+# class containing individual player data
 class Player
-  attr_reader :hand, :player_num
+  attr_reader :hand, :num
 
   # create player objects, drawing six cards for hand (stored as id array)
-  def initialize(player_num, hand)
+  def initialize(num, hand)
     @hand = hand
-    @player_num = player_num
+    @num = num
   end
 
   # method to give card to player
@@ -39,7 +39,7 @@ class Player
   # method to check hand for card
   def check_hand(card_id)
     return @hand.include?(card_id)
-  end 
+  end
 end
 
 # class controlling reserve access
@@ -90,29 +90,37 @@ player3 = Player.new(3, reserve.create_hand)
 players = [player1, player2, player3]
 turn_data = []
 
+turn_num += 1
+
 # main loop
 loop do
   # loop for each player
   players.each do |player|
-    Write.turn_data(turn_data, turn_num, player.player_num)
+    Write.turn_data(turn_data, turn_num, player.num)
     Write.hand(player.hand)
 
-    called_card = Read.card(player.hand)
-    called_player = players[Read.player(player.player_num) - 1]
-    # check called player for card
-    if called_player.check_hand(called_card)
-      called_player.take_card(called_card)
-      player.add_card(called_card)
-      turn_data << {:card_taken => true, :called_player => called_player.player_num, :card => card_id}
-
-    else
-      turn_data << {:card_taken => false}
+    # loop for calling cards, break if card not taken
+    loop do
+      called_card = Read.card(player.hand)
+      called_player = players[Read.player(player.num) - 1]
+      # check called player for card
+      if called_player.check_hand(called_card)
+        called_player.take_card(called_card)
+        player.add_card(called_card)
+        turn_data << {:card_taken => true, :called_player => called_player.num, :calling_player => player.num, :card => called_card}
+      else
+        turn_data << {:card_taken => false, :called_player => called_player.num, :calling_player => player.num, :card => called_card}
+      end
+      Write.call(turn_data[-1][:card_taken], called_player.num)
+      unless turn_data[-1][:card_taken]
+        # draw card
+        drawn_card = reserve.draw_card
+        player.add_card(drawn_card)
+        Write.draw_card(drawn_card)
+        # check if drawn card is called card
+        break unless drawn_card == Deck.card_id(called_card)
+      end
     end
-    # TODO: add read methods to .\modules\read.rb (card calling) 2017-12-22
-    # TODO: add ability to process card calls
-
     turn_num += 1
   end
-  # allow program exit
-  break if turn == 10
 end
