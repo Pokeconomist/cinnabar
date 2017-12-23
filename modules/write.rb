@@ -10,7 +10,7 @@ module Write
     print "WRITE: THIS IS A TEST. THIS SHOULD NOT BE SEEN DURING NORMAL USE.\n"
   end
 
-  # method to display turn data
+  # method to display turn data, including turn number, previous turn data, and player number
   def turn_data(turn_data, turn_num, player_num)
     cls
     print "TURN NUMBER #{turn_num}.\n"
@@ -33,7 +33,6 @@ module Write
     cls
     print "Your cards are: \n"
     hand.each { |card_id| Write.card(card_id) }
-    pause
   end
 
   # method to display card data
@@ -47,7 +46,7 @@ module Write
     print "----------------\n"
   end
 
-  # SYSTEM FUNCTIONS
+  # SYSTEM DISPLAY FUNCTIONS
 
   def pause
     system 'pause>nul'
