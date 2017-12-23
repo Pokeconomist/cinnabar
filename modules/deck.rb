@@ -1,6 +1,3 @@
-# module controlling access to card / set data
-# i.e. all interaction with the deck done through Deck module methods
-
 # deck is made as a hash / array as below
 # [
 #   :set_num => $,
@@ -17,7 +14,7 @@
 #   },
 #   ...
 # ]
-
+#
 # i.e.
 # array of sets (with attributes set_num and set_data, comprised of set_name, and set_cards
 # which in turn is comprised of set_pos, and card_data, which is comprised of card_name, and card_desc)
