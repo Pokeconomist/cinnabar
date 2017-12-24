@@ -10,11 +10,7 @@ require '.\modules\deck.rb'
 require '.\modules\write.rb'
 require '.\modules\read.rb'
 
-Write.test
-Read.test
-Deck.test
-
-# class containing individual player data
+ # class containing individual player data
 class Player
   attr_reader :hand, :num
 
@@ -101,6 +97,7 @@ loop do
 
     # loop for calling cards, break if card not taken
     loop do
+      # get called card and player inputs
       called_card = Read.card(player.hand)
       called_player = players[Read.player(player.num) - 1]
       # check called player for card
@@ -116,9 +113,9 @@ loop do
         # draw card
         drawn_card = reserve.draw_card
         player.add_card(drawn_card)
-        Write.draw_card(drawn_card)
+        Write.draw(drawn_card)
         # check if drawn card is called card
-        break unless drawn_card == Deck.card_id(called_card)
+        break unless drawn_card == Deck. id(called_card)
       end
     end
     turn_num += 1
