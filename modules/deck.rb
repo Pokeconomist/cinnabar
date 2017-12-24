@@ -1,8 +1,10 @@
-# deck is made as a hash / array as below
+# Construction of deck array / hash
+# --
 # [
 #   :set_num => $,
 #   :set_data => ${
 #     :set_name => $,
+#     :set_len => $,
 #     :set_cards => [
 #       :set_pos => $,
 #       :card_data => {
@@ -18,6 +20,7 @@
 # i.e.
 # array of sets (with attributes set_num and set_data, comprised of set_name, and set_cards
 # which in turn is comprised of set_pos, and card_data, which is comprised of card_name, and card_desc)
+# --
 
 require 'csv'
 
@@ -109,6 +112,15 @@ module Deck
         card_set << card[:card_data][:card_name]
       end
       return card_set
+    end
+  end
+
+  # method to return set data
+  def set_data(set_num)
+    DECK.each do |set|
+      # skip iteration unless desired set number
+      next unless set[:set_num] == set_num
+      return set[:set_num], set[:set_data][:set_name], set[:set_data][:set_len]
     end
   end
 end
