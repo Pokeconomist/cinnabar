@@ -1,4 +1,5 @@
-# TODO: add all output methods 2017-12-22
+# TODO: add all output methods 2017-12-22 //PROGRESS
+# TODO: see .\cinnabar.rb:129 (Write.completed_set_data) 2017-12-24
 
 require '.\modules\deck.rb'
 
@@ -13,9 +14,9 @@ module Write
       print "PREVIOUS TURN DATA:\n\n"
       turn_data.each do |card|
         if card[:card_taken]
-          print "    Player #{card[:calling_player]} took #{Deck.card_data(*card[:card])[0]} from Player #{card[:called_player]}.\n\n"
+          print "    Player #{card[:calling_player_num]} took #{Deck.card_data(*card[:card])[0]} from Player #{card[:called_player_num]}.\n\n"
         else
-          print "    Player #{card[:calling_player]} asked Player #{card[:called_player]} for #{Deck.card_data(*card[:card])[0]} but was denied.\n\n"
+          print "    Player #{card[:calling_player_num]} asked Player #{card[:called_player_num]} for #{Deck.card_data(*card[:card])[0]} but was denied.\n\n"
         end
       end
     end
@@ -37,7 +38,7 @@ module Write
     card_name, card_desc, set_name, set_num, set_pos = Deck.card_data(*card_id)
     print "----------------\n"
     Deck.card_set(*card_id).each { |card| print "  #{card}\n" }
-    print "#{set_name.upcase}    #{set_num}-#{set_pos}\n"
+    print "#{set_name.upcase} #{" " * (23 - set_name.length)}#{set_num}-#{set_pos}\n"
     print "    #{card_name.upcase}\n"
     print "(#{card_desc})\n"
     print "----------------\n"
