@@ -24,10 +24,6 @@ require 'csv'
 # module handling creation and interaction with deck data
 module Deck
   extend self
-    # test method
-    def test
-      print "DECK: THIS IS A TEST. THIS SHOULD NOT BE SEEN DURING NORMAL USE.\n"
-    end
 
   # DECK CONSTRUCTION
 
