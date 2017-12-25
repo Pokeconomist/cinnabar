@@ -33,22 +33,29 @@ class Player
     @hand.sort!
   end
 
+  # method to remove all the cards of a set from a players hand
+  def take_set(set_num)
+    @hand -= @hand.select { |card| card[0] == set_num }
+  end
+
+  # HAND CHECK METHODS
+
   # method to check hand for card
   def check_card(card_id)
     return @hand.include?(card_id)
   end
 
   # method to check hand for complete sets, and return them
-  def check_set
+  def check_sets
     complete_sets = []
     # iterate over unique sets
-    @hand.collect { |card| card[0] }.uniq.each do |set|
+    @hand.collect { |card| card[0] }.uniq.each do |set_num|
       # count number of cards from set, and compare to set length
-      if @hand.collect { |card| card[0] }.count(set) == Deck.set_data[2]
-        complete_sets << Deck.set_data[0]
+      if @hand.collect { |card| card[0] }.count(set_num) >= Deck.set_data(set_num)[2]
+        complete_sets << Deck.set_data(set_num)[0]
       end
     end
-    complete_sets
+    return complete_sets
   end
 
   # method to check for title card
@@ -78,7 +85,7 @@ class Reserve
     return card
   end
 
-  # method to create hand TODO: possibly optimise this 2017-12-19
+  # method to create hand
   def create_hand
     hand = []
     6.times { hand << draw_card }
@@ -104,9 +111,9 @@ end
 
 # Handling of completed set data
 # --
-# completed_sets variable used to record completed sets, and to notify other players
+# complete_sets variable used to record completed sets, and to notify other players
 #
-# completed_sets = [{:set_num => $int$, :player_num => $int$}, ...]
+# complete_sets = [{:set_num => $int$, :player_num => $int$}, ...]
 
 # initialise game objects
 reserve = Reserve.new
@@ -117,17 +124,17 @@ player3 = Player.new(3, reserve.create_hand)
 players = [player1, player2, player3]
 turn_data = []
 turn_num = 1
-crown_active = false
+complete_sets = []
+# crown_active = false
 
 # main loop
 loop do
+  # reset turn data
+  # turn_data = [] INCLUSION UNCERTAIN
 
   # loop for each player
   players.each do |player|
-    Write.turn_data(turn_data, turn_num, player.num)
-
-    # TODO: add write completed sets data 2017-12-24
-
+    Write.game_data(turn_data, turn_num, complete_sets, player.num)
     # loop for calling cards, break if card not taken
     loop do
       Write.hand(player.hand)
@@ -145,6 +152,7 @@ loop do
       end
       turn_data << {:card_taken => card_taken, :called_player_num => called_player.num, :calling_player_num => player.num, :card => called_card}
       Write.call(card_taken, called_player.num)
+      # TODO: fix break when drawn_card == called_card 2017-12-25
       # turn finalisation (if card not taken)
       unless turn_data[-1][:card_taken]
         # draw card
@@ -155,16 +163,22 @@ loop do
         break unless drawn_card == Deck.card_id(called_card)
       end
     end
+
+    # TODO: check for set one cards every turn after play 2017-12-25 (merry christmas)
+
     # check for title card
-    if player.check_cinnabar || crown_active
+    if player.check_cinnabar
       crown_active = Read.cinnabar_prompt
       crown_player = player.num
-      # take all current set one cards
-      (players.reject { |p| p == player }).each do |called_player|
-        called_player.check_set_one.each do |card|
-          called_player.take_card(card)
-          player.add_card(card)
-          turn_data << {:card_taken => true, :called_player => called_player.num, :calling_player => player.num, :card => card}
+      # check if cinnabar has been played
+      if crown_active
+        # take all current set one cards
+        (players.reject { |p| p == player }).each do |called_player|
+          called_player.check_set_one.each do |card|
+            called_player.take_card(card)
+            player.add_card(card)
+            turn_data << {:card_taken => true, :called_player_num => called_player.num, :calling_player_num => player.num, :card => card}
+          end
         end
       end
     end
@@ -172,10 +186,18 @@ loop do
     # TODO: finish set checking methods, i.e. player prompt 2017-12-24
     # TODO: add crown set functionality 2017-12-24
 
-    # check for complete sets (includes using crown set)
+    print player.check_sets, "\n"
+
+    # check for complete sets (will include using crown set)
     unless player.check_sets.empty?
-      player.check_sets.each do |completed_set|
-        Read.set
+      player.check_sets.each do |complete_set_num|
+        play_set = Read.set_prompt(complete_set_num)
+        if play_set
+          player.take_set(complete_set_num)
+          complete_sets << {:set_num => complete_set_num, :player_num => player.num}
+        end
+      end
+    end
 
     turn_num += 1
   end
