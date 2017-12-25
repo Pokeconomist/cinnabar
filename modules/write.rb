@@ -7,10 +7,21 @@ require '.\modules\deck.rb'
 module Write
   extend self
 
-  # method to display turn data, including turn number, previous turn data, and player number
-  def turn_data(turn_data, turn_num, player_num)
+  # method to display turn data, including turn number, previous turn data, completed sets, and player number
+  def game_data(turn_data, turn_num, complete_sets, player_num)
     cls
-    unless turn_data == []
+    print "$p#{player_num}_t#{turn_num}\n"
+    # display completed sets
+    print "\nCOMPLETED SETS:\n\n"
+    unless complete_sets.empty?
+      complete_sets.each do |set|
+        print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]}.\n\n"
+      end
+    else
+      print "    No completed sets.\n\n"
+    end
+    # display previous turn data
+    unless turn_data.empty?
       print "PREVIOUS TURN DATA:\n\n"
       turn_data.each do |card|
         if card[:card_taken]
@@ -20,6 +31,7 @@ module Write
         end
       end
     end
+
     print "----------------\n"
     print "PLAYER #{player_num}'s TURN. Press any key to continue...\n"
     print "----------------\n"
