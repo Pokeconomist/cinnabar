@@ -3,9 +3,16 @@
 # TODO: complete player / reserve classes 2017-12-18 //PROGRESS
 # TODO: move large descriptive comments to readme files 2017-12-24
 #
+# CHRISTMAS UPDATE v1.0
+#    *                 
+#   /o\   MERRY        
+#  /o  \    CHRISTMAS  
+# /   o \       2017   
+#   ||                 
+
 # Title; Cinnabar
 # Author; Soda Adlmayer
-# Date of Version; 2017-12-24
+# Date of Version; 2017-12-25
 
 require '.\modules\deck.rb'
 require '.\modules\write.rb'
