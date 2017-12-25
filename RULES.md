@@ -1,4 +1,4 @@
-# CINNABAR
+b# CINNABAR
 ## A Game of Rocks and Minerals, By Vinson Brown
 ### General Method of Playing
 Deal six cards to each of three or more players and place the remaining cards face down in a reserve pile. The player at the left of the dealer begins by calling on some player for a card he needs to complete a family set (of 4 to 5 cards) of which he holds a card. If a player holds the Copper card (4-D), he may call on another player for Sulphur (4-C), Silver (4-B), or Gold (4-A). The word COPPER is in large type at the bottom of the card, and the other minerals of the set or family are in smaller type just above. If the one called on has the card he gives it to player, who may continue calling until he fails. Then he draws a card from the reserve pile. If he draws the card last called for, he may continue to play. If not, the next person at his left plays. When any player secures a complete family set, he lays it down. The one having the most sets at the conclusion of the game is the winner. 
