@@ -1,4 +1,4 @@
-# TODO: add all input methods 2017-12-22 //PROGRESS
+# TODO: add all input methods 2017-12-22 // PROGRESS
 
 # module containing all input methods
 module Read
@@ -45,7 +45,7 @@ module Read
 
     # method to read if a player wishes to play a complete set
     def set_prompt(set_num)
-      print "Do you wish to lay down #{Deck.set_data[1]} set (y/n): "
+      print "Do you wish to lay down the #{Deck.set_data(set_num)[1]} set (y/n): "
       inp = gets.chr.downcase
       case inp
       when 'y' then true
