@@ -2,7 +2,7 @@
 # TODO: add player inputs / calls 2017-12-19 //DONE
 # TODO: complete player / reserve classes 2017-12-18 //PROGRESS
 # TODO: move large descriptive comments to readme files 2017-12-24
-#
+
 # CHRISTMAS UPDATE v1.0
 #    *                 
 #   /o\   MERRY        
@@ -31,13 +31,15 @@ class Player
   # method to give card to player
   def add_card(card_id)
     @hand += [card_id]
-    @hand.sort!
+    # remove nil elements (from empty reserve) and sort
+    @hand.compact!.sort!
   end
 
   # method to take card from player
   def take_card(card_id)
     @hand -= [card_id]
-    @hand.sort!
+    # remove nil elements (from empty reserve) and sort
+    @hand.compact!.sort!
   end
 
   # method to remove all the cards of a set from a players hand
@@ -85,7 +87,7 @@ class Reserve
     @reserve = Deck.id_array
   end
 
-  # method to return and reduce the reserve by a random card
+  # method to return and reduce the reserve by a random card (will return nil for empty reserve)
   def draw_card
     card = @reserve.sample
     @reserve -= [card]
