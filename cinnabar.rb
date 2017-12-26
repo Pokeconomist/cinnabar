@@ -167,7 +167,7 @@ loop do
         player.add_card(drawn_card)
         Write.draw(drawn_card)
         # check if drawn card is called card
-        break unless drawn_card == Deck.card_id(called_card)
+        break unless drawn_card == called_card
       end
     end
 
@@ -192,8 +192,6 @@ loop do
 
     # TODO: finish set checking methods, i.e. player prompt 2017-12-24
     # TODO: add crown set functionality 2017-12-24
-
-    print player.check_sets, "\n"
 
     # check for complete sets (will include using crown set)
     unless player.check_sets.empty?
