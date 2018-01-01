@@ -15,7 +15,14 @@ module Write
     print "\nCOMPLETED SETS:\n\n"
     unless complete_sets.empty?
       complete_sets.each do |set|
-        print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]}.\n\n"
+
+        # TODO: list crown set cards by name when needed 2017-12-26
+
+        if set[:crown_cards].empty?
+          print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]}.\n\n"
+        else
+          print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]} using #{set[:crown_cards]}.\n\n"
+        end
       end
     else
       print "    No completed sets.\n\n"
@@ -62,7 +69,7 @@ module Write
     print "Press any key to continue.\n"
     pause
   end
-  
+
   # method to display drawn card info
   def draw(card_id)
     print "#{Deck.card_data(*card_id)[0]} was drawn.\n"

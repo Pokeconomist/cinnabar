@@ -52,4 +52,17 @@ module Read
       when 'n' then false
       end
     end
+
+    # TODO: add list of crown cards to prompt 2017-12-26 (great day for the race)
+
+    # method to read if a player wished to play a set using a crown set card
+    def crown_set_prompt(set_num)
+      crown_cards = set_num[1].collect { |card_id| Deck.card_data(card_id)[0]}
+      print "Do you wish to lay down the #{Deck.set_data(set_num)[1]} set using (y/n): "
+      inp = gets.chr.downcase
+      case inp
+      when 'y' then true
+      when 'n' then false
+      end
+    end
 end
