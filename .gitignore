@@ -11,3 +11,4 @@
 /test/version_tmp/
 /tmp/
 /.vscode/
+.vscode/tasks.json
