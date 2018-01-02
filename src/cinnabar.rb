@@ -14,9 +14,9 @@
 # Author; Soda Adlmayer
 # Date of Version; 2017-12-25
 
-require '.\modules\deck.rb'
-require '.\modules\write.rb'
-require '.\modules\read.rb'
+require_relative '.\modules\deck'
+require_relative '.\modules\write'
+require_relative '.\modules\read'
 
  # class containing individual player data
 class Player
