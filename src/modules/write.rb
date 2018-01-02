@@ -1,7 +1,7 @@
 # TODO: add all output methods 2017-12-22 //PROGRESS
 # TODO: see .\cinnabar.rb:129 (Write.completed_set_data) 2017-12-24
 
-require '.\modules\deck.rb'
+require_relative '.\deck'
 
 # module containing all output methods
 module Write
