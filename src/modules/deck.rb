@@ -31,12 +31,12 @@ module Deck
   # DECK CONSTRUCTION
 
   # get arrays from csv files, and convert relevant keys to integers
-  CARDS = CSV.read('.\files\cards.csv').each do |cards|
+  CARDS = CSV.read('.\data\cards.csv').each do |cards|
     cards.map!.each_with_index do |element, index|
       index == 1 ? element.to_i : element
     end
   end
-  SETS = CSV.read('.\files\sets.csv').each do |cards|
+  SETS = CSV.read('.\data\sets.csv').each do |cards|
     cards.collect!.each_with_index do |element, index|
       index == 0 || index == 2 ? element.to_i : element
     end
