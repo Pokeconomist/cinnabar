@@ -1,7 +1,8 @@
 # TODO: see .\cinnabar.rb:99 & .\cinnabar.rb:100 2017-12-22 //DONE
 # TODO: add player inputs / calls 2017-12-19 //DONE
 # TODO: complete player / reserve classes 2017-12-18 //PROGRESS
-# TODO: move large descriptive comments to readme files 2017-12-24
+# TODO: move large descriptive comments to readme files 2017-12-24 //DONE
+# TODO: fix delete return (i.e. ["a", "b", "c"].delete("a") #=> "a" not ["b", "c"]) 2017-12-26 (.\cinnabar.rb:75)
 
 # CHRISTMAS UPDATE v1.0
 #    *
@@ -10,35 +11,32 @@
 # /   o \       2017
 #   ||
 
-# Title; Cinnabar
-# Author; Soda Adlmayer
-# Date of Version; 2017-12-25
-
 require_relative '.\modules\deck'
 require_relative '.\modules\write'
 require_relative '.\modules\read'
 
 # class containing individual player data
 class Player
-  attr_reader :hand, :num
+  attr_reader :num, :hand
 
-  # create player objects, drawing six cards for hand (stored as id array)
+  # create player objects, drawing six cards for hand (stored as ids)
   def initialize(num, hand)
     @hand = hand
     @num = num
   end
 
-  # method to give card
+  # Hand Manipulation Methods
+
+  # method to give card, then sort and remove nil elements (would result from empty reserve)
   def add_card(card_id)
     @hand += [card_id]
-    # remove nil elements (from empty reserve) and sort
     @hand.sort!.compact!
   end
 
-  # method to take card
+  # method to take card, then sort and remove nil elements (would result from empty reserve)
   def take_card(card_id)
     @hand -= [card_id]
-    # remove nil elements (from empty reserve) and sort
+    # 
     @hand.sort!.compact!
   end
 
@@ -53,7 +51,7 @@ class Player
     @hand -= crown_set_cards
   end
 
-  # HAND CHECK METHODS
+  # Hand Check Methods
 
   # method to check hand for card
   def check_card(card_id)
@@ -72,8 +70,6 @@ class Player
     end
     return complete_sets
   end
-
-  # TODO: fix delete return (i.e. ["a", "b", "c"].delete("a") #=> "a" not ["b", "c"]) 2017-12-26
 
   # method to check hand for complete sets including crown set cards, and return them
   def check_crown_sets
@@ -126,13 +122,14 @@ class Reserve
   end
 end
 
+Write.game_setup
+num_players = Read.game_setup
+
 # initialise game objects
 reserve = Reserve.new
-player1 = Player.new(1, reserve.create_hand)
-player2 = Player.new(2, reserve.create_hand)
-player3 = Player.new(3, reserve.create_hand)
 
-players = [player1, player2, player3]
+players = Array.new(num_players) { |i| Player.new(i + 1, reserve.create_hand) }
+
 turn_data = []
 turn_num = 1
 complete_sets = []
@@ -152,7 +149,7 @@ loop do
 
       # get called card and player inputs
       called_card = Read.card(player.hand)
-      called_player = players[Read.player(player.num) - 1]
+      called_player = players[Read.player(num_players, player.num) - 1]
       # check called player for card
       if called_player.check_card(called_card)
         called_player.take_card(called_card)
