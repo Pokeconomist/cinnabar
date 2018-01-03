@@ -1,26 +1,3 @@
-# Construction of deck array / hash
-# --
-# [
-#   :set_num => $,
-#   :set_data => ${
-#     :set_name => $,
-#     :set_len => $,
-#     :set_cards => [
-#       :set_pos => $,
-#       :card_data => {
-#         :card_name => $,
-#         :card_desc => $,
-#       ],
-#       ...
-#     },
-#   },
-#   ...
-# ]
-#
-# i.e.
-# array of sets (with attributes set_num and set_data, comprised of set_name, and set_cards
-# which in turn is comprised of set_pos, and card_data, which is comprised of card_name, and card_desc)
-# --
 
 require 'json'
 

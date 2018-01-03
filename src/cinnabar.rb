@@ -18,7 +18,7 @@ require_relative '.\modules\deck'
 require_relative '.\modules\write'
 require_relative '.\modules\read'
 
- # class containing individual player data
+# class containing individual player data
 class Player
   attr_reader :hand, :num
 
@@ -125,27 +125,6 @@ class Reserve
     return hand.sort
   end
 end
-
-# Handling of Turn Data
-# --
-# turn_data variable used to specify what occurred during the last turn, and notify other players, and is reset each turn
-# turn_data = [{:card_taken => $bool, :called_player_num => $int, :calling_player_num => $int, :card => $ary}, ...]
-#
-# card_taken = true if player [:called_player_num] has [:card]
-# can check for all cases with these variables
-# ie.
-# :A p call p[n] - (doesn't have card / has card)
-#                             |          |-> call again >> turn_data && goto A
-#                            \/
-#                         end turn
-#
-# THUS turn_data[-1][:card_taken] == false FOR END OF TURN (unless drawn_card == called_card)
-
-# Handling of completed set data
-# --
-# complete_sets variable used to record completed sets, and to notify other players
-# complete_sets = [{:set_num => $int, :player_num => $int, :crown_cards => $ary}, ...]
-#
 
 # initialise game objects
 reserve = Reserve.new
