@@ -7,6 +7,22 @@ require_relative '.\deck'
 module Write
   extend self
 
+  # method to display game set up info
+  def game_setup
+    cls
+    print "----------------\n"
+    print "Cinnabar - A Game Of Rocks and Minerals\n"
+    print "----------------\n\n"
+
+    print "DISCLAIMER\n"
+    print "    Cinnabar © 1966, 1972, 1980 is a trademarks of Naturegraph Publishers, Inc.\n"
+    print "    No copyright or trademark infringement is intended in using Cinnabar.\n\n"
+
+    print "Welcome to Cinnabar, a digital version of the 1966 card game by Vinson Brown.\n"
+    print "Rules can be found in RULES.md, and info can be found in README.md.\n"
+    print "If you wish to contribute to the source code of this project, please visit https://www.github.com/Pokeconomist/cinnabar\n\n"
+  end
+
   # method to display turn data, including turn number, previous turn data, completed sets, and player number
   def game_data(turn_data, turn_num, complete_sets, player_num)
     cls

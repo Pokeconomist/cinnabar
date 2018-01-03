@@ -4,6 +4,13 @@
 module Read
   extend self
 
+    # method to setup game variables
+    def game_setup
+      print "Number of players needed (minimum of three): "
+      num_players = gets.chomp.to_i
+      return num_players < 3 ? 3 : num_players
+    end
+
     # method to get called card input
     def card(hand)
       loop do
@@ -19,13 +26,13 @@ module Read
     end
 
     # method to read called player input
-    def player(player_num)
+    def player(num_players, player_num)
       loop do
         print "What player do you call: "
         called_player = gets.chomp.to_i
         # TODO: add variable player amount functionality
         # check player number valid (i.e. not current player, and within range)
-        if called_player != player_num && called_player <= 3 && called_player >= 1
+        if called_player != player_num && called_player.between?(1, num_players)
           return called_player
         else
           print "Please enter a valid player number...\n"
