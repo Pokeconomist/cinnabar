@@ -7,7 +7,7 @@ Game based on the 1966 card game by Vinson Brown, published by [Naturegraph Publ
 
 ## Getting Started
 *NOTE:*
-*To run this game, you must have [Ruby](https://www.ruby-lang.org/en/downloads/) installed on your machine, and csv library (in stdlib).*
+*To run this game, you must have [Ruby](https://www.ruby-lang.org/en/downloads/) installed on your machine, and JSON library (in stdlib).*
 
 
 ## Built With
