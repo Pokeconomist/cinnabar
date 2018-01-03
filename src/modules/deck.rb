@@ -20,7 +20,7 @@ module Deck
           # collect array of cards from specific set, and compile to deck hash
           CARDS.select { |card| card[:setNumber] == set[:setNumber] }.collect do |card|
             {
-              :set_pos => card[:cardPosition], :card_data => {
+              :set_pos => card[:setPosition], :card_data => {
                 :card_name => card[:cardName], :card_desc => card[:cardDescription]
               }
             }
@@ -92,8 +92,4 @@ module Deck
       return set[:set_num], set[:set_data][:set_name], set[:set_data][:set_len]
     end
   end
-
-  puts DECK
-  gets
-
 end
