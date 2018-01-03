@@ -1,0 +1,335 @@
+{
+  "expansion": "std",
+  "cards": [
+    {
+      "cardName": "Cinnabar",
+      "setNumber": 1,
+      "setPosition": "A",
+      "cardDescription": "Mercury ore"
+    },
+    {
+      "cardName": "Molybdenite",
+      "setNumber": 1,
+      "setPosition": "B",
+      "cardDescription": "Molybdenum ore"
+    },
+    {
+      "cardName": "Realgar",
+      "setNumber": 1,
+      "setPosition": "C",
+      "cardDescription": "An orange arsenic ore"
+    },
+    {
+      "cardName": "Galena",
+      "setNumber": 1,
+      "setPosition": "D",
+      "cardDescription": "Lead ore"
+    },
+    {
+      "cardName": "Sphalerite",
+      "setNumber": 1,
+      "setPosition": "E",
+      "cardDescription": "Zinc ore"
+    },
+    {
+      "cardName": "Quartz",
+      "setNumber": 2,
+      "setPosition": "A",
+      "cardDescription": "Commonest of minerals"
+    },
+    {
+      "cardName": "Rose Quartz",
+      "setNumber": 2,
+      "setPosition": "B",
+      "cardDescription": "Sometimes of gem quality"
+    },
+    {
+      "cardName": "Agate",
+      "setNumber": 2,
+      "setPosition": "C",
+      "cardDescription": "Usually forms in cavities"
+    },
+    {
+      "cardName": "Jasper",
+      "setNumber": 2,
+      "setPosition": "D",
+      "cardDescription": "Orbicular or eyed"
+    },
+    {
+      "cardName": "Chrysoprase",
+      "setNumber": 2,
+      "setPosition": "E",
+      "cardDescription": "A green form of chalcedony"
+    },
+    {
+      "cardName": "Psilomelane",
+      "setNumber": 3,
+      "setPosition": "A",
+      "cardDescription": "A manganese ore"
+    },
+    {
+      "cardName": "Corundum",
+      "setNumber": 3,
+      "setPosition": "B",
+      "cardDescription": "Hardest mineral except diamond"
+    },
+    {
+      "cardName": "Magnetite",
+      "setNumber": 3,
+      "setPosition": "C",
+      "cardDescription": "A magnetic iron ore"
+    },
+    {
+      "cardName": "Cassiterite",
+      "setNumber": 3,
+      "setPosition": "D",
+      "cardDescription": "Most important ore of tin"
+    },
+    {
+      "cardName": "Cuprite",
+      "setNumber": 3,
+      "setPosition": "E",
+      "cardDescription": "A copper ore"
+    },
+    {
+      "cardName": "Gold",
+      "setNumber": 4,
+      "setPosition": "A",
+      "cardDescription": "Veins found in quartz"
+    },
+    {
+      "cardName": "Silver",
+      "setNumber": 4,
+      "setPosition": "B",
+      "cardDescription": "Tarnishes black"
+    },
+    {
+      "cardName": "Sulphur",
+      "setNumber": 4,
+      "setPosition": "C",
+      "cardDescription": "Burns with blue flame"
+    },
+    {
+      "cardName": "Copper",
+      "setNumber": 4,
+      "setPosition": "D",
+      "cardDescription": "Tarnishes green in air"
+    },
+    {
+      "cardName": "Garnet",
+      "setNumber": 5,
+      "setPosition": "A",
+      "cardDescription": "A common gem stone"
+    },
+    {
+      "cardName": "Actinolite",
+      "setNumber": 5,
+      "setPosition": "B",
+      "cardDescription": "An amphibole mineral"
+    },
+    {
+      "cardName": "Tourmaline",
+      "setNumber": 5,
+      "setPosition": "C",
+      "cardDescription": "Sometime a gem"
+    },
+    {
+      "cardName": "Rhodonite",
+      "setNumber": 5,
+      "setPosition": "D",
+      "cardDescription": "Turns black in air"
+    },
+    {
+      "cardName": "Serpentine",
+      "setNumber": 5,
+      "setPosition": "E",
+      "cardDescription": "Has greasy feeling"
+    },
+    {
+      "cardName": "Calcite",
+      "setNumber": 6,
+      "setPosition": "A",
+      "cardDescription": "Rhonbic cleavage & optical doubling"
+    },
+    {
+      "cardName": "Aragonite",
+      "setNumber": 6,
+      "setPosition": "B",
+      "cardDescription": "In twinned crystals"
+    },
+    {
+      "cardName": "Malachite",
+      "setNumber": 6,
+      "setPosition": "C",
+      "cardDescription": "Green & blue copper ores"
+    },
+    {
+      "cardName": "Rhodochrosite",
+      "setNumber": 6,
+      "setPosition": "D",
+      "cardDescription": "A manganese ore"
+    },
+    {
+      "cardName": "Smithsonite",
+      "setNumber": 6,
+      "setPosition": "E",
+      "cardDescription": "An important ore of zinc"
+    },
+    {
+      "cardName": "Carnotite",
+      "setNumber": 7,
+      "setPosition": "A",
+      "cardDescription": "Uranium ore in fossil"
+    },
+    {
+      "cardName": "Torbernite",
+      "setNumber": 7,
+      "setPosition": "B",
+      "cardDescription": "A uranium ore"
+    },
+    {
+      "cardName": "Wulfenite",
+      "setNumber": 7,
+      "setPosition": "C",
+      "cardDescription": "A molybdenum ore"
+    },
+    {
+      "cardName": "Vanadinite",
+      "setNumber": 7,
+      "setPosition": "D",
+      "cardDescription": "A vanadium ore"
+    },
+    {
+      "cardName": "Scheelite",
+      "setNumber": 7,
+      "setPosition": "E",
+      "cardDescription": "Brownish yellow tungsten ore"
+    },
+    {
+      "cardName": "Halite",
+      "setNumber": 8,
+      "setPosition": "A",
+      "cardDescription": "Common Salt crystals"
+    },
+    {
+      "cardName": "Barite",
+      "setNumber": 8,
+      "setPosition": "B",
+      "cardDescription": "A sulphate mineral"
+    },
+    {
+      "cardName": "Gypsum",
+      "setNumber": 8,
+      "setPosition": "C",
+      "cardDescription": "Used for plaster of Paris"
+    },
+    {
+      "cardName": "Apatite",
+      "setNumber": 9,
+      "setPosition": "A",
+      "cardDescription": "Violet crystals of calcium phosphate"
+    },
+    {
+      "cardName": "Pyromorphite",
+      "setNumber": 9,
+      "setPosition": "B",
+      "cardDescription": "Lead chlorophosphate"
+    },
+    {
+      "cardName": "Olivenite",
+      "setNumber": 9,
+      "setPosition": "C",
+      "cardDescription": "Copper arsenate"
+    },
+    {
+      "cardName": "Scorodite",
+      "setNumber": 9,
+      "setPosition": "D",
+      "cardDescription": "Hydrous ferric arsenate"
+    },
+    {
+      "cardName": "Limestone",
+      "setNumber": 10,
+      "setPosition": "A",
+      "cardDescription": "Showing sea fossils"
+    },
+    {
+      "cardName": "Sandstone",
+      "setNumber": 10,
+      "setPosition": "B",
+      "cardDescription": "Spike concretion of sand"
+    },
+    {
+      "cardName": "Chert",
+      "setNumber": 10,
+      "setPosition": "C",
+      "cardDescription": "Gelatinized silica rock"
+    },
+    {
+      "cardName": "Conglomerate",
+      "setNumber": 10,
+      "setPosition": "D",
+      "cardDescription": "Cemented rock pebbles"
+    },
+    {
+      "cardName": "Breccia",
+      "setNumber": 10,
+      "setPosition": "E",
+      "cardDescription": "Cemented rock fragments"
+    },
+    {
+      "cardName": "Granite",
+      "setNumber": 11,
+      "setPosition": "A",
+      "cardDescription": "Quartz,  feldspar & mica"
+    },
+    {
+      "cardName": "Gabbro",
+      "setNumber": 11,
+      "setPosition": "B",
+      "cardDescription": "Large grains of dark minerals"
+    },
+    {
+      "cardName": "Basalt",
+      "setNumber": 11,
+      "setPosition": "C",
+      "cardDescription": "Small grains dark minerals"
+    },
+    {
+      "cardName": "Dacite",
+      "setNumber": 11,
+      "setPosition": "D",
+      "cardDescription": "Small grains light minerals"
+    },
+    {
+      "cardName": "Pegmatite",
+      "setNumber": 11,
+      "setPosition": "E",
+      "cardDescription": "Large crystals in rock"
+    },
+    {
+      "cardName": "Slate",
+      "setNumber": 12,
+      "setPosition": "A",
+      "cardDescription": "Shows ancient ripples"
+    },
+    {
+      "cardName": "Quartzite",
+      "setNumber": 12,
+      "setPosition": "B",
+      "cardDescription": "Fused grains of sand"
+    },
+    {
+      "cardName": "Marble",
+      "setNumber": 12,
+      "setPosition": "C",
+      "cardDescription": "Metamorphosed limestone"
+    },
+    {
+      "cardName": "Gneiss",
+      "setNumber": 12,
+      "setPosition": "D",
+      "cardDescription": "Pressure-made layers"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "expansion": "std",
+  "sets": [
+    {
+      "setNumber": 1,
+      "setLength": 5,
+      "setName": "Sulphide Minerals"
+    },
+    {
+      "setNumber": 2,
+      "setLength": 5,
+      "setName": "Quartz Minerals"
+    },
+    {
+      "setNumber": 3,
+      "setLength": 5,
+      "setName": "Oxide Minerals"
+    },
+    {
+      "setNumber": 4,
+      "setLength": 4,
+      "setName": "Elements"
+    },
+    {
+      "setNumber": 5,
+      "setLength": 5,
+      "setName": "Silicate Minerals"
+    },
+    {
+      "setNumber": 6,
+      "setLength": 5,
+      "setName": "Carbonate Minerals"
+    },
+    {
+      "setNumber": 7,
+      "setLength": 5,
+      "setName": "Valuable Ores"
+    },
+    {
+      "setNumber": 8,
+      "setLength": 4,
+      "setName": "Miscellaneous Minerals"
+    },
+    {
+      "setNumber": 9,
+      "setLength": 4,
+      "setName": "Phosphates & Arsenates"
+    },
+    {
+      "setNumber": 9,
+      "setLength": 5,
+      "setName": "Sedimentary Rocks"
+    },
+    {
+      "setNumber": 9,
+      "setLength": 5,
+      "setName": "Igneous Rocks"
+    },
+    {
+      "setNumber": 9,
+      "setLength": 4,
+      "setName": "Metamorphic Rocks"
+    }
+  ]
+}
