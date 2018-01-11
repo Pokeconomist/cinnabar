@@ -38,7 +38,7 @@
     },
     {
       "setNumber": 8,
-      "setLength": 4,
+      "setLength": 3,
       "setName": "Miscellaneous Minerals"
     },
     {
@@ -47,17 +47,17 @@
       "setName": "Phosphates & Arsenates"
     },
     {
-      "setNumber": 9,
+      "setNumber": 10,
       "setLength": 5,
       "setName": "Sedimentary Rocks"
     },
     {
-      "setNumber": 9,
+      "setNumber": 11,
       "setLength": 5,
       "setName": "Igneous Rocks"
     },
     {
-      "setNumber": 9,
+      "setNumber": 12,
       "setLength": 4,
       "setName": "Metamorphic Rocks"
     }
