@@ -13,21 +13,21 @@ module Write
     print "----------------\n\n"
 
     print "DISCLAIMER\n"
-    print "    Cinnabar © 1966, 1972, 1980 is a trademarks of Naturegraph Publishers, Inc.\n"
+    print "    Cinnabar (c) 1966, 1972, 1980 is a trademarks of Naturegraph Publishers, Inc.\n"
     print "    No copyright or trademark infringement is intended in using Cinnabar.\n\n"
 
     print "Welcome to Cinnabar, a digital version of the 1966 card game by Vinson Brown.\n"
     print "Rules can be found in RULES.md, and info can be found in README.md.\n"
-    print "If you wish to contribute to the source code of this project, please visit https://www.github.com/Pokeconomist/cinnabar\n\n"
+    print "Source code can be found at https://www.github.com/Pokeconomist/cinnabar.\n\n"
   end
 
   # method to display turn data, including turn number, previous turn data, completed sets, and player number
   def game_data(turn_data, turn_num, complete_sets, player_num)
     cls
-    print "$p#{player_num}_t#{turn_num}\n"
+    # print "$p#{player_num}_t#{turn_num}\n"
     # display completed sets
-    print "\nCOMPLETED SETS:\n\n"
     unless complete_sets.empty?
+      print "\nCOMPLETED SETS:\n\n"
       complete_sets.each do |set|
 
         # TODO: list crown set cards by name when needed 2017-12-26
@@ -35,11 +35,10 @@ module Write
         if set[:crown_cards].empty?
           print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]}.\n\n"
         else
-          print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]} using #{set[:crown_cards]}.\n\n"
+          crown_cards = set[:crown_cards].collect { |card_id| Deck.card_data(*card_id)[0]}
+          print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]} using #{crown_cards.to_list}.\n\n"
         end
       end
-    else
-      print "    No completed sets.\n\n"
     end
     # display previous turn data
     unless turn_data.empty?
