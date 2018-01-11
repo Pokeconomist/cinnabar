@@ -8,20 +8,20 @@ module Deck
   # DECK CONSTRUCTION
 
   # get hash from json files, and convert keys to symbols (n.b. JSON files contain expansion information not yet used)
-  CARDS = JSON.parse(File.read('.\data\cards.json'), :symbolize_names => true)[:cards]
-  SETS = JSON.parse(File.read('.\data\sets.json'), :symbolize_names => true)[:sets]
+  CARDS = JSON.parse(File.read('.\data\cards.json'), symbolize_names: true)[:cards]
+  SETS = JSON.parse(File.read('.\data\sets.json'), symbolize_names: true)[:sets]
 
   DECK = []
   # iterate over sets and select cards from that set, and compile to deck hash
   SETS.each do |set|
     DECK << {
-      :set_num => set[:setNumber], :set_data => {
-        :set_name => set[:setName], :set_len =>  set[:setLength], :set_cards => (
+      set_num: set[:setNumber], set_data: {
+        set_name: => set[:setName], set_len: set[:setLength], set_cards: (
           # collect array of cards from specific set, and compile to deck hash
           CARDS.select { |card| card[:setNumber] == set[:setNumber] }.collect do |card|
             {
-              :set_pos => card[:setPosition], :card_data => {
-                :card_name => card[:cardName], :card_desc => card[:cardDescription]
+              set_pos: card[:setPosition], card_data: {
+                card_name: card[:cardName], card_desc: card[:cardDescription]
               }
             }
           end
