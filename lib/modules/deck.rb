@@ -16,7 +16,7 @@ module Deck
   SETS.each do |set|
     DECK << {
       set_num: set[:setNumber], set_data: {
-        set_name: => set[:setName], set_len: set[:setLength], set_cards: (
+        set_name: set[:setName], set_len: set[:setLength], set_cards: (
           # collect array of cards from specific set, and compile to deck hash
           CARDS.select { |card| card[:setNumber] == set[:setNumber] }.collect do |card|
             {
