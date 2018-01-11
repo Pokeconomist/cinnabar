@@ -1,1 +1,1 @@
-require_relative './src/cinnabar.rb'
+require_relative './lib/cinnabar.rb'
