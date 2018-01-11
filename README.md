@@ -16,7 +16,7 @@ Game based on the 1966 card game by Vinson Brown, published by [Naturegraph Publ
 
 ## Contributing
 
-Please read [CONTRIBUTING.md]() for how to contribute
+Please read [CONTRIBUTING.md]() for how to contribute. Detailed comments on the handling of certain in-game objects can be found in [./src/GAME_DATA_README.md]().
 
 ## Authors
 
