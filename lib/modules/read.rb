@@ -30,8 +30,6 @@ module Read
     loop do
       print "What player do you call: "
       called_player = gets.chomp.to_i
-      # TODO: add variable player amount functionality
-      # check player number valid (i.e. not current player, and within range)
       if called_player != player_num && called_player.between?(1, num_players)
         return called_player
       else
