@@ -1,4 +1,3 @@
-
 require 'json'
 
 # module handling creation and interaction with deck data
@@ -15,13 +14,18 @@ module Deck
   # iterate over sets and select cards from that set, and compile to deck hash
   SETS.each do |set|
     DECK << {
-      set_num: set[:setNumber], set_data: {
-        set_name: set[:setName], set_len: set[:setLength], set_cards: (
+      set_num: set[:setNumber],
+      set_data: {
+        set_name: set[:setName],
+        set_len: set[:setLength],
+        set_cards: (
           # collect array of cards from specific set, and compile to deck hash
           CARDS.select { |card| card[:setNumber] == set[:setNumber] }.collect do |card|
             {
-              set_pos: card[:setPosition], card_data: {
-                card_name: card[:cardName], card_desc: card[:cardDescription]
+              set_pos: card[:setPosition],
+              card_data: {
+                card_name: card[:cardName],
+                card_desc: card[:cardDescription]
               }
             }
           end

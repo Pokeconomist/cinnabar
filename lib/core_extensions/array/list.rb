@@ -2,7 +2,7 @@
 class Array
   def to_list
     default_connectors = {
-      words_connector:        ', ',
+      words_connector:     ', ',
       two_words_connector: ' and ',
       last_word_connector: ', and '
     }
@@ -18,5 +18,3 @@ class Array
     end
   end
 end
-
-
