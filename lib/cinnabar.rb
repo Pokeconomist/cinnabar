@@ -2,9 +2,10 @@
 # TODO: add player inputs / calls 2017-12-19 //DONE
 # TODO: complete player / reserve classes 2017-12-18 //PROGRESS
 # TODO: move large descriptive comments to readme files 2017-12-24 //DONE
-# TODO: fix delete return (i.e. ["a", "b", "c"].delete("a") #=> "a" not ["b", "c"]) 2017-12-26 (.\cinnabar.rb:76)
-# TODO: fix check_crown_set method iterating over empty set 2018-01-10
+# TODO: fix `delete`` return (i.e. ["a", "b", "c"].delete("a") #=> "a" not ["b", "c"]) 2017-12-26 (.\cinnabar.rb:76)
+# TODO: fix `check_crown_set`` method iterating over empty set 2018-01-10
   # F:/cinnabar/src/cinnabar.rb:78:in `check_crown_sets': undefined method `each' for nil:NilClass (NoMethodError)
+# TODO: add false card calls for cinnabar plays 2018-01-14
 
 # CHRISTMAS UPDATE v1.0
 #    *
@@ -30,17 +31,16 @@ class Player
 
   # Hand Manipulation Methods
 
-  # method to give card, then sort and remove nil elements (would result from empty reserve)
+  # method to give card, remove nil elements, sort hand, and delete any possible duplicates
   def add_card(card_id)
     @hand += [card_id]
-    @hand.sort!.compact!
+    @hand.delete_if { |card| card == nil }.sort!.uniq!
   end
 
-  # method to take card, then sort and remove nil elements (would result from empty reserve)
+  # method to take card, remove nil elements, sort hand, and delete any possible duplicates
   def take_card(card_id)
     @hand -= [card_id]
-    # 
-    @hand.sort!.compact!
+    @hand.delete_if { |card| card == nil }.sort!.uniq!
   end
 
   # method to remove all the cards of a set from hand
@@ -49,9 +49,12 @@ class Player
   end
 
   # method to remove all the cards of a set and specified crown set cards from hand
-  def take_crown_set(set_num, *crown_set_cards)
+  def take_crown_set(set_num, crown_set_cards)
+    p set_num
+    p crown_set_cards
     @hand -= @hand.select { |card| card[0] == set_num }
     @hand -= crown_set_cards
+    p @hand
   end
 
   # Hand Check Methods
@@ -67,29 +70,28 @@ class Player
     # iterate over unique sets
     @hand.collect { |card| card[0] }.uniq.each do |set_num|
       # count number of cards from unique sets, and compare to set length
-      if @hand.collect { |card| card[0] }.count(set_num) >= Deck.set_data(set_num)[2]
+      if @hand.collect { |card| card[0] }.count(set_num) == Deck.set_data(set_num)[2]
         complete_sets << set_num
       end
     end
     return complete_sets
   end
 
-  # method to check hand for complete sets including crown set cards, and return them
+  # TODO: Possibly rewrite this for clarity 2018-01-14
+
+  # method to check hand for complete sets including crown set cards, and return the FIRST one, or nil
   def check_crown_sets
-    complete_crown_sets = []
     # iterate over unique sets, save the crown set (#delete_if used to solve return issue of delete)
-      # i.e. ['a', 'b', 'c', 'd'].delete('a')                 #=> 'a'
-      #      ['a', 'b', 'c', 'd'].delete_if { |e| e == 'a' }  #=> ['b', 'c', 'd']
+      # i.e. `['a', 'b', 'c', 'd'].delete('a')`                 #=> 'a'
+      #      `['a', 'b', 'c', 'd'].delete_if { |e| e == 'a' }`  #=> ['b', 'c', 'd']
     @hand.collect { |card| card[0] }.uniq.delete_if { |e| e == 4 }.each do |set_num|
       # count number of cards from unique sets and crown set, and compare to set length, and to return needed crown set cards
       if @hand.count { |card| card[0] == set_num || card[0] == 4 } >= Deck.set_data(set_num)[2]
-        # find number of needed crown cards
         num_crown_cards = Deck.set_data(set_num)[2] - @hand.collect { |card| card[0] }.count { |n| n == set_num }
-        # find needed crown set cards and add to complete_crown_sets
-        complete_crown_sets << [set_num, @hand.select { |card| card[0] == 4 }.first(num_crown_cards)]
+        return [set_num, @hand.select { |card| card[0] == 4 }.first(num_crown_cards)]
       end
     end
-    return complete_crown_sets
+    return nil
   end
 
   # method to check for title card
@@ -151,7 +153,6 @@ loop do
     # loop for calling cards, break if card not taken
     loop do
       Write.hand(player.hand)
-
       # get called card and player inputs
       called_card = Read.card(player.hand)
       called_player = players[Read.player(num_players, player.num) - 1]
@@ -163,10 +164,13 @@ loop do
       else
         card_taken = false
       end
-      turn_data << {card_taken: card_taken, called_player_num: called_player.num, calling_player_num: player.num, card: called_card}
-
+      turn_data << {
+        card_taken:         card_taken,
+        called_player_num:  called_player.num,
+        calling_player_num: player.num,
+        card:               called_card
+      }
       Write.call(card_taken, called_player.num)
-      # TODO: fix break when drawn_card == called_card 2017-12-25
       # turn finalisation (if card not taken)
       unless turn_data[-1][:card_taken]
         # draw card
@@ -178,7 +182,7 @@ loop do
       end
     end
 
-    # TODO: check for set one cards every turn after play 2017-12-25 (merry christmas)
+    # TODO: check for set one cards every turn after play 2017-12-25 (merry christmas) //DONE
 
     # check for title card if not used already
     if player.check_cinnabar && !title_active
@@ -190,14 +194,19 @@ loop do
           called_player.check_title_set.each do |card|
             called_player.take_card(card)
             player.add_card(card)
-            turn_data << {card_taken: true, called_player_num: called_player.num, calling_player_num: player.num, card: card}
+            turn_data << {
+              card_taken:         true,
+              called_player_num:  called_player.num,
+              calling_player_num: player.num,
+              card:               card
+            }
           end
         end
       end
     end
 
     # TODO: finish set checking methods, i.e. player prompt 2017-12-24 //PROGRESS
-    # TODO: add crown set functionality 2017-12-24 //PROGRESS
+    # TODO: add crown set functionality 2017-12-24 //DONE
     # TODO: recognise completed set as using crown set and remove other cards from play
 
     # check for complete sets
@@ -206,25 +215,27 @@ loop do
         play_set = Read.set_prompt(set_num)
         if play_set
           player.take_set(set_num)
-          complete_sets << {set_num: set_num, player_num: player.num, crown_cards: []}
+          complete_sets << {
+            set_num:     set_num,
+            player_num:  player.num,
+            crown_cards: []
+          }
         end
       end
     end
 
-    # NOTE: to avoid crown set cards being used to complete multiple sets,
-      # play of crown set completed sets limited to one per turn
+    # TODO: find way to update `player.check_crown_sets` on each iteration over itself 2018-01-14 //DONE
 
-    # check for complete sets using crown set
-    unless player.check_crown_sets.empty?
-      player.check_crown_sets.each do |set_data|
-        play_set = Read.crown_set_prompt(set_data)
-        if play_set
-          player.take_crown_set(*set_data)
-          p set_data
-          system 'pause'
-          complete_sets << {set_num: set_data[0], player_num: player.num, crown_cards: set_data[1]}
-          break
-        end
+    # check for crown set cards (`player.check_crown_sets` will return the first playable set)
+    until player.check_crown_sets.nil?
+      play_set = Read.crown_set_prompt(*player.check_crown_sets)
+      if play_set
+        complete_sets << {
+          set_num:     player.check_crown_sets[0],
+          player_num:  player.num,
+          crown_cards: player.check_crown_sets[1]
+        }
+        player.take_crown_set(*player.check_crown_sets)
       end
     end
 
