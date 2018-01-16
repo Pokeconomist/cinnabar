@@ -36,7 +36,7 @@ module Write
           print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]}.\n\n"
         else
           crown_cards = set[:crown_cards].collect { |card_id| Deck.card_data(*card_id)[0]}
-          print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]} using #{crown_cards.to_list}.\n\n"
+          print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]}, using #{crown_cards.to_list}.\n\n"
         end
       end
     end
@@ -79,7 +79,7 @@ module Write
   # method to display success of card / player call
   def call(card_taken, called_player)
     print card_taken ? "Player #{called_player} had the card. " : "Player #{called_player} didn't have the card. "
-    print "Press any key to continue.\n"
+    print "Press any key to continue...\n"
     pause
   end
 
@@ -89,7 +89,7 @@ module Write
     pause
   end
 
-  # SYSTEM DISPLAY FUNCTIONS
+  # SYSTEM DISPLAY FUNCTIONS (specific to Windows)
 
   def pause
     system 'pause>nul'

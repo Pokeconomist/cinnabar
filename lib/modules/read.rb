@@ -53,15 +53,9 @@ module Read
   # TODO: add list of crown cards to prompt 2017-12-26 (great day for the race)
 
   # method to read if a player wished to play a set using a crown set card
-  def crown_set_prompt(set_data)
-    crown_cards = set_data[1].collect { |card_id| Deck.card_data(*card_id)[0]}
-    print "Do you wish to lay down the #{Deck.set_data(set_data[0])[1]} set using #{crown_cards.to_list} (y/n): "
+  def crown_set_prompt(set_num, crown_set_cards)
+    crown_cards = crown_set_cards.collect { |card_id| Deck.card_data(*card_id)[0] }
+    print "Do you wish to lay down the #{Deck.set_data(set_num)[1]} set using #{crown_cards.to_list} (y/n): "
     return gets.chr.downcase == 'y' ? true : false
-  end
-
-  # SYSTEM DISPLAY FUNCTIONS
-
-  def pause
-    system 'pause>nul'
   end
 end
