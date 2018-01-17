@@ -13,6 +13,7 @@ Game based on the 1966 card game by Vinson Brown, published by [Naturegraph Publ
 ## Built With
 
 * [Ruby (2.3.3)](http://ruby-doc.org/core-2.3.3/index.html)
+* Docs made with yard (0.9.2)
 
 ## Contributing
 
