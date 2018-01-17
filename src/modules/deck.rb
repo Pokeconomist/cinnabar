@@ -1,6 +1,6 @@
 require 'json'
 
-# Module containing card amd set data, and access methods
+# Module containing card amd set data, and access methods.
 module Deck
   extend self
 
@@ -40,7 +40,7 @@ module Deck
   # Returns card data given a card's id.
   # @param set_num [Integer] Card's set number
   # @param set_pos [Character] Card's set position
-  # @return [Array] Array comprised of the card's name, description, set name, set number, and set position
+  # @return [Array, nil] Array comprised of the card's name, description, set name, set number, and set position, or nil if card not found
   def card_data(set_num, set_pos)
     card = CARDS.select { |card| card[:setNumber] == set_num && card[:setPosition] == set_pos }[0]
     card.nil? ? nil : [
@@ -54,7 +54,7 @@ module Deck
 
   # Returns a card's id given a card's name.
   # @param card_name [String]
-  # @return [Array] Card id
+  # @return [Array, nil] Card id, or nil if card not found
   def card_id(card_name)
     card_name = card_name.to_s.downcase.titleise
     card = CARDS.select { |card| card[:cardName] == card_name }[0]
@@ -73,7 +73,7 @@ module Deck
 
   # Returns set data given a set's number.
   # @param set_num [Integer] Set's number
-  # @return [Array] Array comprised of the set's number, name, and length
+  # @return [Array, nil] Array comprised of the set's number, name, and length, or nil if card not found
   def set_data(set_num)
     set = SETS.select { |set| set[:setNumber] == set_num }[0]
     set.nil? ? nil : [

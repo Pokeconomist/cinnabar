@@ -20,10 +20,10 @@ require_relative '.\modules\read'
 require_relative '.\core_extensions\array\list'
 require_relative '.\core_extensions\string\titleise'
 
-# Class for access to player data
+# Class for access to player data.
 #
 # nil or duplicate items in a players hand are dealt with when
-# using `add_card` of `take_card` instance methods
+# using add_card and take_card instance methods.
 # @attr num [Integer] A player's num
 # @attr hand [Array] Array of cards in a player's hand
 class Player
@@ -37,7 +37,7 @@ class Player
   # Adds card to player's hand, removes nil elements, sorts hand
   # and deletes any possible duplicates (for safe measure).
   #
-  # `Array#delete_if` used over `Array#delete` due to the latter
+  # Array#delete_if used over Array#delete due to the latter
   # returning the deleted item rather than the array.
   # @param card_id [Array] Specific card id
   def add_card(card_id)
@@ -48,7 +48,7 @@ class Player
   # Takes card from player's hand, removes nil elements,
   # sorts hand, and deletes any possible duplicates (for safe measure).
   #
-  # `Array#delete_if` used over `Array#delete` due to the latter
+  # Array#delete_if used over Array#delete due to the latter
   # returning the deleted item rather than the array.
   # @param (see #add_card)
   def take_card(card_id)
@@ -62,7 +62,7 @@ class Player
     @hand -= @hand.select { |card| card[0] == set_num }
   end
 
-  # Takes all the cards of a set and specified crown set cards from player's hand
+  # Takes all the cards of a set and specified crown set cards from player's hand.
   # @param set_num [Integer] Number of set to remove
   # @param crown_set_cards [Array] Array of crown cards to remove
   def take_crown_set(set_num, crown_set_cards)
@@ -94,11 +94,12 @@ class Player
   # TODO: Possibly rewrite this for clarity 2018-01-14
 
   # Checks player's hand for complete sets using crown set cards, and return the first found, or nil.
-  # @return [Array] Array of complete set's numbers,
+  #
+  # Does so by comparing number of cards from unique sets and crown set to set length.
+  # @return [Array, nil] Array of complete set's numbers,
   #   and necessary crown card sets
   def check_crown_sets
     @hand.collect { |card| card[0] }.uniq.delete_if { |e| e == 4 }.each do |set_num|
-      # count number of cards from unique sets and crown set, and compare to set length, and to return needed crown set cards
       if @hand.count { |card| card[0] == set_num || card[0] == 4 } >= Deck.set_data(set_num)[2]
         num_crown_cards = Deck.set_data(set_num)[2] - @hand.collect { |card| card[0] }.count { |n| n == set_num }
         return [set_num, @hand.select { |card| card[0] == 4 }.first(num_crown_cards)]
@@ -141,7 +142,7 @@ class Reserve
   # Calls `draw_card` instance method six time to create a hand
   # and deletes any nil elements that may arise from empty array.
   #
-  # `Array#delete_if` used over `Array#delete` due to the latter
+  # Array#delete_if used over Array#delete due to the latter
   # returning the deleted item rather than the array.
   # @return [Array] Array of six randomly selected cards
   def create_hand

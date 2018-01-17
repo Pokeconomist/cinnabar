@@ -194,6 +194,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#complete_sets-instance_method" title="#complete_sets (instance method)">#<strong>complete_sets</strong>(complete_sets)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>i.e.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#draw-instance_method" title="#draw (instance method)">#<strong>draw</strong>(set_num, set_pos)  &#x21d2; Object </a>
     
 
@@ -211,28 +235,6 @@
     <span class="summary_desc"><div class='inline'>
 <p>Displays drawn card info.</p>
 </div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#game_data-instance_method" title="#game_data (instance method)">#<strong>game_data</strong>(turn_data, turn_num, complete_sets, player_num)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -288,6 +290,30 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#hold_screen-instance_method" title="#hold_screen (instance method)">#<strong>hold_screen</strong>(player_num)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Interim between player&#39;s turns.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#pause-instance_method" title="#pause (instance method)">#<strong>pause</strong>  &#x21d2; Object </a>
     
 
@@ -304,6 +330,30 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Windows specific pause.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#turn_data-instance_method" title="#turn_data (instance method)">#<strong>turn_data</strong>(turn_data)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>i.e.</p>
 </div></span>
   
 </li>
@@ -380,14 +430,14 @@
       <pre class="lines">
 
 
-109
-110
 111
 112
-113</pre>
+113
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_card_taken'>card_taken</span><span class='comma'>,</span> <span class='id identifier rubyid_called_player'>called_player</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_print'>print</span> <span class='id identifier rubyid_card_taken'>card_taken</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_called_player'>called_player</span><span class='embexpr_end'>}</span><span class='tstring_content'> had the card. </span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_called_player'>called_player</span><span class='embexpr_end'>}</span><span class='tstring_content'> didn&#39;t have the card. </span><span class='tstring_end'>&quot;</span></span>
@@ -461,18 +511,18 @@
       <pre class="lines">
 
 
-96
-97
 98
 99
 100
 101
 102
 103
-104</pre>
+104
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_card'>card</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='comma'>,</span> <span class='id identifier rubyid_set_pos'>set_pos</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_card_name'>card_name</span><span class='comma'>,</span> <span class='id identifier rubyid_card_desc'>card_desc</span><span class='comma'>,</span> <span class='id identifier rubyid_set_name'>set_name</span><span class='comma'>,</span> <span class='id identifier rubyid_set_num'>set_num</span><span class='comma'>,</span> <span class='id identifier rubyid_set_pos'>set_pos</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_card_data'><span class='object_link'><a href="Deck.html#card_data-instance_method" title="Deck#card_data (method)">card_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='comma'>,</span> <span class='id identifier rubyid_set_pos'>set_pos</span><span class='rparen'>)</span>
@@ -514,15 +564,93 @@
       <pre class="lines">
 
 
-128
-129
-130</pre>
+130
+131
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 128</span>
+      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cls'>cls</span>
   <span class='id identifier rubyid_system'>system</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cls</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="complete_sets-instance_method">
+  
+    #<strong>complete_sets</strong>(complete_sets)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>i.e.</p>
+
+<pre class="code ruby"><code class="ruby">[
+  {
+    set_num =&gt;     1,
+    player_num =&gt;  1,
+    crown_cards =&gt; [[4,&#39;A&#39;]]
+  },
+  ...
+]</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_complete_sets'>complete_sets</span><span class='lparen'>(</span><span class='id identifier rubyid_complete_sets'>complete_sets</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cls'>cls</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_complete_sets'>complete_sets</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\nCOMPLETED SETS:\n\n</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_complete_sets'>complete_sets</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_set'>set</span><span class='op'>|</span>
+
+      <span class='comment'># TODO: list crown set cards by name when needed 2017-12-26 //DONE
+</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:crown_cards</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_data'><span class='object_link'><a href="Deck.html#set_data-instance_method" title="Deck#set_data (method)">set_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:set_num</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>, Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>.\n\n</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_crown_cards'>crown_cards</span> <span class='op'>=</span> <span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:crown_cards</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card_id'>card_id</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_card_data'><span class='object_link'><a href="Deck.html#card_data-instance_method" title="Deck#card_data (method)">card_data</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
+        <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_data'><span class='object_link'><a href="Deck.html#set_data-instance_method" title="Deck#set_data (method)">set_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:set_num</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>, Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>, using </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crown_cards'>crown_cards</span><span class='period'>.</span><span class='id identifier rubyid_to_list'>to_list</span><span class='embexpr_end'>}</span><span class='tstring_content'>.\n\n</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -591,137 +719,16 @@
       <pre class="lines">
 
 
-117
-118
 119
-120</pre>
+120
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_draw'>draw</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='comma'>,</span> <span class='id identifier rubyid_set_pos'>set_pos</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_card_data'><span class='object_link'><a href="Deck.html#card_data-instance_method" title="Deck#card_data (method)">card_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='comma'>,</span> <span class='id identifier rubyid_set_pos'>set_pos</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> was drawn.\n</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_pause'>pause</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="game_data-instance_method">
-  
-    #<strong>game_data</strong>(turn_data, turn_num, complete_sets, player_num)  &#x21d2; <tt>Object</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>player_num</span>
-      
-      
-        <span class='type'>(<tt>Integer</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>Current player number</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 50</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_game_data'>game_data</span><span class='lparen'>(</span><span class='id identifier rubyid_turn_data'>turn_data</span><span class='comma'>,</span> <span class='id identifier rubyid_turn_num'>turn_num</span><span class='comma'>,</span> <span class='id identifier rubyid_complete_sets'>complete_sets</span><span class='comma'>,</span> <span class='id identifier rubyid_player_num'>player_num</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_cls'>cls</span>
-  <span class='comment'># display completed sets
-</span>  <span class='kw'>unless</span> <span class='id identifier rubyid_complete_sets'>complete_sets</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-    <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\nCOMPLETED SETS:\n\n</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_complete_sets'>complete_sets</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_set'>set</span><span class='op'>|</span>
-
-      <span class='comment'># TODO: list crown set cards by name when needed 2017-12-26 //DONE
-</span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:crown_cards</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-        <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_data'><span class='object_link'><a href="Deck.html#set_data-instance_method" title="Deck#set_data (method)">set_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:set_num</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>, Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>.\n\n</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>else</span>
-        <span class='id identifier rubyid_crown_cards'>crown_cards</span> <span class='op'>=</span> <span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:crown_cards</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card_id'>card_id</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_card_data'><span class='object_link'><a href="Deck.html#card_data-instance_method" title="Deck#card_data (method)">card_data</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
-        <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_data'><span class='object_link'><a href="Deck.html#set_data-instance_method" title="Deck#set_data (method)">set_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:set_num</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>, Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>, using </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crown_cards'>crown_cards</span><span class='period'>.</span><span class='id identifier rubyid_to_list'>to_list</span><span class='embexpr_end'>}</span><span class='tstring_content'>.\n\n</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>end</span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-  <span class='comment'># display previous turn data
-</span>  <span class='kw'>unless</span> <span class='id identifier rubyid_turn_data'>turn_data</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-    <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PREVIOUS TURN DATA:\n\n</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_turn_data'>turn_data</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:card_taken</span><span class='rbracket'>]</span>
-        <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:calling_player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> took </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_card_data'><span class='object_link'><a href="Deck.html#card_data-instance_method" title="Deck#card_data (method)">card_data</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:card</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> from Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:called_player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>.\n\n</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>else</span>
-        <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:calling_player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> asked Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:called_player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> for </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_card_data'><span class='object_link'><a href="Deck.html#card_data-instance_method" title="Deck#card_data (method)">card_data</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:card</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> but was denied.\n\n</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>end</span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>----------------\n</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PLAYER </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_player_num'>player_num</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s TURN. Press any key to continue...\n</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>----------------\n</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_pause'>pause</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -838,19 +845,86 @@
       <pre class="lines">
 
 
-87
-88
 89
 90
-91</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hand'>hand</span><span class='lparen'>(</span><span class='id identifier rubyid_hand'>hand</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_cls'>cls</span>
   <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Your cards are:\n</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_hand'>hand</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card_id'>card_id</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="" title="Write (module)">Write</a></span></span><span class='period'>.</span><span class='id identifier rubyid_card'><span class='object_link'><a href="#card-instance_method" title="Write#card (method)">card</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hold_screen-instance_method">
+  
+    #<strong>hold_screen</strong>(player_num)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Interim between player&#39;s turns.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>player_num</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Current player number</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 80</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hold_screen'>hold_screen</span><span class='lparen'>(</span><span class='id identifier rubyid_player_num'>player_num</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>----------------\n</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PLAYER </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_player_num'>player_num</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s TURN. Press any key to continue...\n</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>----------------\n</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_pause'>pause</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -883,15 +957,84 @@
       <pre class="lines">
 
 
-123
-124
-125</pre>
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pause'>pause</span>
   <span class='id identifier rubyid_system'>system</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>pause&gt;nul</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="turn_data-instance_method">
+  
+    #<strong>turn_data</strong>(turn_data)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>i.e.</p>
+
+<pre class="code ruby"><code class="ruby">[
+  {
+    card_taken:         false,
+    called_player_num:  2,
+    calling_player_num: 2,
+    card:               [1, &#39;A&#39;]
+  },
+  ...
+]</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/modules/write.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_turn_data'>turn_data</span><span class='lparen'>(</span><span class='id identifier rubyid_turn_data'>turn_data</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_turn_data'>turn_data</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\nPREVIOUS TURN DATA:\n\n</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_turn_data'>turn_data</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:card_taken</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:calling_player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> took </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_card_data'><span class='object_link'><a href="Deck.html#card_data-instance_method" title="Deck#card_data (method)">card_data</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:card</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> from Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:called_player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>.\n\n</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_print'>print</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>    Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:calling_player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> asked Player </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:called_player_num</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> for </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_card_data'><span class='object_link'><a href="Deck.html#card_data-instance_method" title="Deck#card_data (method)">card_data</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:card</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> but was denied.\n\n</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -903,7 +1046,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Jan 17 21:44:39 2018 by
+  Generated on Wed Jan 17 22:34:30 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.3.3).
 </div>

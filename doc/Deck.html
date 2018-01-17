@@ -96,7 +96,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Module containing card amd set data, and access methods</p>
+<p>Module containing card amd set data, and access methods.</p>
 
 
   </div>
@@ -182,7 +182,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#card_data-instance_method" title="#card_data (instance method)">#<strong>card_data</strong>(set_num, set_pos)  &#x21d2; Array </a>
+      <a href="#card_data-instance_method" title="#card_data (instance method)">#<strong>card_data</strong>(set_num, set_pos)  &#x21d2; Array<sup>?</sup> </a>
     
 
     
@@ -206,7 +206,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#card_id-instance_method" title="#card_id (instance method)">#<strong>card_id</strong>(card_name)  &#x21d2; Array </a>
+      <a href="#card_id-instance_method" title="#card_id (instance method)">#<strong>card_id</strong>(card_name)  &#x21d2; Array<sup>?</sup> </a>
     
 
     
@@ -278,7 +278,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_data-instance_method" title="#set_data (instance method)">#<strong>set_data</strong>(set_num)  &#x21d2; Array </a>
+      <a href="#set_data-instance_method" title="#set_data (instance method)">#<strong>set_data</strong>(set_num)  &#x21d2; Array<sup>?</sup> </a>
     
 
     
@@ -311,7 +311,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="card_data-instance_method">
   
-    #<strong>card_data</strong>(set_num, set_pos)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+    #<strong>card_data</strong>(set_num, set_pos)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt><sup>?</sup> 
   
 
   
@@ -369,14 +369,14 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
 <p>Array comprised of the card&#39;s name, description, set name, set number,
-and set position</p>
+and set position, or nil if card not found</p>
 </div>
       
     </li>
@@ -421,7 +421,7 @@ and set position</p>
       <div class="method_details ">
   <h3 class="signature " id="card_id-instance_method">
   
-    #<strong>card_id</strong>(card_name)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+    #<strong>card_id</strong>(card_name)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt><sup>?</sup> 
   
 
   
@@ -458,13 +458,13 @@ and set position</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Card id</p>
+<p>Card id, or nil if card not found</p>
 </div>
       
     </li>
@@ -659,7 +659,7 @@ and set position</p>
       <div class="method_details ">
   <h3 class="signature " id="set_data-instance_method">
   
-    #<strong>set_data</strong>(set_num)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+    #<strong>set_data</strong>(set_num)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt><sup>?</sup> 
   
 
   
@@ -701,13 +701,14 @@ and set position</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'>
-<p>Array comprised of the set&#39;s number, name, and length</p>
+<p>Array comprised of the set&#39;s number, name, and length, or nil if card
+not found</p>
 </div>
       
     </li>
@@ -750,7 +751,7 @@ and set position</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Jan 17 21:44:39 2018 by
+  Generated on Wed Jan 17 22:34:30 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.3.3).
 </div>
