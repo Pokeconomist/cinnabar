@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Player
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Player";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo;
+    
+    
+    <span class="title">Player</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Player
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Player</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>src/cinnabar.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Class for access to player data</p>
+
+<p>nil or duplicate items in a players hand are dealt with when using
+`add_card` of `take_card` instance methods</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hand-instance_method" title="#hand (instance method)">#<strong>hand</strong>  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Array of cards in a player&#39;s hand.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#num-instance_method" title="#num (instance method)">#<strong>num</strong>  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A player&#39;s num.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_card-instance_method" title="#add_card (instance method)">#<strong>add_card</strong>(card_id)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Adds card to player&#39;s hand, removes nil elements, sorts hand and
+deletes any possible duplicates (for safe measure).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_card-instance_method" title="#check_card (instance method)">#<strong>check_card</strong>(card_id)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Checks player&#39;s hand for card, including adding and taking items, and
+testing for them.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_cinnabar-instance_method" title="#check_cinnabar (instance method)">#<strong>check_cinnabar</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Checks player&#39;s hand for title card.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_crown_sets-instance_method" title="#check_crown_sets (instance method)">#<strong>check_crown_sets</strong>  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Checks player&#39;s hand for complete sets using crown set cards, and
+return the first found, or nil.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_sets-instance_method" title="#check_sets (instance method)">#<strong>check_sets</strong>  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Checks player&#39;s hand for complete sets.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_title_set-instance_method" title="#check_title_set (instance method)">#<strong>check_title_set</strong>  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns set one cards in a player&#39;s hand.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(num, hand)  &#x21d2; Player </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Player.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#take_card-instance_method" title="#take_card (instance method)">#<strong>take_card</strong>(card_id)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Takes card from player&#39;s hand, removes nil elements, sorts hand, and
+deletes any possible duplicates (for safe measure).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#take_crown_set-instance_method" title="#take_crown_set (instance method)">#<strong>take_crown_set</strong>(set_num, crown_set_cards)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Takes all the cards of a set and specified crown set cards from
+player&#39;s hand.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#take_set-instance_method" title="#take_set (instance method)">#<strong>take_set</strong>(set_num)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Takes all cards of a set from player&#39;s hand.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(num, hand)  &#x21d2; <tt><span class='object_link'><a href="" title="Player (class)">Player</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Player</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_num'>num</span><span class='comma'>,</span> <span class='id identifier rubyid_hand'>hand</span><span class='rparen'>)</span>
+  <span class='ivar'>@hand</span> <span class='op'>=</span> <span class='id identifier rubyid_hand'>hand</span>
+  <span class='ivar'>@num</span> <span class='op'>=</span> <span class='id identifier rubyid_num'>num</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="hand=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="hand-instance_method">
+  
+    #<strong>hand</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Array of cards in a player&#39;s hand</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current value of hand</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hand'>hand</span>
+  <span class='ivar'>@hand</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="num=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="num-instance_method">
+  
+    #<strong>num</strong>  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>A player&#39;s num</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current value of num</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_num'>num</span>
+  <span class='ivar'>@num</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_card-instance_method">
+  
+    #<strong>add_card</strong>(card_id)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Adds card to player&#39;s hand, removes nil elements, sorts hand and
+deletes any possible duplicates (for safe measure).</p>
+
+<p>`Array#delete_if` used over `Array#delete` due to the latter returning the
+deleted item rather than the array.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>card_id</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Specific card id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_card'>add_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
+  <span class='ivar'>@hand</span> <span class='op'>+=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rbracket'>]</span>
+  <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span> <span class='op'>==</span> <span class='kw'>nil</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_sort!'>sort!</span><span class='period'>.</span><span class='id identifier rubyid_uniq!'>uniq!</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_card-instance_method">
+  
+    #<strong>check_card</strong>(card_id)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks player&#39;s hand for card, including adding and taking items, and
+testing for them.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>card_id</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Specific card id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether or not a player has a card</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_card'>check_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_cinnabar-instance_method">
+  
+    #<strong>check_cinnabar</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks player&#39;s hand for title card.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether or not a player has the cinnabar card</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_cinnabar'>check_cinnabar</span>
+  <span class='kw'>return</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_crown_sets-instance_method">
+  
+    #<strong>check_crown_sets</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks player&#39;s hand for complete sets using crown set cards, and
+return the first found, or nil.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of complete set&#39;s numbers, and necessary crown card sets</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 99</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_crown_sets'>check_crown_sets</span>
+  <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_e'>e</span> <span class='op'>==</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_set_num'>set_num</span><span class='op'>|</span>
+    <span class='comment'># count number of cards from unique sets and crown set, and compare to set length, and to return needed crown set cards
+</span>    <span class='kw'>if</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_set_num'>set_num</span> <span class='op'>||</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='int'>4</span> <span class='rbrace'>}</span> <span class='op'>&gt;=</span> <span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_data'><span class='object_link'><a href="Deck.html#set_data-instance_method" title="Deck#set_data (method)">set_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_num_crown_cards'>num_crown_cards</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_data'><span class='object_link'><a href="Deck.html#set_data-instance_method" title="Deck#set_data (method)">set_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='op'>-</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_n'>n</span><span class='op'>|</span> <span class='id identifier rubyid_n'>n</span> <span class='op'>==</span> <span class='id identifier rubyid_set_num'>set_num</span> <span class='rbrace'>}</span>
+      <span class='kw'>return</span> <span class='lbracket'>[</span><span class='id identifier rubyid_set_num'>set_num</span><span class='comma'>,</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span><span class='lparen'>(</span><span class='id identifier rubyid_num_crown_cards'>num_crown_cards</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_sets-instance_method">
+  
+    #<strong>check_sets</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks player&#39;s hand for complete sets.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of complete set&#39;s numbers</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_sets'>check_sets</span>
+  <span class='id identifier rubyid_complete_sets'>complete_sets</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='comment'># iterate over unique sets
+</span>  <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_set_num'>set_num</span><span class='op'>|</span>
+    <span class='comment'># count number of cards from unique sets, and compare to set length
+</span>    <span class='kw'>if</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_data'><span class='object_link'><a href="Deck.html#set_data-instance_method" title="Deck#set_data (method)">set_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_complete_sets'>complete_sets</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_set_num'>set_num</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_complete_sets'>complete_sets</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_title_set-instance_method">
+  
+    #<strong>check_title_set</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns set one cards in a player&#39;s hand.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of set one cards in player&#39;s hand</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+118
+119
+120</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 118</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_title_set'>check_title_set</span>
+  <span class='kw'>return</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='int'>1</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="take_card-instance_method">
+  
+    #<strong>take_card</strong>(card_id)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Takes card from player&#39;s hand, removes nil elements, sorts hand, and
+deletes any possible duplicates (for safe measure).</p>
+
+<p>`Array#delete_if` used over `Array#delete` due to the latter returning the
+deleted item rather than the array.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>card_id</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Specific card id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_take_card'>take_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
+  <span class='ivar'>@hand</span> <span class='op'>-=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rbracket'>]</span>
+  <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span> <span class='op'>==</span> <span class='kw'>nil</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_sort!'>sort!</span><span class='period'>.</span><span class='id identifier rubyid_uniq!'>uniq!</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="take_crown_set-instance_method">
+  
+    #<strong>take_crown_set</strong>(set_num, crown_set_cards)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Takes all the cards of a set and specified crown set cards from
+player&#39;s hand</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>set_num</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Number of set to remove</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>crown_set_cards</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Array of crown cards to remove</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_take_crown_set'>take_crown_set</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='comma'>,</span> <span class='id identifier rubyid_crown_set_cards'>crown_set_cards</span><span class='rparen'>)</span>
+  <span class='ivar'>@hand</span> <span class='op'>-=</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_set_num'>set_num</span> <span class='rbrace'>}</span>
+  <span class='ivar'>@hand</span> <span class='op'>-=</span> <span class='id identifier rubyid_crown_set_cards'>crown_set_cards</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="take_set-instance_method">
+  
+    #<strong>take_set</strong>(set_num)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Takes all cards of a set from player&#39;s hand.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>set_num</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Specific set number</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 61</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_take_set'>take_set</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span>
+  <span class='ivar'>@hand</span> <span class='op'>-=</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_set_num'>set_num</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Wed Jan 17 21:44:40 2018 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.12 (ruby-2.3.3).
+</div>
+
+    </div>
+  </body>
+</html>

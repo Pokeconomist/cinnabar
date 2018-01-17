@@ -1,23 +1,46 @@
 require 'json'
 
-# module handling creation and interaction with deck data
+# Module containing card amd set data, and access methods
 module Deck
   extend self
 
-  # DECK CONSTRUCTION
-
-  # get hash from json files, and convert keys to symbols (n.b. JSON files contain expansion information not yet used)
+  # Array of hashes containing card data from JSON file.
+  #
+  # i.e.
+  #   [
+  #     {
+  #       cardName:        "Cinnabar",
+  #       setNumber:       1,
+  #       setPosition:     "A",
+  #       cardDescription: "Mercury ore"
+  #     },
+  #     ...
+  #   ]
   CARDS = JSON.parse(File.read('.\data\cards.json'), symbolize_names: true)[:cards].freeze
+
+  # Array of hashes containing set data from JSON file.
+  #
+  # i.e.
+  #   [
+  #     {
+  #       setNumber: 1,
+  #       setLength: 5,
+  #       setName:   "Sulphide Materials"
+  #     },
+  #     ...
+  #   ]
   SETS = JSON.parse(File.read('.\data\sets.json'), symbolize_names: true)[:sets].freeze
 
-  # method to create simplifies deck array (comprised of just card ids).
+  # Creates simplified deck array.
+  # @return [Array] Array of card ids
   def id_array
     CARDS.map { |card| [card[:setNumber], card[:setPosition]] }
   end
 
-  # DECK ACCESS METHODS
-
-  # method to return array of card data from id
+  # Returns card data given a card's id.
+  # @param set_num [Integer] Card's set number
+  # @param set_pos [Character] Card's set position
+  # @return [Array] Array comprised of the card's name, description, set name, set number, and set position
   def card_data(set_num, set_pos)
     card = CARDS.select { |card| card[:setNumber] == set_num && card[:setPosition] == set_pos }[0]
     card.nil? ? nil : [
@@ -29,9 +52,11 @@ module Deck
     ]
   end
 
-  # method to return card id from name
+  # Returns a card's id given a card's name.
+  # @param card_name [String]
+  # @return [Array] Card id
   def card_id(card_name)
-    card_name = card_name.to_s.downcase.capitalize
+    card_name = card_name.to_s.downcase.titleise
     card = CARDS.select { |card| card[:cardName] == card_name }[0]
     card.nil? ? nil : [
       card[:setNumber],
@@ -39,12 +64,16 @@ module Deck
     ]
   end
 
-  # method to return array of other cards in a set from one card's id
+  # Returns array of other cards in a set given a card's id.
+  # @param (see #card_data)
+  # @return [Array] Array of card ids of other cards in set
   def card_set(set_num, set_pos)
-    cards = CARDS.select { |card| card[:setNumber] == set_num && card[:setPosition] != set_pos }.map { |card| card[:cardName] }
+    CARDS.select { |card| card[:setNumber] == set_num && card[:setPosition] != set_pos }.map { |card| card[:cardName] }
   end
 
-  # method to return set data
+  # Returns set data given a set's number.
+  # @param set_num [Integer] Set's number
+  # @return [Array] Array comprised of the set's number, name, and length
   def set_data(set_num)
     set = SETS.select { |set| set[:setNumber] == set_num }[0]
     set.nil? ? nil : [
