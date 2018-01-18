@@ -182,7 +182,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#card_data-instance_method" title="#card_data (instance method)">#<strong>card_data</strong>(set_num, set_pos)  &#x21d2; Array<sup>?</sup> </a>
+      <a href="#card_data-instance_method" title="#card_data (instance method)">#<strong>card_data</strong>(set_num, set_pos)  &#x21d2; Array(String, String, Integer, Integer, String)<sup>?</sup> </a>
     
 
     
@@ -206,7 +206,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#card_id-instance_method" title="#card_id (instance method)">#<strong>card_id</strong>(card_name)  &#x21d2; Array<sup>?</sup> </a>
+      <a href="#card_id-instance_method" title="#card_id (instance method)">#<strong>card_id</strong>(card_name)  &#x21d2; Array(Integer, String)<sup>?</sup> </a>
     
 
     
@@ -230,7 +230,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#card_set-instance_method" title="#card_set (instance method)">#<strong>card_set</strong>(set_num, set_pos)  &#x21d2; Array </a>
+      <a href="#card_set-instance_method" title="#card_set (instance method)">#<strong>card_set</strong>(set_num, set_pos)  &#x21d2; Array&lt;Array(Integer, String), nil&gt; </a>
     
 
     
@@ -254,7 +254,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#id_array-instance_method" title="#id_array (instance method)">#<strong>id_array</strong>  &#x21d2; Array </a>
+      <a href="#id_array-instance_method" title="#id_array (instance method)">#<strong>id_array</strong>  &#x21d2; Array&lt;Array(Integer, String)&gt; </a>
     
 
     
@@ -278,7 +278,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_data-instance_method" title="#set_data (instance method)">#<strong>set_data</strong>(set_num)  &#x21d2; Array<sup>?</sup> </a>
+      <a href="#set_data-instance_method" title="#set_data (instance method)">#<strong>set_data</strong>(set_num)  &#x21d2; Array(Integer, String, Integer)<sup>?</sup> </a>
     
 
     
@@ -311,7 +311,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="card_data-instance_method">
   
-    #<strong>card_data</strong>(set_num, set_pos)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt><sup>?</sup> 
+    #<strong>card_data</strong>(set_num, set_pos)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(<span class='object_link'><a href="String.html" title="String (class)">String</a></span>, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>, Integer, Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)</tt><sup>?</sup> 
   
 
   
@@ -350,7 +350,7 @@
         <span class='name'>set_pos</span>
       
       
-        <span class='type'>(<tt>Character</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
@@ -369,7 +369,7 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(<span class='object_link'><a href="String.html" title="String (class)">String</a></span>, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>, Integer, Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)</tt>, <tt>nil</tt>)</span>
       
       
       
@@ -389,7 +389,6 @@ and set position, or nil if card not found</p>
       <pre class="lines">
 
 
-44
 45
 46
 47
@@ -398,10 +397,11 @@ and set position, or nil if card not found</p>
 50
 51
 52
-53</pre>
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/modules/deck.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'src/modules/deck.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_card_data'>card_data</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='comma'>,</span> <span class='id identifier rubyid_set_pos'>set_pos</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_card'>card</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#CARDS-constant" title="Deck::CARDS (constant)">CARDS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:setNumber</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_set_num'>set_num</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:setPosition</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_set_pos'>set_pos</span> <span class='rbrace'>}</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
@@ -421,7 +421,7 @@ and set position, or nil if card not found</p>
       <div class="method_details ">
   <h3 class="signature " id="card_id-instance_method">
   
-    #<strong>card_id</strong>(card_name)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt><sup>?</sup> 
+    #<strong>card_id</strong>(card_name)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)</tt><sup>?</sup> 
   
 
   
@@ -458,7 +458,7 @@ and set position, or nil if card not found</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)</tt>, <tt>nil</tt>)</span>
       
       
       
@@ -477,17 +477,17 @@ and set position, or nil if card not found</p>
       <pre class="lines">
 
 
-58
 59
 60
 61
 62
 63
 64
-65</pre>
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/modules/deck.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'src/modules/deck.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_card_id'>card_id</span><span class='lparen'>(</span><span class='id identifier rubyid_card_name'>card_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_card_name'>card_name</span> <span class='op'>=</span> <span class='id identifier rubyid_card_name'>card_name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_titleise'>titleise</span>
@@ -505,7 +505,7 @@ and set position, or nil if card not found</p>
       <div class="method_details ">
   <h3 class="signature " id="card_set-instance_method">
   
-    #<strong>card_set</strong>(set_num, set_pos)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+    #<strong>card_set</strong>(set_num, set_pos)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>), nil&gt;</tt> 
   
 
   
@@ -544,7 +544,7 @@ and set position, or nil if card not found</p>
         <span class='name'>set_pos</span>
       
       
-        <span class='type'>(<tt>Character</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
@@ -563,7 +563,7 @@ and set position, or nil if card not found</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>), nil&gt;</tt>)</span>
       
       
       
@@ -582,12 +582,12 @@ and set position, or nil if card not found</p>
       <pre class="lines">
 
 
-70
 71
-72</pre>
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/modules/deck.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'src/modules/deck.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_card_set'>card_set</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='comma'>,</span> <span class='id identifier rubyid_set_pos'>set_pos</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="#CARDS-constant" title="Deck::CARDS (constant)">CARDS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:setNumber</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_set_num'>set_num</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:setPosition</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='id identifier rubyid_set_pos'>set_pos</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='symbol'>:cardName</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
@@ -600,7 +600,7 @@ and set position, or nil if card not found</p>
       <div class="method_details ">
   <h3 class="signature " id="id_array-instance_method">
   
-    #<strong>id_array</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+    #<strong>id_array</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)&gt;</tt> 
   
 
   
@@ -622,7 +622,7 @@ and set position, or nil if card not found</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)&gt;</tt>)</span>
       
       
       
@@ -659,7 +659,7 @@ and set position, or nil if card not found</p>
       <div class="method_details ">
   <h3 class="signature " id="set_data-instance_method">
   
-    #<strong>set_data</strong>(set_num)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt><sup>?</sup> 
+    #<strong>set_data</strong>(set_num)  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>, Integer)</tt><sup>?</sup> 
   
 
   
@@ -701,7 +701,7 @@ and set position, or nil if card not found</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>, Integer)</tt>, <tt>nil</tt>)</span>
       
       
       
@@ -721,17 +721,17 @@ not found</p>
       <pre class="lines">
 
 
-77
 78
 79
 80
 81
 82
 83
-84</pre>
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/modules/deck.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'src/modules/deck.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_data'>set_data</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_set'>set</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#SETS-constant" title="Deck::SETS (constant)">SETS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_set'>set</span><span class='op'>|</span> <span class='id identifier rubyid_set'>set</span><span class='lbracket'>[</span><span class='symbol'>:setNumber</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_set_num'>set_num</span> <span class='rbrace'>}</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
@@ -751,7 +751,7 @@ not found</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jan 18 15:11:57 2018 by
+  Generated on Thu Jan 18 16:01:35 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.3.3).
 </div>

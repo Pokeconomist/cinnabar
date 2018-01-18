@@ -123,7 +123,7 @@ and take_card instance methods.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#hand-instance_method" title="#hand (instance method)">#<strong>hand</strong>  &#x21d2; Array </a>
+      <a href="#hand-instance_method" title="#hand (instance method)">#<strong>hand</strong>  &#x21d2; Array&lt;Array(Integer, String)&gt; </a>
     
 
     
@@ -264,7 +264,7 @@ testing for them.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#check_crown_sets-instance_method" title="#check_crown_sets (instance method)">#<strong>check_crown_sets</strong>  &#x21d2; Array<sup>?</sup> </a>
+      <a href="#check_crown_sets-instance_method" title="#check_crown_sets (instance method)">#<strong>check_crown_sets</strong>  &#x21d2; Array(Integer, Array&lt;Array(4, String)&gt;)<sup>?</sup> </a>
     
 
     
@@ -289,7 +289,7 @@ return the first found, or nil.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#check_sets-instance_method" title="#check_sets (instance method)">#<strong>check_sets</strong>  &#x21d2; Array </a>
+      <a href="#check_sets-instance_method" title="#check_sets (instance method)">#<strong>check_sets</strong>  &#x21d2; Array&lt;Integer&gt; </a>
     
 
     
@@ -313,7 +313,7 @@ return the first found, or nil.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#check_title_set-instance_method" title="#check_title_set (instance method)">#<strong>check_title_set</strong>  &#x21d2; Array </a>
+      <a href="#check_title_set-instance_method" title="#check_title_set (instance method)">#<strong>check_title_set</strong>  &#x21d2; Array&lt;Array(1, String)&gt; </a>
     
 
     
@@ -493,7 +493,7 @@ player&#39;s hand.</p>
       <div class="method_details first">
   <h3 class="signature first" id="hand-instance_method">
   
-    #<strong>hand</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+    #<strong>hand</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)&gt;</tt> 
   
 
   
@@ -515,7 +515,7 @@ player&#39;s hand.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)&gt;</tt>)</span>
       
       
       
@@ -647,7 +647,7 @@ deleted item rather than the array.</p>
         <span class='name'>card_id</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)</tt>)</span>
       
       
       
@@ -711,7 +711,7 @@ testing for them.</p>
         <span class='name'>card_id</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)</tt>)</span>
       
       
       
@@ -826,7 +826,7 @@ testing for them.</p>
       <div class="method_details ">
   <h3 class="signature " id="check_crown_sets-instance_method">
   
-    #<strong>check_crown_sets</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt><sup>?</sup> 
+    #<strong>check_crown_sets</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(4, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)&gt;)</tt><sup>?</sup> 
   
 
   
@@ -838,7 +838,7 @@ testing for them.</p>
 <p>Checks player&#39;s hand for complete sets using crown set cards, and
 return the first found, or nil.</p>
 
-<p>Does so by comparing number of cards from unique sets and crown set to set
+<p>Does so by comparing number of cards from sets plus crown set, to set
 length.</p>
 
 
@@ -852,7 +852,7 @@ length.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(4, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)&gt;)</tt>, <tt>nil</tt>)</span>
       
       
       
@@ -901,7 +901,7 @@ length.</p>
       <div class="method_details ">
   <h3 class="signature " id="check_sets-instance_method">
   
-    #<strong>check_sets</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+    #<strong>check_sets</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Integer&gt;</tt> 
   
 
   
@@ -911,6 +911,8 @@ length.</p>
   <div class="discussion">
     
 <p>Checks player&#39;s hand for complete sets.</p>
+
+<p>Does so by comparing number of cards from set to that sets length.</p>
 
 
   </div>
@@ -923,7 +925,7 @@ length.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Integer&gt;</tt>)</span>
       
       
       
@@ -942,8 +944,6 @@ length.</p>
       <pre class="lines">
 
 
-76
-77
 78
 79
 80
@@ -955,14 +955,12 @@ length.</p>
 86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_sets'>check_sets</span>
   <span class='id identifier rubyid_complete_sets'>complete_sets</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-  <span class='comment'># iterate over unique sets
-</span>  <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_set_num'>set_num</span><span class='op'>|</span>
-    <span class='comment'># count number of cards from unique sets, and compare to set length
-</span>    <span class='kw'>if</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_data'><span class='object_link'><a href="Deck.html#set_data-instance_method" title="Deck#set_data (method)">set_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+  <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_set_num'>set_num</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Deck.html" title="Deck (module)">Deck</a></span></span><span class='period'>.</span><span class='id identifier rubyid_set_data'><span class='object_link'><a href="Deck.html#set_data-instance_method" title="Deck#set_data (method)">set_data</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
       <span class='id identifier rubyid_complete_sets'>complete_sets</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_set_num'>set_num</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -976,7 +974,7 @@ length.</p>
       <div class="method_details ">
   <h3 class="signature " id="check_title_set-instance_method">
   
-    #<strong>check_title_set</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt> 
+    #<strong>check_title_set</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(1, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)&gt;</tt> 
   
 
   
@@ -998,7 +996,7 @@ length.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(1, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)&gt;</tt>)</span>
       
       
       
@@ -1062,7 +1060,7 @@ deleted item rather than the array.</p>
         <span class='name'>card_id</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)</tt>)</span>
       
       
       
@@ -1142,7 +1140,7 @@ player&#39;s hand.</p>
         <span class='name'>crown_set_cards</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>(Integer, <span class='object_link'><a href="String.html" title="String (class)">String</a></span>)&gt;</tt>)</span>
       
       
       
@@ -1245,7 +1243,7 @@ player&#39;s hand.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jan 18 15:11:57 2018 by
+  Generated on Thu Jan 18 16:01:36 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.3.3).
 </div>
