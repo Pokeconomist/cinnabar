@@ -13,3 +13,9 @@
 /.vscode/
 .vscode/tasks.json
 _config.yml
+.yardoc/**/*
+.yardoc/objects/root.dat
+.yardoc/checksums
+.yardoc/complete
+.yardoc/object_types
+.yardoc/proxy_types
