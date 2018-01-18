@@ -1,6 +1,0 @@
-src/cinnabar.rb b17b92dedc81b46209a63d4b4230c4ebf7f5d074
-src/core_extensions/array/list.rb bdf19d1e30badeca27ec4a5a87b9c154231c4909
-src/core_extensions/string/titleise.rb 58e998c35b971529d7cb3223a1db931bee94a639
-src/modules/deck.rb ecba44bbfafee14d53761a72c7c89d3519ee45de
-src/modules/read.rb 63059b76a347be574ccfa4d4f7a03e48781611ab
-src/modules/write.rb e24d60d8a9fb784de4ba9c7e68ac9557c2e7c953
