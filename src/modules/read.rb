@@ -13,8 +13,8 @@ module Read
   end
 
   # Read and confirm a wanted card name.
-  # @param hand [Array] Player's hand
-  # @return [Array] Verified card id
+  # @param hand [Array<Array(Integer, String)>] Player's hand
+  # @return [Array(Integer, String)] Verified card id
   def card(hand)
     loop do
       print "What card do you want (only from sets you have): "

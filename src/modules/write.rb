@@ -22,7 +22,8 @@ module Write
   end
 
   # Displays completed sets.
-  # @param complete_sets [Array] Array of currently completed sets and relevant data
+  # @param complete_sets [Array<Hash(Integer, Integer, Array<Array(Integer, String)>)>]
+  #   Array of currently completed sets and relevant data.
   #   i.e.
   #     [
   #       {
@@ -51,7 +52,8 @@ module Write
   end
 
   # Displays previous turn data.
-  # @param turn_data [Array] Previous turn's data
+  # @param turn_data [Array<Hash(Boolean, Integer, Integer, Array<Array(Integer, String)>)>]
+  #   Previous turn's data.
   #   i.e.
   #     [
   #       {
@@ -85,7 +87,7 @@ module Write
   end
 
   # Displays player's hand.
-  # @param hand [Array] Player's hand
+  # @param hand [Array<Array(Integer, String)>] Player's hand
   def hand(hand)
     cls
     print "Your cards are:\n"
@@ -94,7 +96,7 @@ module Write
 
   # Displays card data.
   # @param set_num [Integer] Card's set number
-  # @param set_pos [Character] Card's set position
+  # @param set_pos [String] Card's set position
   def card(set_num, set_pos)
     card_name, card_desc, set_name, set_num, set_pos = Deck.card_data(set_num, set_pos)
     print "----------------\n"
