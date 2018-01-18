@@ -466,13 +466,13 @@ player&#39;s hand.</p>
       <pre class="lines">
 
 
-32
-33
-34
-35</pre>
+26
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_num'>num</span><span class='comma'>,</span> <span class='id identifier rubyid_hand'>hand</span><span class='rparen'>)</span>
   <span class='ivar'>@hand</span> <span class='op'>=</span> <span class='id identifier rubyid_hand'>hand</span>
@@ -534,12 +534,12 @@ player&#39;s hand.</p>
       <pre class="lines">
 
 
-29
-30
-31</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hand'>hand</span>
   <span class='ivar'>@hand</span>
@@ -595,12 +595,12 @@ player&#39;s hand.</p>
       <pre class="lines">
 
 
-29
-30
-31</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_num'>num</span>
   <span class='ivar'>@num</span>
@@ -667,13 +667,13 @@ deleted item rather than the array.</p>
       <pre class="lines">
 
 
-43
-44
-45
-46</pre>
+37
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_card'>add_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
   <span class='ivar'>@hand</span> <span class='op'>+=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rbracket'>]</span>
@@ -749,12 +749,12 @@ testing for them.</p>
       <pre class="lines">
 
 
-76
-77
-78</pre>
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 70</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_card'>check_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
@@ -808,12 +808,12 @@ testing for them.</p>
       <pre class="lines">
 
 
-113
-114
-115</pre>
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 107</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_cinnabar'>check_cinnabar</span>
   <span class='kw'>return</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -871,18 +871,18 @@ length.</p>
       <pre class="lines">
 
 
+95
+96
+97
+98
+99
+100
 101
 102
-103
-104
-105
-106
-107
-108
-109</pre>
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_crown_sets'>check_crown_sets</span>
   <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_e'>e</span> <span class='op'>==</span> <span class='int'>4</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_set_num'>set_num</span><span class='op'>|</span>
@@ -942,20 +942,20 @@ length.</p>
       <pre class="lines">
 
 
+76
+77
+78
+79
+80
+81
 82
 83
 84
 85
-86
-87
-88
-89
-90
-91
-92</pre>
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_sets'>check_sets</span>
   <span class='id identifier rubyid_complete_sets'>complete_sets</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1017,12 +1017,12 @@ length.</p>
       <pre class="lines">
 
 
-119
-120
-121</pre>
+113
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_title_set'>check_title_set</span>
   <span class='kw'>return</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='int'>1</span> <span class='rbrace'>}</span>
@@ -1082,13 +1082,13 @@ deleted item rather than the array.</p>
       <pre class="lines">
 
 
-54
-55
-56
-57</pre>
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_take_card'>take_card</span><span class='lparen'>(</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rparen'>)</span>
   <span class='ivar'>@hand</span> <span class='op'>-=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_card_id'>card_id</span><span class='rbracket'>]</span>
@@ -1162,13 +1162,13 @@ player&#39;s hand.</p>
       <pre class="lines">
 
 
-68
-69
-70
-71</pre>
+62
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_take_crown_set'>take_crown_set</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='comma'>,</span> <span class='id identifier rubyid_crown_set_cards'>crown_set_cards</span><span class='rparen'>)</span>
   <span class='ivar'>@hand</span> <span class='op'>-=</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_set_num'>set_num</span> <span class='rbrace'>}</span>
@@ -1225,12 +1225,12 @@ player&#39;s hand.</p>
       <pre class="lines">
 
 
-61
-62
-63</pre>
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'src/cinnabar.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_take_set'>take_set</span><span class='lparen'>(</span><span class='id identifier rubyid_set_num'>set_num</span><span class='rparen'>)</span>
   <span class='ivar'>@hand</span> <span class='op'>-=</span> <span class='ivar'>@hand</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_card'>card</span><span class='op'>|</span> <span class='id identifier rubyid_card'>card</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_set_num'>set_num</span> <span class='rbrace'>}</span>
@@ -1245,7 +1245,7 @@ player&#39;s hand.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Jan 17 22:34:31 2018 by
+  Generated on Thu Jan 18 15:11:57 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.12 (ruby-2.3.3).
 </div>

@@ -1,11 +1,5 @@
-# TODO: see .\cinnabar.rb:99 & .\cinnabar.rb:100 2017-12-22 //DONE
-# TODO: add player inputs / calls 2017-12-19 //DONE
-# TODO: complete player / reserve classes 2017-12-18 //PROGRESS
-# TODO: move large descriptive comments to readme files 2017-12-24 //DONE
-# TODO: fix `delete`` return (i.e. ["a", "b", "c"].delete("a") #=> "a" not ["b", "c"]) 2017-12-26 (.\cinnabar.rb:76)
-# TODO: fix `check_crown_set`` method iterating over empty set 2018-01-10
-  # F:/cinnabar/src/cinnabar.rb:78:in `check_crown_sets': undefined method `each' for nil:NilClass (NoMethodError)
-# TODO: add false card calls for cinnabar plays 2018-01-14
+# TODO: add 'emulated' card calls for cinnabar plays 2018-01-14
+# TODO: recognise completed set as using crown set and remove other cards from play 2018-01-17
 
 # CHRISTMAS UPDATE v1.0
 #    *
@@ -152,11 +146,11 @@ class Reserve
   end
 end
 
-# call game setup functions
+
+
 Write.game_setup
 num_players = Read.game_setup
 
-# initialise game objects
 reserve = Reserve.new
 players = Array.new(num_players) { |i| Player.new(i + 1, reserve.create_hand) }
 
@@ -165,12 +159,7 @@ turn_num = 1
 complete_sets = []
 title_active = false
 
-# main loop
 loop do
-  # reset turn data
-  # turn_data = [] INCLUSION UNCERTAIN
-
-  # iterate over each player
   players.each do |player|
     Write.complete_sets(complete_sets)
     Write.turn_data(turn_data)
@@ -198,21 +187,16 @@ loop do
       Write.call(card_taken, called_player.num)
       # turn finalisation (if card not taken)
       unless turn_data[-1][:card_taken]
-        # draw card
         drawn_card = reserve.draw_card
         player.add_card(drawn_card)
         Write.draw(*drawn_card)
-        # check if drawn card is called card
         break unless drawn_card == called_card
       end
     end
 
-    # TODO: check for set one cards every turn after play 2017-12-25 (merry christmas) //DONE
-
     # check for title card if not used already
     if player.check_cinnabar && !title_active
       title_active = Read.cinnabar_prompt
-      # check if cinnabar has been played
       if title_active
         # take all current set one cards
         (players.reject { |p| p == player }).each do |called_player|
@@ -230,10 +214,6 @@ loop do
       end
     end
 
-    # TODO: finish set checking methods, i.e. player prompt 2017-12-24 //PROGRESS
-    # TODO: add crown set functionality 2017-12-24 //DONE
-    # TODO: recognise completed set as using crown set and remove other cards from play
-
     # check for complete sets
     unless player.check_sets.empty?
       player.check_sets.each do |set_num|
@@ -249,9 +229,7 @@ loop do
       end
     end
 
-    # TODO: find way to update `player.check_crown_sets` on each iteration over itself 2018-01-14 //DONE
-
-    # check for crown set cards (`player.check_crown_sets` will return the first playable set)
+    # check for crown set cards
     until player.check_crown_sets.nil?
       play_set = Read.crown_set_prompt(*player.check_crown_sets)
       if play_set

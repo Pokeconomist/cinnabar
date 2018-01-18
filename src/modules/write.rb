@@ -23,15 +23,15 @@ module Write
 
   # Displays completed sets.
   # @param complete_sets [Array] Array of currently completed sets and relevant data
-    # i.e.
-    #   [
-    #     {
-    #       set_num =>     1,
-    #       player_num =>  1,
-    #       crown_cards => [[4,'A']]
-    #     },
-    #     ...
-    #   ]
+  #   i.e.
+  #     [
+  #       {
+  #         set_num =>     1,
+  #         player_num =>  1,
+  #         crown_cards => [[4,'A']]
+  #       },
+  #       ...
+  #     ]
   def complete_sets(complete_sets)
     cls
     unless complete_sets.empty?
@@ -52,16 +52,16 @@ module Write
 
   # Displays previous turn data.
   # @param turn_data [Array] Previous turn's data
-    # i.e.
-    #   [
-    #     {
-    #       card_taken:         false,
-    #       called_player_num:  2,
-    #       calling_player_num: 2,
-    #       card:               [1, 'A']
-    #     },
-    #     ...
-    #   ]
+  #   i.e.
+  #     [
+  #       {
+  #         card_taken:         false,
+  #         called_player_num:  2,
+  #         calling_player_num: 2,
+  #         card:               [1, 'A']
+  #       },
+  #       ...
+  #     ]
   def turn_data(turn_data)
     unless turn_data.empty?
       print "\nPREVIOUS TURN DATA:\n\n"
