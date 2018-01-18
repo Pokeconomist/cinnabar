@@ -224,6 +224,12 @@
       "cardDescription": "Used for plaster of Paris"
     },
     {
+      "cardName": "Turqoise",
+      "setNumber": 8,
+      "setPosition": "D",
+      "cardDescription": "A desert gem"
+    },
+    {
       "cardName": "Apatite",
       "setNumber": 9,
       "setPosition": "A",
@@ -281,7 +287,7 @@
       "cardName": "Granite",
       "setNumber": 11,
       "setPosition": "A",
-      "cardDescription": "Quartz,  feldspar & mica"
+      "cardDescription": "Quartz, feldspar & mica"
     },
     {
       "cardName": "Gabbro",
