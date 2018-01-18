@@ -1,0 +1,4 @@
+./lib/**/*.r
+-
+RULES.md
+CONTRIBUTING.md
