@@ -1,4 +1,6 @@
-./src/**/*.rb
+--protected
+--quiet
+.\src\**\*.rb
 -
 RULES.md
 CONTRIBUTING.md
