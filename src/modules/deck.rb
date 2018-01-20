@@ -67,7 +67,7 @@ module Deck
 
   # Returns array of other cards in a set given a card's id.
   # @param (see #card_data)
-  # @return [Array<Array(Integer, String), nil>] Array of card ids of other cards in set
+  # @return [Array<Array(String)>] Array of card ids of other cards in set
   def card_set(set_num, set_pos)
     CARDS.select { |card| card[:setNumber] == set_num && card[:setPosition] != set_pos }.map { |card| card[:cardName] }
   end
