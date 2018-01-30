@@ -1,5 +1,5 @@
 # Class containing reserve data and draw card methods.
-# @attr reserve [Array<Array(Integer, String)>] Array of card ids
+# @attr reserve [Array<Array>] Array of card ids
 class Reserve
   attr_reader :reserve
 

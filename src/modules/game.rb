@@ -6,7 +6,7 @@ module Game
   # @param (see #set_check)
   # @param called_card [Array(Integer, String)] Card id of called card
   # @param called_player [Player] Called player object
-  # @return [Hash(Boolean, Integer, Integer, Array<Array(Integer, String)>)] Turn data hash
+  # @return [Hash] Turn data hash
   def call_card(player, called_card, called_player)
     if called_player.check_card(called_card)
       called_player.take_card(called_card)
@@ -26,7 +26,7 @@ module Game
 
   # Checks for complete sets in a players hand, and plays them on player prompt.
   # @param player [Player] Calling player object
-  # @return [Hash(Integer, Integer, Array<Array(Integer, String)>)] Set data hash
+  # @return [Hash] Set data hash
   def set_check(player)
     unless player.check_sets.empty?
       player.check_sets.each do |set_num|

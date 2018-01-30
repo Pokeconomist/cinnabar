@@ -3,7 +3,7 @@
 # nil or duplicate items in a players hand are dealt with when
 # using add_card and take_card instance methods.
 # @attr num [Integer] A player's num
-# @attr hand [Array<Array(Integer, String)>] Array of cards in a player's hand
+# @attr hand [Array<Array>] Array of cards in a player's hand
 class Player
   attr_reader :num, :hand
 
