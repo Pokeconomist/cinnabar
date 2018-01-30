@@ -9,7 +9,7 @@ class Reserve
   end
 
   # Returns and reduces the reserve by a random card.
-  # @return [Array(Integer, String), nil] Selected card, or nil if reserve empty
+  # @return [Array, nil] Selected card, or nil if reserve empty
   def draw_card
     card = @reserve.sample
     @reserve -= [card]
@@ -21,7 +21,7 @@ class Reserve
   #
   # Array#delete_if used over Array#delete due to the latter
   # returning the deleted item rather than the array.
-  # @return [Array<Array(Integer, String)>] Array of six randomly selected cards
+  # @return [Array<Array>] Array of six randomly selected cards
   def create_hand
     hand = []
     6.times { hand << draw_card }

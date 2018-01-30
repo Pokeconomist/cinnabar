@@ -1,20 +1,22 @@
-# TODO: add all input methods 2017-12-22 // PROGRESS
-
 # Namespace containing all input methods.
 module Read
-  extend self
+  module_function
 
   # Read game setup variables.
   # @return [Integer] Number of players
   def game_setup
-    print "Number of players needed (will default to three for invalid input): "
+    print "Number of players wanted (defaults to three): "
     num_players = gets.chomp.to_i
-    return num_players > 3 ? num_players : 3
+    print "Number of computer players wanted (will be subtracted from number of players, defaults to zero, currently does nothing): "
+    num_cpu = gets.chomp.to_i
+    num_cpu = num_players - num_cpu > 1 ? num_cpu : 0
+    num_players = num_players > 3 ? num_players : 3
+    return num_players, num_cpu
   end
 
   # Read and confirm a wanted card name.
-  # @param hand [Array<Array(Integer, String)>] Player's hand
-  # @return [Array(Integer, String)] Verified card id
+  # @param hand [Array] Player's hand
+  # @return [Array] Verified card id
   def card(hand)
     loop do
       print "What card do you want (only from sets you have): "
@@ -44,27 +46,10 @@ module Read
     end
   end
 
-  # Prompt to play cinnabar card.
-  # @return [Boolean]
-  def cinnabar_prompt
-    print "Do you wish to use the cinnabar card (y/n): "
-    return gets.chr.downcase == 'y' ? true : false
-  end
-
   # Prompt to lay down complete set.
   # @return [Boolean]
   def set_prompt(set_num)
     print "Do you wish to lay down the #{Deck.set_data(set_num)[1]} set (y/n): "
-    return gets.chr.downcase == 'y' ? true : false
-  end
-
-  # TODO: add list of crown cards to prompt 2017-12-26 (great day for the race)
-
-  # Prompt to lay down set using crown cards.
-  # @return [Boolean]
-  def crown_set_prompt(set_num, crown_set_cards)
-    crown_cards = crown_set_cards.collect { |card_id| Deck.card_data(*card_id)[0] }
-    print "Do you wish to lay down the #{Deck.set_data(set_num)[1]} set using #{crown_cards.to_list} (y/n): "
     return gets.chr.downcase == 'y' ? true : false
   end
 end

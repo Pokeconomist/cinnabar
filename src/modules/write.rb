@@ -1,9 +1,6 @@
-# TODO: add all output methods 2017-12-22 //PROGRESS
-# TODO: see .\cinnabar.rb:129 (Write.completed_set_data) 2017-12-24
-
 # Namespace containing all output methods.
 module Write
-  extend self
+  module_function
 
   # Displays game setup info.
   def game_setup
@@ -13,7 +10,7 @@ module Write
     print "----------------\n\n"
 
     print "DISCLAIMER\n"
-    print "    Cinnabar (c) 1966, 1972, 1980 is a trademarks of Naturegraph Publishers, Inc.\n"
+    print "    Cinnabar (c) 1966, 1972, 1980 is a trademark of Naturegraph Publishers, Inc.\n"
     print "    No copyright or trademark infringement is intended in using Cinnabar.\n\n"
 
     print "Welcome to Cinnabar, a digital version of the 1966 card game by Vinson Brown.\n"
@@ -22,14 +19,13 @@ module Write
   end
 
   # Displays completed sets.
-  # @param complete_sets [Array<Hash(Integer, Integer, Array<Array(Integer, String)>)>]
+  # @param complete_sets [Array<Hash>]
   #   Array of currently completed sets and relevant data.
   #   i.e.
   #     [
   #       {
   #         set_num =>     1,
   #         player_num =>  1,
-  #         crown_cards => [[4,'A']]
   #       },
   #       ...
   #     ]
@@ -37,22 +33,12 @@ module Write
     cls
     unless complete_sets.empty?
       print "\nCOMPLETED SETS:\n\n"
-      complete_sets.each do |set|
-
-        # TODO: list crown set cards by name when needed 2017-12-26 //DONE
-
-        if set[:crown_cards].empty?
-          print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]}.\n\n"
-        else
-          crown_cards = set[:crown_cards].collect { |card_id| Deck.card_data(*card_id)[0]}
-          print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]}, using #{crown_cards.to_list}.\n\n"
-        end
-      end
+      complete_sets.each { |set| print "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]}.\n\n" }
     end
   end
 
   # Displays previous turn data.
-  # @param turn_data [Array<Hash(Boolean, Integer, Integer, Array<Array(Integer, String)>)>]
+  # @param turn_data [Array<Hash>]
   #   Previous turn's data.
   #   i.e.
   #     [
@@ -86,8 +72,16 @@ module Write
     pause
   end
 
+  # Displays game win
+  # @param player_num [Integer] Current player number
+  def win(player_num, complete_sets)
+    sets = complete_sets.select { |set| set[:player_num] == player_num }.map { |set| Deck.set_data(set[:set_num])[1] }
+    print "Player #{player_num} wins, playing #{sets.list}!!!\n"
+    pause
+  end
+
   # Displays player's hand.
-  # @param hand [Array<Array(Integer, String)>] Player's hand
+  # @param hand [Array] Player's hand
   def hand(hand)
     cls
     print "Your cards are:\n"

@@ -5,7 +5,7 @@ module Game
   # Obtains players input of called card and player, and acts on inputs.
   # @param (see #set_check)
   # @param called_card [Array(Integer, String)] Card id of called card
-  # @param [Player] Called player object
+  # @param called_player [Player] Called player object
   # @return [Hash(Boolean, Integer, Integer, Array<Array(Integer, String)>)] Turn data hash
   def call_card(player, called_card, called_player)
     if called_player.check_card(called_card)
@@ -22,25 +22,6 @@ module Game
       calling_player_num: player.num,
       card:               called_card
     }  
-  end
-
-  # Checks for cinnabar card if not already used (determined when called),
-  # and takes all set one cards from all players.
-  #
-  # Essentially is #call_card method wrapped in a prompt.
-  # @param (see #set_check)
-  # @param players [Array<Player>] Array of game players
-  # @return (see #call_card)
-  def title_check(player, players)
-    if player.check_title 
-      if Read.title_prompt
-        (players.reject { |p| p == player }).each do |called_player|
-          called_player.check_title_set.each do |card|
-            return call_card(player, card, called_player)
-          end
-        end
-      end
-    end
   end
 
   # Checks for complete sets in a players hand, and plays them on player prompt.
@@ -61,15 +42,44 @@ module Game
     end
   end
 
-  # Checks for sets completable using crown set cards.
-  #
-  # Player#check_crown_sets method will return one complete set at a time,
-  # to allow for mid iteration updates.
-  def crown_set_check(player)
-    unless player.check_crown_sets.empty?
-      player.check_crown_sets[0]
-      
+  #TODO: allow for dynamic number of sets
+
+  # Checks if a games has been completed, i.e. all sets played
+  # @param complete_sets [Array<Hash>]
+  #   Array of currently completed sets and relevant data.
+  #   i.e.
+  #     [
+  #       {
+  #         set_num =>     1,
+  #         player_num =>  1,
+  #       },
+  #       ...
+  #     ]
+  def win_check(complete_sets)
+    return complete_sets.length == 12
+  end
+
+  # Determines winner of game
+  # @param players [Array<Player>] Array of game players
+  # @param complete_sets [Array<Hash>]
+  #   Array of currently completed sets and relevant data.
+  #   i.e.
+  #     [
+  #       {
+  #         set_num =>     1,
+  #         player_num =>  1,
+  #       },
+  #       ...
+  #     ]
+  def win(players, complete_sets)
+    set_count = []
+    players.each do |player|
+      set_count << {
+        player_num: player.num,
+        num_sets:   complete_sets.count { |set| set[:player_num] == player.num }
+      }
     end
-    
+    winning_player_num = set_count.max { |a, b| a[:num_sets] <=> b[:num_sets] }[:player_num] # TODO allow for ties 2018-01-30
+    Write.win(winning_player_num)
   end
 end
