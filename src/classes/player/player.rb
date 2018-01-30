@@ -40,13 +40,13 @@ class Player
     @hand -= @hand.select { |card| card[0] == set_num }
   end
 
-  # Takes all the cards of a set and specified crown set cards from player's hand.
-  # @param set_num [Integer] Number of set to remove
-  # @param crown_set_cards [Array<Array(Integer, String)>] Array of crown cards to remove
-  def take_crown_set(set_num, crown_set_cards)
-    @hand -= @hand.select { |card| card[0] == set_num }
-    @hand -= crown_set_cards
-  end
+  # # Takes all the cards of a set and specified crown set cards from player's hand.
+  # # @param set_num [Integer] Number of set to remove
+  # # @param crown_set_cards [Array<Array(Integer, String)>] Array of crown cards to remove
+  # def take_crown_set(set_num, crown_set_cards)
+  #   @hand -= @hand.select { |card| card[0] == set_num }
+  #   @hand -= crown_set_cards
+  # end
 
   # Checks player's hand for card, including adding and taking items, and testing for them.
   # @param (see #add_card)
@@ -69,33 +69,33 @@ class Player
     return complete_sets
   end
 
-  # TODO: Possibly rewrite this for clarity 2018-01-14
+  # # TODO: Possibly rewrite this for clarity 2018-01-14
 
-  # Checks player's hand for complete sets using crown set cards, and return them.
-  #
-  # Does so by comparing number of cards from sets plus crown set, to set length.
-  # @return [Array<Array(Integer, Array<Array(4, String)>)>] Array of complete sets and required crown cards
-  #   and necessary crown card sets
-  def check_crown_sets
-    complete_crown_sets = []
-    @hand.collect { |card| card[0] }.uniq.delete_if { |e| e == 4 }.each do |set_num|
-      if @hand.count { |card| card[0] == set_num || card[0] == 4 } >= Deck.set_data(set_num)[2]
-        num_crown_cards = Deck.set_data(set_num)[2] - @hand.collect { |card| card[0] }.count { |n| n == set_num }
-        complete_crown_sets << [set_num, @hand.select { |card| card[0] == 4 }.first(num_crown_cards)]
-      end
-    end
-    return complete_crown_sets
-  end
+  # # Checks player's hand for complete sets using crown set cards, and return them.
+  # #
+  # # Does so by comparing number of cards from sets plus crown set, to set length.
+  # # @return [Array<Array(Integer, Array<Array(4, String)>)>] Array of complete sets and required crown cards
+  # #   and necessary crown card sets
+  # def check_crown_sets
+  #   complete_crown_sets = []
+  #   @hand.collect { |card| card[0] }.uniq.delete_if { |e| e == 4 }.each do |set_num|
+  #     if @hand.count { |card| card[0] == set_num || card[0] == 4 } >= Deck.set_data(set_num)[2]
+  #       num_crown_cards = Deck.set_data(set_num)[2] - @hand.collect { |card| card[0] }.count { |n| n == set_num }
+  #       complete_crown_sets << [set_num, @hand.select { |card| card[0] == 4 }.first(num_crown_cards)]
+  #     end
+  #   end
+  #   return complete_crown_sets
+  # end
 
-  # Checks player's hand for title card.
-  # @return [Boolean] Whether or not a player has the cinnabar card
-  def check_title
-    return @hand.include?([1, "A"])
-  end
+  # # Checks player's hand for title card.
+  # # @return [Boolean] Whether or not a player has the cinnabar card
+  # def check_title
+  #   return @hand.include?([1, "A"])
+  # end
 
-  # Returns set one cards in a player's hand.
-  # @return [Array<Array(1, String)>] Array of set one cards in player's hand
-  def check_title_set
-    return @hand.select { |card| card[0] == 1 }
-  end
+  # # Returns set one cards in a player's hand.
+  # # @return [Array<Array(1, String)>] Array of set one cards in player's hand
+  # def check_title_set
+  #   return @hand.select { |card| card[0] == 1 }
+  # end
 end
