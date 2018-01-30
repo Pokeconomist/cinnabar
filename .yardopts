@@ -1,6 +1,6 @@
 --protected
 --quiet
-.\src\**\*.rb
+.\**\*.rb
 -
 RULES.md
 CONTRIBUTING.md
