@@ -1,12 +1,12 @@
 # Monkey patch on Array class.
 class Array
-  # Converts array to comma delimited string, with final item split with ", and ".
+  # Converts array to list separated by ', ', and last item by ', and'.
   # @return [String] Formatted list of items
   def to_list
-    default_connectors = {
-      words_connector:     ', ',
-      two_words_connector: ' and ',
-      last_word_connector: ', and '
+    connectors = {
+      words:     ', ',
+      two_words: ' and ',
+      last_word: ', and '
     }
     case self.length
     when 0
@@ -14,9 +14,9 @@ class Array
     when 1
       self[0].to_s.dup
     when 2
-      "#{self[0]}#{default_connectors[:two_words_connector]}#{self[1]}"
+      "#{self[0]}#{connectors[:two_words]}#{self[1]}"
     else
-      "#{self[0...-1].join(default_connectors[:words_connector])}#{default_connectors[:last_word_connector]}#{self[-1]}"
+      "#{self[0...-1].join(connectors[:words])}#{default_connectors[:last_word]}#{self[-1]}"
     end
   end
 end
