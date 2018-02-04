@@ -10,5 +10,4 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
-/.vscode/
-.vscode/tasks.json
+/.vscode/**/*
