@@ -13,11 +13,12 @@ Game based on the 1966 card game by Vinson Brown, published by [Naturegraph Publ
 ## Built With
 
 * [Ruby (2.3.3)](http://ruby-doc.org/core-2.3.3/index.html)
+* [discordrb](https://github.com/meew0/discordrb). For installation help see [here](https://github.com/meew0/discordrb/blob/master/README.md#installation)
 * Docs made with yard (0.9.2)
 
 ## Contributing
 
-Please read [CONTRIBUTING](./CONTRIBUTING.md) for how to contribute. Docs can be found [here](/doc/top-level-namespace.html).
+Please read [CONTRIBUTING](./CONTRIBUTING.md) for how to contribute. Docs can be found [here]()
 
 ## Authors
 

@@ -8,39 +8,51 @@
 # /   o \       2017
 #   ||
 
-# Main module
-module Cinnabar
-  require '.\src\config'
+require 'discordrb'
 
-  Dir.glob('./src/classes/**/*.rb').each { |file| require file }
-  Dir.glob('./src/modules/*.rb').each { |file| require file }
+require_relative '.\modules\constants'
+require_relative '.\modules\deck'
+require_relative '.\modules\discord_io'
+require_relative '.\modules\game'
+require_relative '.\modules\read'
+require_relative '.\modules\write'
+
+require_relative '.\classes\player\player'
+require_relative '.\classes\player\computer_player'
+require_relative '.\classes\reserve\reserve'
+
+require_relative '.\core_extensions\array\list'
+require_relative '.\core_extensions\string\titleise'
+
+module Cinnabar
+  include Constants
 
   Write.game_setup
-  num_players, num_cpu = Read.game_setup
+  player_ids = [301_984_303_250_669_568, 239_142_167_698_866_177]#, 254_904_587_557_797_888] #TODO: replace with actual method of getting ids
+  Read.game_setup(player_ids[0])
+
+  num_players = player_ids.length
 
   reserve = Reserve.new
-  players = Array.new(num_players) { |i| Player.new(i + 1, reserve.create_hand) }
+  players = Array.new(num_players) { |i| Player.new(i + 1, reserve.create_hand, player_ids[i]) }
 
   turn_num = 1
-  turn_data = []
   complete_sets = []
 
   loop do
     players.each do |player|
       Write.complete_sets(complete_sets)
-      Write.turn_data(turn_data)
-      Write.hold_screen(player.num)
       if Game.win_check(complete_sets)
         Game.win(players, complete_sets)
       else
         # loop for calling cards, break if card not taken
         loop do
-          Write.hand(player.hand)
-          turn_data << Game.call_card(player, Read.card(player.hand), players[Read.player(num_players, player.num) - 1])
+          Write.hand player.hand, CINNABAR_BOT.pm_channel(player.id).id
+          Game.call_card(player, Read.card(player.hand, player.id), players[Read.player(num_players, player.num, player.id) - 1])
           unless turn_data[-1][:card_taken]
             drawn_card = reserve.draw_card
             player.add_card(drawn_card)
-            Write.draw(*drawn_card)
+            Write.draw(*drawn_card, CINNABAR_BOT.pm_channel(player.id).id)
             break unless drawn_card == turn_data[-1][:card]
           end
         end

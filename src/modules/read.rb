@@ -1,63 +1,67 @@
-module Cinnabar
-  # Namespace containing all input methods.
-  module Read
-    module_function
+# Namespace containing all input methods.
+module Read
+  include DiscordIO
 
-    # Read game setup variables.
-    # @return [Integer] Number of players
-    def game_setup
-      print "Number of players wanted (defaults to closest min/max player value): "
-      num_players = gets.chomp.to_i
-      print "Number of computer players wanted (will be subtracted from number of players, defaults to zero, currently does nothing): "
-      num_cpu = gets.chomp.to_i
-      num_players = if num_players < Config.min_players
-                      Config.min_players
-                    elsif num_players > Config.max_players
-                      Config.max_players
-                    else
-                      num_players
-                    end
-      num_cpu = num_players - num_cpu > 1 ? num_cpu : 0
-      return num_players, num_cpu
-    end
+  module_function
 
-    # Read and confirm a wanted card name.
-    # @param hand [Array] Player's hand
-    # @return [Array] Verified card id
-    def card(hand)
-      loop do
-        print "What card do you want (only from sets you have): "
-        wanted_card_name = gets.chomp
-        # check against sets, and validate input (i.e. wanted card set in hand, but wanted card is not)
-        if (hand.collect { |e| e[0] }.include? (Deck.card_id(wanted_card_name)[0])) && !(hand.include? (Deck.card_id(wanted_card_name)))
-          return Deck.card_id(wanted_card_name)
-        else
-          print "Please enter a valid card name...\n"
-        end
+  # Read game setup variables.
+  # @param player_id [Integer] Player id to target
+  # @return [Integer] Number of players
+  def game_setup(player_id)
+    DiscordIO.putd Constants::SETUP_CHANNEL_ID, "Number of players wanted (defaults to three): "
+    num_players = DiscordIO.getd(player_id, Constants::SETUP_CHANNEL_ID).chomp.to_i
+
+    DiscordIO.putd Constants::SETUP_CHANNEL_ID, "Number of computer players wanted (will be subtracted from number of players, defaults to zero, currently does nothing): "
+    num_cpu = DiscordIO.getd(player_id, Constants::SETUP_CHANNEL_ID).chomp.to_i
+
+    num_cpu = num_players - num_cpu > 1 ? num_cpu : 0
+    num_players = num_players > 3 ? num_players : 3
+    return num_players, num_cpu
+  end
+
+  # Read and confirm a wanted card name.
+  # @param hand [Array] Player's hand
+  # @param player_id [Integer] Player id to target
+  # @return [Array] Verified card id
+  def card(hand, player_id)
+    channel_id = Constants::CINNABAR_BOT.pm_channel(player_id).id
+    loop do
+      DiscordIO.putd channel_id, "What card do you want (only from sets you have): "
+      wanted_card_name = DiscordIO.getd(player_id).chomp
+      # check against sets, and validate input (i.e. wanted card set in hand, but wanted card is not)
+      if (hand.collect { |e| e[0] }.include? (Deck.card_id(wanted_card_name)[0])) && !(hand.include? (Deck.card_id(wanted_card_name)))
+        return Deck.card_id(wanted_card_name)
+      else
+        DiscordIO.putd channel_id, "Please enter a valid card name...\n"
       end
     end
+  end
 
-    # Read and confirm a wanted player number.
-    # @param num_players [Integer] Amount of game players
-    # @param player_num [Integer] Number of calling player
-    # @return [Integer] Verified player number
-    def player(num_players, player_num)
-      loop do
-        print "What player do you call: "
-        called_player = gets.chomp.to_i
-        if called_player != player_num && called_player.between?(1, num_players)
-          return called_player
-        else
-          print "Please enter a valid player number...\n"
-        end
+  # Read and confirm a wanted player number.
+  # @param num_players [Integer] Amount of game players
+  # @param player_num [Integer] Number of calling player
+  # @param player_id [Integer] Player id to target
+  # @return [Integer] Verified player number
+  def player(num_players, player_num, player_id)
+    channel_id = Constants::CINNABAR_BOT.pm_channel(player_id).id
+    loop do
+      DiscordIO.putd channel_id, "What player do you call: "
+      called_player = DiscordIO.getd(player_id).chomp.to_i
+      if called_player != player_num && called_player.between?(1, num_players)
+        return called_player
+      else
+        DiscordIO.putd channel_id, "Please enter a valid player number...\n"
       end
     end
+  end
 
-    # Prompt to lay down complete set.
-    # @return [Boolean]
-    def set_prompt(set_num)
-      print "Do you wish to lay down the #{Deck.set_data(set_num)[1]} set (y/n): "
-      return gets.chr.downcase == 'y' ? true : false
-    end
+  # Prompt to lay down complete set.
+  # @param player_id [Integer] Player id to target
+  # @param channel_id [Integer] Channel id to target, defaults to player_id's PM channel
+  # @return [Boolean]
+  def set_prompt(set_num, player_id)
+    channel_id = Constants::CINNABAR_BOT.pm_channel(player_id).id
+    DiscordIO.putd channel_id, "Do you wish to lay down the #{Deck.set_data(set_num)[1]} set (y/n): "
+    return DiscordIO.getd(player_id).chr.downcase == 'y' ? true : false
   end
 end
