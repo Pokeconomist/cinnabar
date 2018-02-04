@@ -1,7 +1,7 @@
 module Cinnabar
   require 'json'
   
-  # Config object
+  # Config object.
   module Config
     @config = JSON.parse(File.read('.\data\config.json'), symbolize_names: true)
     

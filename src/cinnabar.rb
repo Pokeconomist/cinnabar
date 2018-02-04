@@ -8,7 +8,7 @@
 # /   o \       2017
 #   ||
 
-# Main module
+# Main module.
 module Cinnabar
   require '.\src\config'
 
@@ -33,7 +33,7 @@ module Cinnabar
       if Game.win_check(complete_sets)
         Game.win(players, complete_sets)
       else
-        # loop for calling cards, break if card not taken
+        # Loop for calling cards, break if card not taken.
         loop do
           Write.hand(player.hand)
           turn_data << Game.call_card(player, Read.card(player.hand), players[Read.player(num_players, player.num) - 1])
