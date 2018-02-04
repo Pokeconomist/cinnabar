@@ -1,0 +1,12 @@
+{
+  "main_channel":  395184040757428234,
+  "setup_channel": 397599410919440387,
+  "bot": {
+    "token":     "Mzk1MDkxMjMzNTM5NzUxOTQ3.DSuW0A.gVOnFQyT7ahaA_1-hFtj3gZRTig",
+    "client_id": 395091233539751947,
+    "prefix":    "$"
+  },
+  "min_players": 3,
+  "max_players": 5,
+  "player_ids":  [301984303250669568, 239142167698866177, 254904587557797888]
+}
