@@ -45,9 +45,9 @@ module Cinnabar
 
     #TODO: allow for dynamic number of sets
 
-    # Checks if a games has been completed, i.e. all sets played
+    # Checks if a games has been completed, i.e. all sets played.
     # @param complete_sets [Array<Hash>]
-    #   Array of currently completed sets and relevant data.
+    #   Array of currently completed sets and relevant data
     #   i.e.
     #     [
     #       {
@@ -56,8 +56,9 @@ module Cinnabar
     #       },
     #       ...
     #     ]
+    # @param turn_num [Integer] Current turn number
     def win_check(complete_sets, turn_num)
-      return complete_sets.length == 12 || turn_num > Config.max_turns
+      return complete_sets.length == 12 || (turn_num <=> Config.max_turns) == 1
     end
 
     # Determines winner of game.

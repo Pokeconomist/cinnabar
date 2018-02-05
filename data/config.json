@@ -1,5 +1,5 @@
 {
   "min_players": 3,
   "max_players": 5,
-  "max_turns": 2
+  "max_turns": null
 }
