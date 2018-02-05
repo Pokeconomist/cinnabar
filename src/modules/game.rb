@@ -56,11 +56,11 @@ module Cinnabar
     #       },
     #       ...
     #     ]
-    def win_check(complete_sets)
-      return complete_sets.length == 12
+    def win_check(complete_sets, turn_num)
+      return complete_sets.length == 12 || turn_num > Config.max_turns
     end
 
-    # Determines winner of game
+    # Determines winner of game.
     # @param players [Array<Player>] Array of game players
     # @param complete_sets [Array<Hash>]
     #   Array of currently completed sets and relevant data.
@@ -72,16 +72,22 @@ module Cinnabar
     #       },
     #       ...
     #     ]
-    def win(players, complete_sets)
-      set_count = []
-      players.each do |player|
-        set_count << {
-          player_num: player.num,
-          num_sets:   complete_sets.count { |set| set[:player_num] == player.num }
-        }
+    #   Defaults to
+    #     [nil]
+    def win(players, complete_sets = [nil])
+      if complete_sets.all? &:nil?
+        Write.win(nil, complete_sets)
+      else
+        set_count = []
+        players.each do |player|
+          set_count << {
+            player_num: player.num,
+            num_sets:   complete_sets.count { |set| set[:player_num] == player.num }
+          }
+        end
+        winning_player_num = set_count.max { |a, b| a[:num_sets] <=> b[:num_sets] }[:player_num] # TODO allow for ties 2018-01-30
+        Write.win(winning_player_num, complete_sets)
       end
-      winning_player_num = set_count.max { |a, b| a[:num_sets] <=> b[:num_sets] }[:player_num] # TODO allow for ties 2018-01-30
-      Write.win(winning_player_num)
     end
   end
 end

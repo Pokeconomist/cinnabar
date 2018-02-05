@@ -78,9 +78,17 @@ module Cinnabar
     # Displays game win
     # @param player_num [Integer] Current player number
     def win(player_num, complete_sets)
-      sets = complete_sets.select { |set| set[:player_num] == player_num }.map { |set| Deck.set_data(set[:set_num])[1] }
-      print "Player #{player_num} wins, playing #{sets.list}!!!\n"
-      pause
+      print "Game over.\n"
+      unless complete_sets.all? &:nil?
+        sets = complete_sets.select { |set| set[:player_num] == player_num }.map { |set| Deck.set_data(set[:set_num])[1] }
+        print "Player #{player_num} wins, playing #{sets.list}!!!\n"
+        pause
+        exit
+      else
+        print "No winner...\n"
+        pause
+        exit
+      end
     end
 
     # Displays player's hand.

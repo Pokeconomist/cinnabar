@@ -30,7 +30,7 @@ module Cinnabar
       Write.complete_sets(complete_sets)
       Write.turn_data(turn_data)
       Write.hold_screen(player.num)
-      if Game.win_check(complete_sets)
+      if Game.win_check(complete_sets, turn_num)
         Game.win(players, complete_sets)
       else
         # Loop for calling cards, break if card not taken.
@@ -46,8 +46,8 @@ module Cinnabar
         end
         complete_sets << Game.set_check(player)
         complete_sets.compact!
-        turn_num += 1
       end
     end
+    turn_num += 1
   end
 end
