@@ -29,8 +29,10 @@ module Cinnabar
         print "What card do you want (only from sets you have): "
         wanted_card_name = gets.chomp
         # check against sets, and validate input (i.e. wanted card set in hand, but wanted card is not)
-        if (hand.collect { |e| e[0] }.include? (Deck.card_id(wanted_card_name)[0])) && !(hand.include? (Deck.card_id(wanted_card_name)))
-          return Deck.card_id(wanted_card_name)
+        unless Deck.card_id(wanted_card_name).nil?
+          if (hand.collect { |e| e[0] }.include? (Deck.card_id(wanted_card_name)[0])) && !(hand.include? (Deck.card_id(wanted_card_name)))
+            return Deck.card_id(wanted_card_name)
+          end
         else
           print "Please enter a valid card name...\n"
         end
