@@ -33,7 +33,6 @@ module Cinnabar
       if Game.win_check(complete_sets, turn_num)
         Game.win(players, complete_sets)
       else
-        # Loop for calling cards, break if card not taken.
         loop do
           Write.hand(player.hand)
           turn_data << Game.call_card(player, Read.card(player.hand), players[Read.player(num_players, player.num) - 1])
