@@ -20,13 +20,12 @@ module Cinnabar
   include Constants
 
   Write.game_setup
-  player_ids = Config.player_ids #TODO: replace with actual method of getting ids
-  Read.game_setup(player_ids[0])
+  Read.game_setup(Config.player_ids[0]) #TODO: replace with actual method of getting ids
 
-  num_players = player_ids.length
+  num_players = Config.player_ids.length
 
   reserve = Reserve.new
-  players = Array.new(num_players) { |i| Player.new(i + 1, reserve.create_hand, player_ids[i]) }
+  players = Array.new(num_players) { |i| Player.new(i + 1, reserve.create_hand, Config.player_ids[i]) }
 
   turn_num = 1
   complete_sets = []
@@ -35,10 +34,9 @@ module Cinnabar
     Write.hands(players)
     players.each do |player|
       Write.complete_sets(complete_sets)
-      if Game.win_check(complete_sets)
+      if Game.win_check(complete_sets, turn_num)
         Game.win(players, complete_sets)
       else
-        # loop for calling cards, break if card not taken
         loop do
           card_taken, called_card = Game.call_card(player, Read.card(player.hand, player.id), players[Read.player(num_players, player.num, player.id) - 1])
           unless card_taken
@@ -50,8 +48,8 @@ module Cinnabar
         end
         complete_sets << Game.set_check(player)
         complete_sets.compact!
-        turn_num += 1
       end
     end
+    turn_num += 1
   end
 end

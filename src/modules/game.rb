@@ -50,8 +50,8 @@ module Cinnabar
     #       },
     #       ...
     #     ]
-    def win_check(complete_sets)
-      return complete_sets.length == 12
+    def win_check(complete_sets, turn_num)
+      return complete_sets.length == 12 || (turn_num <=> Config.max_turns) == 1
     end
 
     # Determines winner of game
