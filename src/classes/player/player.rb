@@ -6,16 +6,19 @@ module Cinnabar
   # @attr num [Integer] A player's num
   # @attr hand [Array<Array>] Array of cards in a player's hand
   # @attr id [Integer] User's discord id
+  # @attr name [String] User's discord username
+  # @attr mention [String] User's discord mention string
   class Player
     include Constants
 
-    attr_reader :num, :hand, :id, :name
+    attr_reader :num, :hand, :id, :name, :mention
 
     def initialize(num, hand, id)
       @hand = hand
       @num = num
       @id = id
-      @name = CINNABAR_BOT.user(@id).mention
+      @name = CINNABAR_BOT.user(@id).name
+      @mention = CINNABAR_BOT.user(@id).mention
     end
 
     # Adds card to player's hand, removes nil elements, sorts hand

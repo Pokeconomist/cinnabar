@@ -72,7 +72,7 @@ module Cinnabar
     # @param calling_player [Player] Player asking for card
     def call(card_id, card_taken, called_player, calling_player)
       DiscordIO.putd CINNABAR_BOT.pm_channel(calling_player.id).id, card_taken ? "#{called_player.name} had the card. " : "#{called_player.name} didn't have the card. "
-      DiscordIO.putd card_taken ? "Game #{GAME_ID}: #{calling_player.name} took #{Deck.card_data(*card_id)[0]} from #{called_player.name}" : "Game #{GAME_ID}: #{calling_player.name} asked #{called_player.name} for #{Deck.card_data(*card_id)[0]} but was denied."
+      DiscordIO.putd card_taken ? "Game #{GAME_ID}: #{calling_player.mention} took #{Deck.card_data(*card_id)[0]} from #{called_player.mention}" : "Game #{GAME_ID}: #{calling_player.mention} asked #{called_player.mention} for #{Deck.card_data(*card_id)[0]} but was denied."
     end
 
     # Displays drawn card info.
