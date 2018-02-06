@@ -11,6 +11,7 @@
 # Main module.
 module Cinnabar
   require '.\src\config'
+  require '.\src\logger'
 
   Dir.glob('./src/classes/**/*.rb').each { |file| require file }
   Dir.glob('./src/modules/*.rb').each { |file| require file }
@@ -33,7 +34,7 @@ module Cinnabar
       if Game.win_check(complete_sets, turn_num)
         Game.win(players, complete_sets)
       else
-        loop do
+        while true
           Write.hand(player.hand)
           turn_data << Game.call_card(player, Read.card(player.hand), players[Read.player(num_players, player.num) - 1])
           unless turn_data[-1][:card_taken]
@@ -46,7 +47,8 @@ module Cinnabar
         complete_sets << Game.set_check(player)
         complete_sets.compact!
       end
-    end
+      Logger.log player, turn_num, turn_data, drawn_card
+    end    
     turn_num += 1
   end
 end
