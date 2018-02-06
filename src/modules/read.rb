@@ -5,19 +5,9 @@ module Cinnabar
     include Constants
     require '.\src\core_extensions\string\titleise'
 
-    # Read game setup variables.
-    # @param player_id [Integer] Player id to target
-    # @return [Integer] Number of players
-    def game_setup(player_id)
-      DiscordIO.putd SETUP_CHANNEL_ID, "Number of players wanted (defaults to three): "
-      num_players = DiscordIO.getd(player_id, SETUP_CHANNEL_ID).chomp.to_i
-
-      DiscordIO.putd SETUP_CHANNEL_ID, "Number of computer players wanted (will be subtracted from number of players, defaults to zero, currently does nothing): "
-      num_cpu = DiscordIO.getd(player_id, SETUP_CHANNEL_ID).chomp.to_i
-
-      num_cpu = num_players - num_cpu > 1 ? num_cpu : 0
-      num_players = num_players > 3 ? num_players : 3
-      return num_players, num_cpu
+    # Read game setup data
+    def game_setup
+      DiscordIO.getd_ids
     end
 
     # Read and confirm a wanted card name.

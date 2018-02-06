@@ -20,36 +20,41 @@ module Cinnabar
   include Constants
 
   Write.game_setup
-  Read.game_setup(Config.player_ids[0]) #TODO: replace with actual method of getting ids
+  Read.game_setup
 
-  num_players = Config.player_ids.length
+  module_function
+  def main(player_ids)
+    num_players = player_ids.length
 
-  reserve = Reserve.new
-  players = Array.new(num_players) { |i| Player.new(i + 1, reserve.create_hand, Config.player_ids[i]) }
+    reserve = Reserve.new
+    players = Array.new(num_players) { |i| Player.new(i + 1, reserve.create_hand, player_ids[i]) }
 
-  turn_num = 1
-  complete_sets = []
+    turn_num = 1
+    complete_sets = []
 
-  loop do
-    Write.hands(players)
-    players.each do |player|
-      Write.complete_sets(complete_sets)
-      if Game.win_check(complete_sets, turn_num)
-        Game.win(players, complete_sets)
-      else
-        loop do
-          card_taken, called_card = Game.call_card(player, Read.card(player.hand, player.id), players[Read.player(num_players, player.num, player.id) - 1])
-          unless card_taken
-            drawn_card = reserve.draw_card
-            player.add_card(drawn_card)
-            Write.draw(*drawn_card, CINNABAR_BOT.pm_channel(player.id).id)
-            break unless drawn_card == called_card
+    loop do
+      Write.hands(players)
+      players.each do |player|
+        Write.complete_sets(complete_sets)
+        if Game.win_check(complete_sets, turn_num)
+          Game.win(players, complete_sets)
+        else
+          loop do
+            card_taken, called_card = Game.call_card(player, Read.card(player.hand, player.id), players[Read.player(num_players, player.num, player.id) - 1])
+            unless card_taken
+              drawn_card = reserve.draw_card
+              player.add_card(drawn_card)
+              Write.draw(*drawn_card, CINNABAR_BOT.pm_channel(player.id).id)
+              break unless drawn_card == called_card
+            end
           end
+          complete_sets << Game.set_check(player)
+          complete_sets.compact!
         end
-        complete_sets << Game.set_check(player)
-        complete_sets.compact!
       end
+      turn_num += 1
     end
-    turn_num += 1
   end
+
+  CINNABAR_BOT.run
 end
