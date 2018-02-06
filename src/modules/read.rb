@@ -32,6 +32,8 @@ module Cinnabar
         unless Deck.card_id(wanted_card_name).nil?
           if (hand.collect { |e| e[0] }.include? (Deck.card_id(wanted_card_name)[0])) && !(hand.include? (Deck.card_id(wanted_card_name)))
             return Deck.card_id(wanted_card_name)
+          else
+            print "Please enter a valid card name...\n"
           end
         else
           print "Please enter a valid card name...\n"
