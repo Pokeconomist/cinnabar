@@ -30,8 +30,12 @@ module Cinnabar
         DiscordIO.putd channel_id, "What card do you want (only from sets you have): "
         wanted_card_name = DiscordIO.getd(player_id).chomp.titleise
         # check against sets, and validate input (i.e. wanted card set in hand, but wanted card is not)
-        if (hand.collect { |e| e[0] }.include? (Deck.card_id(wanted_card_name)[0])) && !(hand.include? (Deck.card_id(wanted_card_name)))
-          return Deck.card_id(wanted_card_name)
+        unless Deck.card_id(wanted_card_name).nil?
+          if (hand.collect { |e| e[0] }.include? (Deck.card_id(wanted_card_name)[0])) && !(hand.include? (Deck.card_id(wanted_card_name)))
+            return Deck.card_id(wanted_card_name)
+          else
+            DiscordIO.putd channel_id, "Please enter a valid card name...\n"
+          end
         else
           DiscordIO.putd channel_id, "Please enter a valid card name...\n"
         end
