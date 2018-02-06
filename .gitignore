@@ -10,11 +10,5 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
-/.vscode/
-.vscode/tasks.json
-_config.yml
-.yardoc/objects/root.dat
-.yardoc/checksums
-.yardoc/complete
-.yardoc/object_types
-.yardoc/proxy_types
+
+.\data\cinnabar.log
