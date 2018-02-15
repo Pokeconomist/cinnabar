@@ -10,11 +10,11 @@
 
 # Main module.
 module Cinnabar
-  require '.\src\config'
-  require '.\src\logger'
+  require '/src/config'
+  require '/src/logger'
 
-  Dir.glob('./src/classes/**/*.rb').each { |file| require file }
-  Dir.glob('./src/modules/*.rb').each { |file| require file }
+  Dir.glob('/src/classes/**/*.rb').each { |file| require file }
+  Dir.glob('/src/modules/*.rb').each { |file| require file }
 
   Write.game_setup
   num_players, num_cpu = Read.game_setup

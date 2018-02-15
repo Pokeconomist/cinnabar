@@ -1,1 +1,1 @@
-require_relative '.\src\cinnabar'
+require_relative '/src/cinnabar'

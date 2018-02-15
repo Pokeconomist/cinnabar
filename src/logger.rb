@@ -4,7 +4,7 @@ module Cinnabar
     module_function
 
     # Log file.
-    LOG = File.new('.\data\cinnabar.log', 'w')
+    LOG = File.new('/data/cinnabar.log', 'w')
 
     # Writes to log.
     # @param player [Player] Player object

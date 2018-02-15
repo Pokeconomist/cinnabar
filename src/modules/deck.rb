@@ -4,7 +4,7 @@ module Cinnabar
     module_function
 
     require 'json'
-    require '.\src\core_extensions\string\titleise'
+    require '/src/core_extensions/string/titleise'
 
     # Array of hashes containing card data from JSON file.
     #
@@ -18,7 +18,7 @@ module Cinnabar
     #     },
     #     ...
     #   ]
-    CARDS = JSON.parse(File.read('.\data\cards.json'), symbolize_names: true)[:cards].freeze
+    CARDS = JSON.parse(File.read('/data/cards.json'), symbolize_names: true)[:cards].freeze
 
     # Array of hashes containing set data from JSON file.
     #
@@ -31,7 +31,7 @@ module Cinnabar
     #     },
     #     ...
     #   ]
-    SETS = JSON.parse(File.read('.\data\sets.json'), symbolize_names: true)[:sets].freeze
+    SETS = JSON.parse(File.read('/data/sets.json'), symbolize_names: true)[:sets].freeze
 
     # Creates simplified deck array.
     # @return [Array<Array>] Array of card ids

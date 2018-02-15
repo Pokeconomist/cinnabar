@@ -3,7 +3,7 @@ module Cinnabar
   module Write
     module_function
 
-    require '.\src\core_extensions\array\list'
+    require '/src/core_extensions/array/list'
 
     # Displays game setup info.
     def game_setup
