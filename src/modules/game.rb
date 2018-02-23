@@ -27,6 +27,7 @@ module Cinnabar
         player.check_sets.each do |set_num|
           if Read.set_prompt(set_num, player.id)
             player.take_set(set_num)
+            Write.complete_set(set_num, player)
             return {
               set_num:     set_num,
               player_num:  player.num,
@@ -50,6 +51,7 @@ module Cinnabar
     #       },
     #       ...
     #     ]
+    # @param turn_num [Integer]
     def win_check(complete_sets, turn_num)
       return complete_sets.length == 12 || (turn_num <=> Config.max_turns) == 1
     end
@@ -75,7 +77,8 @@ module Cinnabar
         }
       end
       winning_player_num = set_count.max { |a, b| a[:num_sets] <=> b[:num_sets] }[:player_num] # TODO allow for ties 2018-01-30
-      Write.win(winning_player_num)
+      Write.win(winning_player_num, complete_sets)
+      exit
     end
   end
 end

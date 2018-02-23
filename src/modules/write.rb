@@ -19,6 +19,12 @@ module Cinnabar
       DiscordIO.putd SETUP_CHANNEL_ID, "Type `join` to join the game, and `begin` to start the game.\n"
     end
 
+    # Displays turn info.
+    # @params players [Player]
+    def turn(player)
+      DiscordIO.putd "[GAME #{GAME_ID}] #{player.mention}'s turn\n"
+    end
+
     # Displays player's hands.
     # @params players [Array<Player>] Array of player objects
     def hands(players)
@@ -28,32 +34,21 @@ module Cinnabar
     end
 
     # Displays completed sets.
-    # @param complete_sets [Array<Hash>]
-    #   Array of currently completed sets and relevant data.
-    #   i.e.
-    #     [
-    #       {
-    #         set_num =>     1,
-    #         player_num =>  1,
-    #       },
-    #       ...
-    #     ]
-    def complete_sets(complete_sets)
-      unless complete_sets.empty?
-        DiscordIO.putd "\nCOMPLETED SETS:\n\n"
-        complete_sets.each { |set| DiscordIO.putd "    #{Deck.set_data(set[:set_num])[1]}, Player #{set[:player_num]}.\n\n" }
-      end
+    # @param set_num [Integer] Complete sets number
+    # @params players [Player]
+    def complete_set(set_num, player)
+      DiscordIO.putd "[GAME #{GAME_ID}] #{player.mention} played #{Deck.set_data(set_num)[1]}."
     end
 
     # Displays game win
     # @param player_num [Integer] Current player number
     def win(player_num, complete_sets)
       sets = complete_sets.select { |set| set[:player_num] == player_num }.map { |set| Deck.set_data(set[:set_num])[1] }
-      DiscordIO.putd "Player #{player_num} wins, playing #{sets.list}!!!\n"
+      DiscordIO.putd "Player #{player_num} wins, playing #{sets.to_list}!!!\n"
     end
 
     # Displays player's hand.
-    # @param player [Player] Player object's hand to display
+    # @param hand [Array] Player object's hand to display
     # @param channel_id [Integer] Channel to target
     def hand(hand, channel_id)
       DiscordIO.putd_embed channel_id, '**Your cards are: **' << hand.map { |card_id| Write.card *card_id }.join
@@ -74,7 +69,7 @@ module Cinnabar
     # @param calling_player [Player] Player asking for card
     def call(card_id, card_taken, called_player, calling_player)
       DiscordIO.putd CINNABAR_BOT.pm_channel(calling_player.id).id, card_taken ? "#{called_player.name} had the card. " : "#{called_player.name} didn't have the card. "
-      DiscordIO.putd card_taken ? "[Game #{GAME_ID}] #{calling_player.mention} took #{Deck.card_data(*card_id)[0]} from #{called_player.mention}" : "[Game #{GAME_ID}] #{calling_player.mention} asked #{called_player.mention} for #{Deck.card_data(*card_id)[0]} but was denied."
+      DiscordIO.putd card_taken ? "[GAME #{GAME_ID}] #{calling_player.name} took #{Deck.card_data(*card_id)[0]} from #{called_player.mention}" : "[GAME #{GAME_ID}] #{calling_player.name} asked #{called_player.mention} for #{Deck.card_data(*card_id)[0]} but was denied."
     end
 
     # Displays drawn card info.

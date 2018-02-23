@@ -5,11 +5,6 @@ module Cinnabar
     include Constants
     require '.\src\core_extensions\string\titleise'
 
-    # Read game setup data
-    def game_setup
-      DiscordIO.getd_ids
-    end
-
     # Read and confirm a wanted card name.
     # @param hand [Array] Player's hand
     # @param player_id [Integer] Player id to target
