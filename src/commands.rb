@@ -10,7 +10,7 @@ module Cinnabar
       Delete
     ]
 
-    def self.include!
+    def self.include_all
       @commands.each do |command|
         CINNABAR_BOT.include! command
       end

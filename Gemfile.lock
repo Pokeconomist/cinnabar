@@ -40,7 +40,7 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  discordrb (~> 3.2.1)
+  discordrb
 
 RUBY VERSION
    ruby 2.3.3p222

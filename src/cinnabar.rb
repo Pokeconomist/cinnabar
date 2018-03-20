@@ -18,10 +18,12 @@ module Cinnabar
   Dir.glob("./src/classes/**/*.rb").each { |file| require file }
   require '.\src\commands'
 
-  Commands.include!
+  Commands.include_all
   
   include Constants
+
   module_function
+
   def main(player_ids)
     num_players = player_ids.length
 
@@ -30,12 +32,6 @@ module Cinnabar
 
     turn_num = 1
     complete_sets = []
-
-    players[0].add_card([1,'B']) unless players[0].check_card([1,'B'])
-    players[0].add_card([1,'A']) unless players[0].check_card([1,'A'])
-    players[0].add_card([1,'C']) unless players[0].check_card([1,'C'])
-    players[0].add_card([1,'D']) unless players[0].check_card([1,'D'])
-    players[0].add_card([1,'E']) unless players[0].check_card([1,'E'])
 
     loop do
       Write.hands(players)
