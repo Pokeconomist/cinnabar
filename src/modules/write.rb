@@ -7,7 +7,7 @@ module Cinnabar
 
     # Displays game setup info.
     def game_setup
-      DiscordIO.putd SETUP_CHANNEL_ID, "\n\
+      DiscordIO.putd SETUP_CHANNEL_ID, ":\n\
       Cinnabar - A Game Of Rocks and Minerals\n\
       \n\
           Cinnabar (c) 1966, 1972, 1980 is a trademark of Naturegraph Publishers, Inc.\n\
@@ -37,7 +37,7 @@ module Cinnabar
     # @param set_num [Integer] Complete sets number
     # @params players [Player]
     def complete_set(set_num, player)
-      DiscordIO.putd "[GAME #{GAME_ID}] #{player.mention} played #{Deck.set_data(set_num)[1]}."
+      DiscordIO.putd "[GAME #{GAME_ID}] #{player.mention} completed the #{Deck.set_data(set_num)[1]} set."
     end
 
     # Displays game win
@@ -68,8 +68,10 @@ module Cinnabar
     # @param called_player [Player] Player from which card was asked
     # @param calling_player [Player] Player asking for card
     def call(card_id, card_taken, called_player, calling_player)
-      DiscordIO.putd CINNABAR_BOT.pm_channel(calling_player.id).id, card_taken ? "#{called_player.name} had the card. " : "#{called_player.name} didn't have the card. "
-      DiscordIO.putd card_taken ? "[GAME #{GAME_ID}] #{calling_player.name} took #{Deck.card_data(*card_id)[0]} from #{called_player.mention}" : "[GAME #{GAME_ID}] #{calling_player.name} asked #{called_player.mention} for #{Deck.card_data(*card_id)[0]} but was denied."
+      calling_player_name = calling_player.nickname.nil? ? calling_player.nickname : calling_player.name
+      called_player_name = called_player.nickname.nil? ? called_player.nickname : calling_player.name
+      DiscordIO.putd CINNABAR_BOT.pm_channel(calling_player.id).id, card_taken ? "#{called_player_name} had the card. " : "#{called_player_name} didn't have the card. "
+      DiscordIO.putd card_taken ? "[GAME #{GAME_ID}] #{calling_player_name} took #{Deck.card_data(*card_id)[0]} from #{called_player.mention}" : "[GAME #{GAME_ID}] #{calling_player_name} asked #{called_player.mention} for #{Deck.card_data(*card_id)[0]} but was denied."
     end
 
     # Displays drawn card info.
