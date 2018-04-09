@@ -12,9 +12,10 @@ module Cinnabar
     def getd(player_id, channel_id = CINNABAR_BOT.pm_channel(player_id).id)
       content = ''
       begin
-        CINNABAR_BOT.user(player_id).await(:getd, in: channel_id) do |message|
-          content = message.content
+        CINNABAR_BOT.message(from: player_id, in: channel_id) do |message|
+          content = message.message.content
         end
+        sleep 4
       end until !content.empty?
       return content
     end
