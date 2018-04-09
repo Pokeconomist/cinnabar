@@ -36,7 +36,7 @@ module Cinnabar
     loop do
       Write.hands(players)
       players.each do |player|
-        p player.name, player.hand
+        # p player.name, player.hand
         Write.turn(player)
         if Game.win_check(complete_sets, turn_num)
           Game.win(players, complete_sets)
@@ -44,9 +44,9 @@ module Cinnabar
           loop do
             unless player.hand.empty?
               card_taken, called_card = Game.call_card(
-                player, Read.card(player.hand, player.id),
-                players[Read.player(num_players,
-                player.num, player.id) - 1]
+                player,
+                Read.card(player.hand, player.id),
+                players[Read.player(num_players, player.num, player.id) - 1]
               )
               unless card_taken
                 drawn_card = reserve.draw_card
